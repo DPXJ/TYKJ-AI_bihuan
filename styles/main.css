@@ -2653,14 +2653,14 @@ body {
 .ai-card-content {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
 
 .ai-description {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 13px;
+    line-height: 1.4;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 /* 内联图片上传区域 */
@@ -2830,6 +2830,129 @@ body {
 .inline-textarea::placeholder {
     color: #999;
     font-style: normal;
+}
+
+/* 组合式输入区域 - 图片上传嵌入文本输入框 */
+.combined-input-container {
+    position: relative;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    background: white;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.combined-input-container:focus-within {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+.combined-textarea {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    background: transparent;
+    box-sizing: border-box;
+    line-height: 1.4;
+    min-height: 70px;
+}
+
+.combined-textarea:focus {
+    outline: none;
+}
+
+.combined-textarea::placeholder {
+    color: #999;
+    font-style: normal;
+}
+
+/* 内嵌图片上传区域 */
+.embedded-upload-area {
+    border-top: 1px solid #f0f0f0;
+    padding: 6px 10px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+}
+
+.embedded-upload-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #f0f4ff;
+    border: 1px dashed #1a73e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 11px;
+    color: #1a73e8;
+    flex-shrink: 0;
+}
+
+.embedded-upload-trigger:hover {
+    background: #e6f0ff;
+    border-color: #0d47a1;
+}
+
+.embedded-upload-trigger i {
+    font-size: 12px;
+}
+
+.embedded-upload-trigger span {
+    font-weight: 500;
+}
+
+/* 内嵌图片预览 */
+.embedded-image-preview {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.embedded-image-item {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.embedded-image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.embedded-remove-btn {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    background: #ff4444;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 7px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.embedded-remove-btn:hover {
+    background: #cc0000;
+    transform: scale(1.1);
 }
 
 /* AI诊断按钮 */

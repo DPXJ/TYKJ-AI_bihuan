@@ -70,33 +70,29 @@ const pageData = {
                         
                         <div class="ai-card-content">
                             <div class="ai-description">
-                                识农AI有强大的图片分析能力，帮您识别病虫害出防治方案，支持拍照识别，图片+文字同时提问。
+                                云农谷AI有强大的图片分析能力，帮您识别病虫害出防治方案，支持拍照识别，图片+文字同时提问。
                             </div>
                             
-                            <!-- 图片上传区域 -->
-                            <div class="inline-upload-area" id="inlineUploadArea">
-                                <div class="upload-placeholder" id="inlineUploadPlaceholder">
-                                    <div class="upload-icon-card">
-                                        <div class="upload-icon-circle">
-                                            <i class="fas fa-image"></i>
-                                        </div>
-                                        <span class="upload-text">上传图片</span>
-                                    </div>
-                                </div>
-                                <div class="uploaded-preview" id="inlineUploadedImages" style="display: none;">
-                                    <!-- 上传的图片预览 -->
-                                </div>
-                                <input type="file" id="inlineImageInput" accept="image/*" style="display: none;" multiple>
-                            </div>
-                            
-                            <!-- 文字输入区域 -->
-                            <div class="inline-text-input">
+                            <!-- 组合式输入区域 - 图片上传嵌入文本输入框 -->
+                            <div class="combined-input-container">
                                 <textarea 
                                     id="inlineQuestionTextarea" 
-                                    class="inline-textarea" 
+                                    class="combined-textarea" 
                                     placeholder="告诉我您的问题吧～"
                                     rows="3"
                                 ></textarea>
+                                
+                                <!-- 内嵌图片上传区域 -->
+                                <div class="embedded-upload-area">
+                                    <div class="embedded-upload-trigger" id="embeddedUploadTrigger">
+                                        <i class="fas fa-image"></i>
+                                        <span>添加图片</span>
+                                    </div>
+                                    <div class="embedded-image-preview" id="embeddedImagePreview">
+                                        <!-- 内嵌图片预览 -->
+                                    </div>
+                                </div>
+                                <input type="file" id="embeddedImageInput" accept="image/*" style="display: none;" multiple>
                             </div>
                             
                             <!-- AI诊断按钮 -->
@@ -2463,12 +2459,12 @@ function bindSidebarToggle() {
 function setupInlineAIDiagnosis() {
     console.log('Setting up inline AI diagnosis...');
     
-    const uploadArea = document.getElementById('inlineUploadArea');
-    const imageInput = document.getElementById('inlineImageInput');
+    const uploadTrigger = document.getElementById('embeddedUploadTrigger');
+    const imageInput = document.getElementById('embeddedImageInput');
     const textarea = document.getElementById('inlineQuestionTextarea');
     const diagnosisBtn = document.getElementById('btnStartDiagnosis');
     
-    if (!uploadArea || !imageInput || !textarea || !diagnosisBtn) {
+    if (!uploadTrigger || !imageInput || !textarea || !diagnosisBtn) {
         console.error('Inline AI diagnosis elements not found');
         return;
     }
@@ -2476,8 +2472,8 @@ function setupInlineAIDiagnosis() {
     console.log('Inline elements found, setting up events...');
     
     // 图片上传功能
-    uploadArea.onclick = function() {
-        console.log('Inline upload area clicked');
+    uploadTrigger.onclick = function() {
+        console.log('Embedded upload trigger clicked');
         imageInput.click();
     };
     
@@ -2502,25 +2498,20 @@ function setupInlineAIDiagnosis() {
 function handleInlineImageFiles(files) {
     console.log('Handling inline image files:', files.length);
     
-    const uploadPlaceholder = document.getElementById('inlineUploadPlaceholder');
-    const uploadedImages = document.getElementById('inlineUploadedImages');
+    const imagePreview = document.getElementById('embeddedImagePreview');
     
     if (files.length === 0) return;
     
-    // 隐藏占位符，显示图片预览
-    if (uploadPlaceholder) uploadPlaceholder.style.display = 'none';
-    if (uploadedImages) uploadedImages.style.display = 'block';
-    
     // 清空之前的图片
-    uploadedImages.innerHTML = '';
+    if (imagePreview) imagePreview.innerHTML = '';
     
     // 处理每个文件
     Array.from(files).forEach((file, index) => {
         if (file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                const imageItem = createInlineImagePreview(e.target.result, file.name, index);
-                uploadedImages.appendChild(imageItem);
+                const imageItem = createEmbeddedImagePreview(e.target.result, file.name, index);
+                if (imagePreview) imagePreview.appendChild(imageItem);
             };
             reader.readAsDataURL(file);
         }
@@ -2529,35 +2520,26 @@ function handleInlineImageFiles(files) {
     updateSendButton();
 }
 
-// 创建内联图片预览
-function createInlineImagePreview(src, name, index) {
+// 创建内嵌图片预览
+function createEmbeddedImagePreview(src, name, index) {
     const imageItem = document.createElement('div');
-    imageItem.className = 'inline-image-item';
+    imageItem.className = 'embedded-image-item';
     imageItem.innerHTML = `
-        <div class="inline-image-preview">
-            <img src="${src}" alt="${name}">
-            <button class="btn-remove-inline-image" onclick="removeInlineImage(${index})">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+        <img src="${src}" alt="${name}">
+        <button class="embedded-remove-btn" onclick="removeEmbeddedImage(${index})">
+            <i class="fas fa-times"></i>
+        </button>
     `;
     return imageItem;
 }
 
-// 移除内联图片
-function removeInlineImage(index) {
-    const uploadedImages = document.getElementById('inlineUploadedImages');
-    const imageItems = uploadedImages.querySelectorAll('.inline-image-item');
+// 移除内嵌图片
+function removeEmbeddedImage(index) {
+    const imagePreview = document.getElementById('embeddedImagePreview');
+    const imageItems = imagePreview.querySelectorAll('.embedded-image-item');
     
     if (imageItems[index]) {
         imageItems[index].remove();
-    }
-    
-    // 如果没有图片了，显示占位符
-    if (uploadedImages.children.length === 0) {
-        const uploadPlaceholder = document.getElementById('inlineUploadPlaceholder');
-        if (uploadPlaceholder) uploadPlaceholder.style.display = 'block';
-        uploadedImages.style.display = 'none';
     }
     
     updateSendButton();
@@ -2566,13 +2548,13 @@ function removeInlineImage(index) {
 // 更新发送按钮状态
 function updateSendButton() {
     const textarea = document.getElementById('inlineQuestionTextarea');
-    const uploadedImages = document.getElementById('inlineUploadedImages');
+    const imagePreview = document.getElementById('embeddedImagePreview');
     const diagnosisBtn = document.getElementById('btnStartDiagnosis');
     
     if (!textarea || !diagnosisBtn) return;
     
     const hasText = textarea.value.trim().length > 0;
-    const hasImages = uploadedImages && uploadedImages.children.length > 0;
+    const hasImages = imagePreview && imagePreview.children.length > 0;
     
     // 有文字或图片就可以发送
     if (hasText || hasImages) {
@@ -2587,10 +2569,10 @@ function updateSendButton() {
 // 开始内联诊断
 function startInlineDiagnosis() {
     const textarea = document.getElementById('inlineQuestionTextarea');
-    const uploadedImages = document.getElementById('inlineUploadedImages');
+    const imagePreview = document.getElementById('embeddedImagePreview');
     
     const questionText = textarea ? textarea.value.trim() : '';
-    const hasImages = uploadedImages && uploadedImages.children.length > 0;
+    const hasImages = imagePreview && imagePreview.children.length > 0;
     
     if (!questionText && !hasImages) {
         showInlineNotification('请输入问题或上传图片', 'warning');
