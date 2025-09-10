@@ -6,6 +6,10 @@ const pageData = {
         content: `
             <div class="mobile-page workbench-page">
                 <div class="mobile-header">
+                    <button class="header-message-btn" onclick="showMessages()">
+                        <i class="fas fa-bell"></i>
+                        <span class="message-badge">3</span>
+                    </button>
                     <h1>工作台</h1>
                 </div>
                 <div class="mobile-content">
@@ -127,10 +131,246 @@ const pageData = {
 
                 <!-- 底部导航 -->
                 <div class="mobile-footer tabbar">
-                    <div class="tab-item"><i class="fas fa-home"></i><span>首页</span></div>
-                    <div class="tab-item active"><i class="fas fa-briefcase"></i><span>工作台</span></div>
-                    <div class="tab-item"><i class="fas fa-comment-dots"></i><span>消息</span></div>
-                    <div class="tab-item"><i class="fas fa-user"></i><span>我的</span></div>
+                    <div class="tab-item active" data-page="home"><i class="fas fa-home"></i><span>首页</span></div>
+                    <div class="tab-item" data-page="mall"><i class="fas fa-store"></i><span>商城</span></div>
+                    <div class="tab-item" data-page="ai"><i class="fas fa-robot"></i><span>AI</span></div>
+                    <div class="tab-item" data-page="workbench"><i class="fas fa-briefcase"></i><span>工作台</span></div>
+                    <div class="tab-item" data-page="profile"><i class="fas fa-user"></i><span>我的</span></div>
+                </div>
+            </div>
+        `
+    },
+    
+    mall: {
+        title: '农业商城',
+        subtitle: '优质农资一站式采购',
+        content: `
+            <div class="mobile-page mall-page">
+                <div class="mobile-header">
+                    <h1>农业商城</h1>
+                    <div class="subtitle">优质农资一站式采购</div>
+                </div>
+                <div class="mobile-content">
+                    <!-- 搜索栏 -->
+                    <div class="search-section">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="搜索农资产品...">
+                        </div>
+                    </div>
+
+                    <!-- 分类导航 -->
+                    <div class="category-nav">
+                        <div class="category-item active">
+                            <i class="fas fa-seedling"></i>
+                            <span>种子</span>
+                        </div>
+                        <div class="category-item">
+                            <i class="fas fa-flask"></i>
+                            <span>农药</span>
+                        </div>
+                        <div class="category-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>肥料</span>
+                        </div>
+                        <div class="category-item">
+                            <i class="fas fa-tools"></i>
+                            <span>农机</span>
+                        </div>
+                    </div>
+
+                    <!-- 商品列表 -->
+                    <div class="products-section">
+                        <h3>推荐商品</h3>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="product-info">
+                                    <h4>优质玉米种子</h4>
+                                    <p class="product-desc">高产抗病，适合本地种植</p>
+                                    <div class="product-price">¥45.00</div>
+                                </div>
+                                <button class="add-to-cart-btn">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div class="product-info">
+                                    <h4>生物农药</h4>
+                                    <p class="product-desc">环保安全，高效防治</p>
+                                    <div class="product-price">¥28.50</div>
+                                </div>
+                                <button class="add-to-cart-btn">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div class="product-info">
+                                    <h4>有机肥料</h4>
+                                    <p class="product-desc">天然有机，改善土壤</p>
+                                    <div class="product-price">¥35.00</div>
+                                </div>
+                                <button class="add-to-cart-btn">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <div class="product-info">
+                                    <h4>小型播种机</h4>
+                                    <p class="product-desc">轻便高效，操作简单</p>
+                                    <div class="product-price">¥1,280.00</div>
+                                </div>
+                                <button class="add-to-cart-btn">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+    
+    ai: {
+        title: 'AI智能助手',
+        subtitle: '全方位AI能力展示',
+        content: `
+            <div class="mobile-page ai-page">
+                <div class="mobile-header">
+                    <h1>AI智能助手</h1>
+                    <div class="subtitle">全方位AI能力展示</div>
+                </div>
+                <div class="mobile-content">
+                    <!-- AI能力卡片网格 -->
+                    <div class="ai-capabilities-grid">
+                        <!-- AI病虫害识别 -->
+                        <div class="ai-capability-card" onclick="loadPage('aiDiagnosis')">
+                            <div class="capability-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                            <div class="capability-content">
+                                <h3>AI病虫害识别</h3>
+                                <p>智能识别作物病虫害，提供精准诊断和防治建议</p>
+                                <div class="capability-features">
+                                    <span class="feature-tag">图片识别</span>
+                                    <span class="feature-tag">专家建议</span>
+                                    <span class="feature-tag">防治方案</span>
+                                </div>
+                            </div>
+                            <div class="capability-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <!-- 作物生长模型 -->
+                        <div class="ai-capability-card" onclick="showComingSoon('作物生长模型')">
+                            <div class="capability-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="capability-content">
+                                <h3>作物生长模型</h3>
+                                <p>基于环境数据和生长规律，预测作物生长状态和产量</p>
+                                <div class="capability-features">
+                                    <span class="feature-tag">生长预测</span>
+                                    <span class="feature-tag">产量估算</span>
+                                    <span class="feature-tag">环境分析</span>
+                                </div>
+                            </div>
+                            <div class="capability-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <!-- 农业风险模型 -->
+                        <div class="ai-capability-card" onclick="showComingSoon('农业风险模型')">
+                            <div class="capability-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="capability-content">
+                                <h3>农业风险模型</h3>
+                                <p>评估农业生产风险，提供风险预警和应对策略</p>
+                                <div class="capability-features">
+                                    <span class="feature-tag">风险评估</span>
+                                    <span class="feature-tag">预警系统</span>
+                                    <span class="feature-tag">应对策略</span>
+                                </div>
+                            </div>
+                            <div class="capability-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <!-- 灾害预警模型 -->
+                        <div class="ai-capability-card" onclick="showComingSoon('灾害预警模型')">
+                            <div class="capability-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="capability-content">
+                                <h3>灾害预警模型</h3>
+                                <p>实时监测气象数据，提前预警自然灾害对农业的影响</p>
+                                <div class="capability-features">
+                                    <span class="feature-tag">气象监测</span>
+                                    <span class="feature-tag">灾害预警</span>
+                                    <span class="feature-tag">影响评估</span>
+                                </div>
+                            </div>
+                            <div class="capability-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <!-- 专家模型 -->
+                        <div class="ai-capability-card" onclick="showComingSoon('专家模型')">
+                            <div class="capability-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="capability-content">
+                                <h3>专家模型</h3>
+                                <p>集成农业专家知识，提供专业咨询和决策支持</p>
+                                <div class="capability-features">
+                                    <span class="feature-tag">专家知识</span>
+                                    <span class="feature-tag">智能咨询</span>
+                                    <span class="feature-tag">决策支持</span>
+                                </div>
+                            </div>
+                            <div class="capability-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI使用统计 -->
+                    <div class="ai-stats-section">
+                        <h3>AI使用统计</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">156</div>
+                                <div class="stat-label">今日诊断</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">89%</div>
+                                <div class="stat-label">准确率</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2.3k</div>
+                                <div class="stat-label">累计服务</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         `
@@ -155,17 +395,12 @@ const pageData = {
                             您的提交内容
                         </div>
                         <div class="input-summary-content" id="inputSummaryContent">
-                            <!-- 这里显示用户从首页提交的图片和文字 -->
-                            <div class="summary-images" id="summaryImages">
-                                <!-- 图片预览 -->
-                            </div>
-                            <div class="summary-text" id="summaryText">
-                                <!-- 文字描述 -->
-                            </div>
+                            <div class="summary-images" id="summaryImages"></div>
+                            <div class="summary-text" id="summaryText"></div>
                         </div>
                     </div>
 
-                    <!-- 诊断状态卡片 - 直接显示 -->
+                    <!-- 诊断状态卡片 -->
                     <div class="card diagnosis-status-card" id="diagnosisStatusCard">
                         <div class="status-header">
                             <div class="status-icon">
@@ -184,49 +419,6 @@ const pageData = {
                         </div>
                     </div>
 
-                    <!-- 诊断时间线 -->
-                    <div class="card timeline-card" id="timelineCard" style="display: none;">
-                        <div class="card-title">诊断流程</div>
-                        <div class="diagnosis-timeline">
-                            <div class="timeline-item active" id="step1">
-                                <div class="timeline-dot">
-                                    <i class="fas fa-camera"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">图片上传</div>
-                                    <div class="timeline-desc">已上传作物图片</div>
-                                </div>
-                            </div>
-                            <div class="timeline-item" id="step2">
-                                <div class="timeline-dot">
-                                    <i class="fas fa-brain"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">AI初诊</div>
-                                    <div class="timeline-desc">AI模型分析中...</div>
-                                </div>
-                            </div>
-                            <div class="timeline-item" id="step3">
-                                <div class="timeline-dot">
-                                    <i class="fas fa-user-md"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">专家复诊</div>
-                                    <div class="timeline-desc">等待专家复核</div>
-                                </div>
-                            </div>
-                            <div class="timeline-item" id="step4">
-                                <div class="timeline-dot">
-                                    <i class="fas fa-pills"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">商品推荐</div>
-                                    <div class="timeline-desc">推荐防治方案</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- AI诊断结果 -->
                     <div class="card diagnosis-result-card" id="diagnosisResult" style="display: none;">
                         <div class="card-title">
@@ -241,58 +433,140 @@ const pageData = {
                             <div class="disease-desc">
                                 根据图片分析，您的作物叶片出现不规则褐色斑点，边缘清晰，符合叶斑病的典型症状。
                             </div>
-                            <div class="similar-diseases">
-                                <div class="similar-title">相似病症：</div>
-                                <div class="similar-list">
-                                    <span class="similar-item">炭疽病 (75%)</span>
-                                    <span class="similar-item">褐斑病 (68%)</span>
-                                    <span class="similar-item">细菌性叶斑病 (62%)</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- 专家推荐 -->
-                    <div class="card expert-recommendation-card" id="expertRecommendation" style="display: none;">
+                    <!-- 专家推荐与连线 - 合并设计 -->
+                    <div class="card expert-section-card" id="expertSection" style="display: none;">
                         <div class="card-title">
                             <i class="fas fa-user-md"></i>
-                            专家推荐方案
+                            专家推荐与连线
                         </div>
-                        <div class="expert-info">
-                            <div class="expert-avatar">
-                                <i class="fas fa-user-circle"></i>
+                        
+                        <!-- 专家卡片滑动区域 -->
+                        <div class="experts-carousel">
+                            <div class="experts-container" id="expertsContainer">
+                                <!-- 专家卡片1 -->
+                                <div class="expert-card active">
+                                    <div class="expert-avatar">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9IiM0Q0FGNTIiLz4KPHN2ZyB4PSIxNSIgeT0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIgMTRDOC42ODYyOSAxNCA2IDE2LjY4NjMgNiAyMEgxOEMxOCAxNi42ODYzIDE1LjMxMzcgMTQgMTIgMTRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+" alt="专家头像">
+                                    </div>
+                                    <div class="expert-info">
+                                        <div class="expert-name">张农技专家</div>
+                                        <div class="expert-title">高级农艺师 · 15年经验</div>
+                                        <div class="expert-specialty">专长：叶斑病防治</div>
+                                    </div>
+                                    <div class="expert-badges">
+                                        <span class="badge expert">认证专家</span>
+                                        <span class="badge rating">评分 4.9</span>
+                                    </div>
+                                    <div class="expert-recommendation">
+                                        <div class="recommendation-title">防治建议：</div>
+                                        <div class="recommendation-text">
+                                            1. 立即清除病叶，减少病原菌传播<br>
+                                            2. 改善通风条件，降低湿度<br>
+                                            3. 使用推荐药剂进行防治
+                                        </div>
+                                    </div>
+                                    <div class="expert-actions">
+                                        <button class="btn-connect-voice">
+                                            <i class="fas fa-phone"></i>
+                                            语音咨询 ¥50
+                                        </button>
+                                        <button class="btn-connect-video">
+                                            <i class="fas fa-video"></i>
+                                            视频指导 ¥80
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 专家卡片2 -->
+                                <div class="expert-card">
+                                    <div class="expert-avatar">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9IiM2MzY2RjEiLz4KPHN2ZyB4PSIxNSIgeT0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIgMTRDOC42ODYyOSAxNCA2IDE2LjY4NjMgNiAyMEgxOEMxOCAxNi42ODYzIDE1LjMxMzcgMTQgMTIgMTRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+" alt="专家头像">
+                                    </div>
+                                    <div class="expert-info">
+                                        <div class="expert-name">李植保专家</div>
+                                        <div class="expert-title">植保专家 · 12年经验</div>
+                                        <div class="expert-specialty">专长：病害诊断</div>
+                                    </div>
+                                    <div class="expert-badges">
+                                        <span class="badge expert">认证专家</span>
+                                        <span class="badge rating">评分 4.8</span>
+                                    </div>
+                                    <div class="expert-recommendation">
+                                        <div class="recommendation-title">防治建议：</div>
+                                        <div class="recommendation-text">
+                                            1. 加强田间管理，预防病害<br>
+                                            2. 合理施肥，增强抗病性<br>
+                                            3. 及时用药，控制病情发展
+                                        </div>
+                                    </div>
+                                    <div class="expert-actions">
+                                        <button class="btn-connect-voice">
+                                            <i class="fas fa-phone"></i>
+                                            语音咨询 ¥50
+                                        </button>
+                                        <button class="btn-connect-video">
+                                            <i class="fas fa-video"></i>
+                                            视频指导 ¥80
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 专家卡片3 -->
+                                <div class="expert-card">
+                                    <div class="expert-avatar">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9IiNGRjY5MDAiLz4KPHN2ZyB4PSIxNSIgeT0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIgMTRDOC42ODYyOSAxNCA2IDE2LjY4NjMgNiAyMEgxOEMxOCAxNi42ODYzIDE1LjMxMzcgMTQgMTIgMTRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+" alt="专家头像">
+                                    </div>
+                                    <div class="expert-info">
+                                        <div class="expert-name">王农艺师</div>
+                                        <div class="expert-title">农艺师 · 18年经验</div>
+                                        <div class="expert-specialty">专长：综合防治</div>
+                                    </div>
+                                    <div class="expert-badges">
+                                        <span class="badge expert">认证专家</span>
+                                        <span class="badge rating">评分 4.9</span>
+                                    </div>
+                                    <div class="expert-recommendation">
+                                        <div class="recommendation-title">防治建议：</div>
+                                        <div class="recommendation-text">
+                                            1. 综合防治，标本兼治<br>
+                                            2. 生物防治与化学防治结合<br>
+                                            3. 长期监控，预防为主
+                                        </div>
+                                    </div>
+                                    <div class="expert-actions">
+                                        <button class="btn-connect-voice">
+                                            <i class="fas fa-phone"></i>
+                                            语音咨询 ¥50
+                                        </button>
+                                        <button class="btn-connect-video">
+                                            <i class="fas fa-video"></i>
+                                            视频指导 ¥80
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="expert-details">
-                                <div class="expert-name">张农技专家</div>
-                                <div class="expert-title">高级农艺师 · 15年经验</div>
-                            </div>
-                            <div class="expert-badge">
-                                <i class="fas fa-medal"></i>
-                                <span>认证专家</span>
-                            </div>
-                        </div>
-                        <div class="recommendation-content">
-                            <div class="recommendation-title">防治建议：</div>
-                            <div class="recommendation-text">
-                                1. 立即清除病叶，减少病原菌传播<br>
-                                2. 改善通风条件，降低湿度<br>
-                                3. 使用推荐药剂进行防治<br>
-                                4. 加强田间管理，预防复发
+                            
+                            <!-- 滑动指示器 -->
+                            <div class="carousel-indicators">
+                                <span class="indicator active" data-index="0"></span>
+                                <span class="indicator" data-index="1"></span>
+                                <span class="indicator" data-index="2"></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 商品推荐 -->
+                    <!-- 推荐农资产品 - 简化设计 -->
                     <div class="card product-recommendation-card" id="productRecommendation" style="display: none;">
                         <div class="card-title">
-                            <i class="fas fa-pills"></i>
+                            <i class="fas fa-shopping-cart"></i>
                             推荐农资产品
                         </div>
+                        
                         <div class="product-list">
                             <div class="product-item">
-                                <div class="product-image">
-                                    <i class="fas fa-flask"></i>
-                                </div>
                                 <div class="product-info">
                                     <div class="product-name">多菌灵可湿性粉剂</div>
                                     <div class="product-desc">广谱杀菌剂，对叶斑病效果显著</div>
@@ -306,10 +580,8 @@ const pageData = {
                                     <button class="btn-buy">立即购买</button>
                                 </div>
                             </div>
+                            
                             <div class="product-item">
-                                <div class="product-image">
-                                    <i class="fas fa-seedling"></i>
-                                </div>
                                 <div class="product-info">
                                     <div class="product-name">代森锰锌水分散粒剂</div>
                                     <div class="product-desc">保护性杀菌剂，预防效果佳</div>
@@ -321,38 +593,6 @@ const pageData = {
                                     <div class="price">¥35.00</div>
                                     <button class="btn-buy">立即购买</button>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 专家连线 -->
-                    <div class="card expert-connection-card" id="expertConnection" style="display: none;">
-                        <div class="card-title">
-                            <i class="fas fa-video"></i>
-                            连线专家
-                        </div>
-                        <div class="connection-options">
-                            <div class="connection-item">
-                                <div class="connection-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="connection-info">
-                                    <div class="connection-title">语音咨询</div>
-                                    <div class="connection-desc">10分钟专业指导</div>
-                                    <div class="connection-price">¥50/次</div>
-                                </div>
-                                <button class="btn-connect">立即连线</button>
-                            </div>
-                            <div class="connection-item">
-                                <div class="connection-icon">
-                                    <i class="fas fa-video"></i>
-                                </div>
-                                <div class="connection-info">
-                                    <div class="connection-title">视频指导</div>
-                                    <div class="connection-desc">现场拍照指导</div>
-                                    <div class="connection-price">¥80/次</div>
-                                </div>
-                                <button class="btn-connect">立即连线</button>
                             </div>
                         </div>
                     </div>
@@ -2435,6 +2675,25 @@ function bindNavigationEvents() {
             loadPage(page);
         });
     });
+    
+    // 底部导航点击事件
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.tab-item')) {
+            const tabItem = e.target.closest('.tab-item');
+            const page = tabItem.getAttribute('data-page');
+            
+            if (page) {
+                // 更新活跃状态
+                document.querySelectorAll('.tab-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                tabItem.classList.add('active');
+                
+                // 加载页面
+                loadPage(page);
+            }
+        }
+    });
 }
 
 // 绑定侧边栏切换事件
@@ -2952,20 +3211,21 @@ function updateTimeline(progress) {
 function completeAIDiagnosis() {
     // 显示诊断结果
     const diagnosisResult = document.getElementById('diagnosisResult');
-    const expertRecommendation = document.getElementById('expertRecommendation');
+    const expertSection = document.getElementById('expertSection');
     const productRecommendation = document.getElementById('productRecommendation');
-    const expertConnection = document.getElementById('expertConnection');
     
     if (diagnosisResult) {
         diagnosisResult.style.display = 'block';
         diagnosisResult.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // 延迟显示专家推荐
+    // 延迟显示专家推荐与连线
     setTimeout(() => {
-        if (expertRecommendation) {
-            expertRecommendation.style.display = 'block';
-            expertRecommendation.scrollIntoView({ behavior: 'smooth' });
+        if (expertSection) {
+            expertSection.style.display = 'block';
+            expertSection.scrollIntoView({ behavior: 'smooth' });
+            // 初始化专家卡片滑动功能
+            initExpertCarousel();
         }
     }, 1000);
     
@@ -2976,19 +3236,57 @@ function completeAIDiagnosis() {
             productRecommendation.scrollIntoView({ behavior: 'smooth' });
         }
     }, 2000);
-    
-    // 延迟显示专家连线
-    setTimeout(() => {
-        if (expertConnection) {
-            expertConnection.style.display = 'block';
-            expertConnection.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, 3000);
 }
 
 function showExpertRecommendation() {
-    // 显示专家推荐页面
-    alert('跳转到专家推荐页面');
+    const expertCard = document.getElementById('expertSection');
+    if (expertCard) {
+        expertCard.style.display = 'block';
+        expertCard.scrollIntoView({ behavior: 'smooth' });
+        // 初始化专家卡片滑动功能
+        initExpertCarousel();
+    }
+}
+
+// 初始化专家卡片滑动功能
+function initExpertCarousel() {
+    const container = document.getElementById('expertsContainer');
+    const indicators = document.querySelectorAll('.indicator');
+    const cards = document.querySelectorAll('.expert-card');
+    
+    if (!container || !indicators.length || !cards.length) return;
+    
+    let currentIndex = 0;
+    
+    // 点击指示器切换卡片
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = index;
+            updateCarousel();
+        });
+    });
+    
+    // 更新轮播状态
+    function updateCarousel() {
+        // 移动容器
+        container.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // 更新指示器
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+        
+        // 更新卡片状态
+        cards.forEach((card, index) => {
+            card.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // 自动轮播
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCarousel();
+    }, 5000);
 }
 
 function showOrderManagement() {
@@ -3068,8 +3366,47 @@ function updateNavigationState(pageName) {
     }
 }
 
+// 显示消息页面
+function showMessages() {
+    showNotification('消息功能开发中...', 'info');
+}
+
+// 显示即将推出功能
+function showComingSoon(featureName) {
+    showNotification(`${featureName}功能即将推出，敬请期待！`, 'info');
+}
+
+// 显示通知
+function showNotification(message, type = 'info') {
+    // 创建通知元素
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'info' ? 'info-circle' : type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    // 添加到页面
+    document.body.appendChild(notification);
+    
+    // 显示动画
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // 自动隐藏
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
 // 全局页面加载函数（供HTML中的onclick调用）
-window.loadPage = loadPage; 
+window.loadPage = loadPage;
+window.showMessages = showMessages;
+window.showComingSoon = showComingSoon; 
 window.goBack = function() {
     const phoneContent = document.getElementById('phoneContent');
     if (!window.__pageStack || window.__pageStack.length === 0) {
