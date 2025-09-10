@@ -3224,6 +3224,12 @@ function completeAIDiagnosis() {
     const diagnosisResult = document.getElementById('diagnosisResult');
     const expertSection = document.getElementById('expertSection');
     const productRecommendation = document.getElementById('productRecommendation');
+    const diagnosisStatusCard = document.getElementById('diagnosisStatusCard');
+    
+    // 诊断完成后隐藏进度卡片，避免残留显示不全
+    if (diagnosisStatusCard) {
+        diagnosisStatusCard.style.display = 'none';
+    }
     
     if (diagnosisResult) {
         diagnosisResult.style.display = 'block';
