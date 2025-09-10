@@ -402,21 +402,25 @@ const pageData = {
 
                     <!-- 诊断状态卡片 -->
                     <div class="card diagnosis-status-card" id="diagnosisStatusCard">
-                        <div class="status-header">
-                            <div class="status-icon">
-                                <i class="fas fa-robot"></i>
+                        <div class="step-progress-bar">
+                            <div class="step-item active" id="step-1">
+                                <div class="step-icon">📷</div>
+                                <div class="step-text">图像识别</div>
                             </div>
-                            <div class="status-info">
-                                <div class="status-title">AI智能诊断</div>
-                                <div class="status-subtitle">正在分析您的作物图片...</div>
+                            <div class="step-item" id="step-2">
+                                <div class="step-icon">🧠</div>
+                                <div class="step-text">AI分析</div>
+                            </div>
+                            <div class="step-item" id="step-3">
+                                <div class="step-icon">🔍</div>
+                                <div class="step-text">特征匹配</div>
+                            </div>
+                            <div class="step-item" id="step-4">
+                                <div class="step-icon">✅</div>
+                                <div class="step-text">结果生成</div>
                             </div>
                         </div>
-                        <div class="status-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="diagnosisProgress"></div>
-                            </div>
-                            <div class="progress-text" id="progressText">分析中 0%</div>
-                        </div>
+                        <div class="progress-text" id="progressText">分析中 0%</div>
                     </div>
 
                     <!-- AI诊断结果 -->
@@ -3188,23 +3192,30 @@ function startAIDiagnosis() {
 }
 
 function updateTimeline(progress) {
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const step4 = document.getElementById('step4');
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    const step4 = document.getElementById('step-4');
     
-    if (progress >= 25 && step2) {
+    // 清除所有活动状态
+    [step1, step2, step3, step4].forEach(step => {
+        if (step) step.classList.remove('active');
+    });
+    
+    if (progress >= 25 && step1) {
+        step1.classList.add('active');
+    }
+    
+    if (progress >= 50 && step2) {
         step2.classList.add('active');
-        step2.querySelector('.timeline-desc').textContent = 'AI模型分析完成';
     }
     
-    if (progress >= 50 && step3) {
+    if (progress >= 75 && step3) {
         step3.classList.add('active');
-        step3.querySelector('.timeline-desc').textContent = '专家正在复核...';
     }
     
-    if (progress >= 75 && step4) {
+    if (progress >= 100 && step4) {
         step4.classList.add('active');
-        step4.querySelector('.timeline-desc').textContent = '生成推荐方案...';
     }
 }
 
