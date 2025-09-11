@@ -431,11 +431,40 @@ const pageData = {
                         </div>
                         <div class="result-content">
                             <div class="disease-info">
-                                <div class="disease-name">疑似：叶斑病</div>
-                                <div class="confidence">置信度：85%</div>
+                                <div class="disease-name">疑似：玉米锈病</div>
+                                <div class="confidence">相似度：91%</div>
                             </div>
                             <div class="disease-desc">
-                                根据图片分析，您的作物叶片出现不规则褐色斑点，边缘清晰，符合叶斑病的典型症状。
+                                根据您提供的图片，这是一片玉米叶片，其上出现的黄褐色斑点和条状病斑，结合发病部位及症状特征，高度疑似玉米南方锈病(Southern Corn Rust, Puccinia polysora)。
+                            </div>
+                            
+                            <div class="diagnosis-basis">
+                                <div class="basis-title">
+                                    <i class="fas fa-check-circle"></i>
+                                    诊断依据
+                                </div>
+                                <div class="basis-content">
+                                    <div class="basis-item">
+                                        <div class="basis-label">病斑形态：</div>
+                                        <div class="basis-text">病斑呈橙色至红褐色，小而密集，通常在叶面形成不规则的斑块。随着病情发展，病斑逐渐变为黄褐色或灰白色，表面可能有细小的粉状物(孢子堆)，尤其在高湿条件下更明显。</div>
+                                    </div>
+                                    <div class="basis-item">
+                                        <div class="basis-label">发病部位：</div>
+                                        <div class="basis-text">主要发生在叶片的中下部，向上蔓延，严重时可覆盖整个叶片。</div>
+                                    </div>
+                                    <div class="basis-item">
+                                        <div class="basis-label">流行条件：</div>
+                                        <div class="basis-text">高温高湿(25-30℃)、多雨、通风不良的环境易发。该病在夏玉米区、南方产区尤为常见，近年来在我国华南、西南、黄淮海地区均有爆发趋势。</div>
+                                    </div>
+                                    <div class="basis-item">
+                                        <div class="basis-label">与其它病害的区别：</div>
+                                        <div class="basis-text">玉米大斑病：病斑较大，呈长椭圆形，边缘紫褐色，中央灰白，无粉状物。玉米小斑病：病斑较小，呈椭圆形，边缘深褐色，中央浅褐色。</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="diagnosis-image">
+                                <img src="image.png" alt="玉米锈病症状图片" />
                             </div>
                         </div>
                     </div>
