@@ -872,10 +872,10 @@ const pageData = {
                     </div>
                 </div>
 
-                <!-- 底部导航 -->
+                <!-- 底部四菜单（AI 相关） -->
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
-                        <div class="nav-item" onclick="loadPage('home')">
+                        <div class="nav-item" onclick="loadPage('aiNewChat')">
                             <i class="fas fa-plus"></i>
                             <span>新对话</span>
                         </div>
@@ -883,14 +883,147 @@ const pageData = {
                             <i class="fas fa-robot"></i>
                             <span>AI诊断</span>
                         </div>
-                        <div class="nav-item" onclick="showExpertRecommendation()">
+                        <div class="nav-item" onclick="loadPage('expertRecommend')">
                             <i class="fas fa-user-md"></i>
                             <span>专家推荐</span>
                         </div>
-                        <div class="nav-item" onclick="showOrderManagement()">
-                            <i class="fas fa-clipboard-list"></i>
-                            <span>闭环跟进</span>
+                        <div class="nav-item" onclick="loadPage('historyDialog')">
+                            <i class="fas fa-history"></i>
+                            <span>历史对话</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+
+    aiNewChat: {
+        title: '新对话',
+        subtitle: '发起新的AI诊断会话',
+        content: `
+            <div class="mobile-page ai-newchat-page">
+                <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('home')"><i class="fas fa-arrow-left"></i></button>
+                    <h1>新对话</h1>
+                </div>
+                <div class="mobile-content">
+                    <div class="card ai-diagnosis-card">
+                        <div class="ai-card-header">
+                            <div class="ai-card-title"><i class="fas fa-robot"></i><span>AI病虫害诊断</span></div>
+                            <div class="ai-card-subtitle">描述问题，上传图片，开始一次新的诊断</div>
+                        </div>
+                        <div class="ai-card-content">
+                            <div class="combined-input-container">
+                                <textarea id="inlineQuestionTextarea" class="combined-textarea" placeholder="告诉我您的问题吧～" rows="4"></textarea>
+                                <div class="embedded-upload-area">
+                                    <div class="embedded-upload-trigger" id="embeddedUploadTrigger"><i class="fas fa-image"></i><span>添加图片</span></div>
+                                    <div class="embedded-image-preview" id="embeddedImagePreview"></div>
+                                </div>
+                                <input type="file" id="embeddedImageInput" accept="image/*" style="display:none" multiple>
+                            </div>
+                            <div style="text-align:center; margin-top:10px;">
+                                <a href="javascript:void(0)" onclick="loadPage('historyDialog')" style="color:#9aa0a6; font-size:12px;">查看历史记录</a>
+                            </div>
+                            <div class="ai-card-actions">
+                                <button class="btn-start-ai-diagnosis" onclick="startInlineDiagnosis()"><i class="fas fa-brain"></i><span>开始AI诊断</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-footer ai-diagnosis-footer">
+                    <div class="footer-nav">
+                        <div class="nav-item active" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
+                        <div class="nav-item" onclick="loadPage('aiDiagnosis')"><i class="fas fa-robot"></i><span>AI诊断</span></div>
+                        <div class="nav-item" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
+                        <div class="nav-item" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+
+    expertRecommend: {
+        title: '专家推荐',
+        subtitle: '为您匹配合适的专家',
+        content: `
+            <div class="mobile-page expert-page">
+                <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('home')"><i class="fas fa-arrow-left"></i></button>
+                    <h1>专家推荐</h1>
+                </div>
+                <div class="mobile-content">
+                    <div class="card">
+                        <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索专家/标签/知识库"></div>
+                    </div>
+                    <div class="card expert-card">
+                        <div class="expert-header">
+                            <div class="avatar"><i class="fas fa-user-tie"></i></div>
+                            <div class="info">
+                                <div class="name">王建国</div>
+                                <div class="tags"><span class="tag">玉米病害</span><span class="tag">小麦锈病</span></div>
+                            </div>
+                            <button class="btn" style="padding:8px 12px;">查看</button>
+                        </div>
+                        <div class="expert-extras">
+                            <div>专家知识库（可购买）</div>
+                            <div class="product-tags"><span class="tag">杀菌剂A</span><span class="tag">防治套餐</span></div>
+                        </div>
+                    </div>
+                    <div class="card expert-card">
+                        <div class="expert-header">
+                            <div class="avatar"><i class="fas fa-user-tie"></i></div>
+                            <div class="info">
+                                <div class="name">李敏</div>
+                                <div class="tags"><span class="tag">水稻虫害</span><span class="tag">植保方案</span></div>
+                            </div>
+                            <button class="btn" style="padding:8px 12px;">查看</button>
+                        </div>
+                        <div class="expert-extras">
+                            <div>专家知识库（可购买）</div>
+                            <div class="product-tags"><span class="tag">虫害套装</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-footer ai-diagnosis-footer">
+                    <div class="footer-nav">
+                        <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
+                        <div class="nav-item" onclick="loadPage('aiDiagnosis')"><i class="fas fa-robot"></i><span>AI诊断</span></div>
+                        <div class="nav-item active" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
+                        <div class="nav-item" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+
+    historyDialog: {
+        title: '历史对话',
+        subtitle: '查看以往会话',
+        content: `
+            <div class="mobile-page history-page">
+                <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('home')"><i class="fas fa-arrow-left"></i></button>
+                    <h1>历史对话</h1>
+                </div>
+                <div class="mobile-content">
+                    <div class="card">
+                        <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索历史问题/日期"></div>
+                    </div>
+                    <div class="card chat-item">
+                        <div class="chat-title">玉米叶片黄斑</div>
+                        <div class="chat-sub">2025-09-10 · 上传3张图片</div>
+                    </div>
+                    <div class="card chat-item">
+                        <div class="chat-title">水稻稻飞虱防治</div>
+                        <div class="chat-sub">2025-08-22 · 文字提问</div>
+                    </div>
+                </div>
+                <div class="mobile-footer ai-diagnosis-footer">
+                    <div class="footer-nav">
+                        <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
+                        <div class="nav-item" onclick="loadPage('aiDiagnosis')"><i class="fas fa-robot"></i><span>AI诊断</span></div>
+                        <div class="nav-item" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
+                        <div class="nav-item active" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
                     </div>
                 </div>
             </div>
@@ -3740,8 +3873,10 @@ function ensureTabbar(pageName) {
         const pageEl = document.querySelector('.mobile-page');
         if (!pageEl) return;
 
-        // 若页面内不存在通用 tabbar，则插入
-        if (!pageEl.querySelector('.mobile-footer.tabbar')) {
+        // AI相关页面(新对话/AI诊断/专家推荐/历史对话)不插入全局5项tabbar
+        const isAIFourMenuPage = ['aiDiagnosis','aiNewChat','expertRecommend','historyDialog'].includes(pageName);
+        // 若页面内不存在通用 tabbar，则插入（非AI四菜单页）
+        if (!isAIFourMenuPage && !pageEl.querySelector('.mobile-footer.tabbar')) {
             const footerHtml = `
                 <div class="mobile-footer tabbar">
                     <div class="tab-item" data-page="home"><i class="fas fa-home"></i><span>首页</span></div>

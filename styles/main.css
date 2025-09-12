@@ -4367,7 +4367,47 @@ body {
 .ai-diagnosis-footer {
     background: white;
     border-top: 1px solid #eee;
-    padding: 0;
+    padding: 0 0 calc(env(safe-area-inset-bottom, 16px)); /* 适配底部安全区 */
+}
+.ai-diagnosis-footer .footer-nav{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;padding:12px 0 16px;min-height:78px;align-items:center;box-sizing:border-box}
+.ai-diagnosis-footer .footer-nav .nav-item{color:#666}
+.ai-diagnosis-footer .footer-nav .nav-item i{font-size:20px;margin-bottom:6px}
+.ai-diagnosis-footer .footer-nav .nav-item span{display:block;font-size:12px}
+.ai-diagnosis-footer .footer-nav .nav-item.active{color:#0aa06e;font-weight:700}
+
+/* 专家推荐/历史对话卡片基础样式 */
+.expert-page .expert-card .expert-header{display:flex;align-items:center;gap:12px}
+.expert-page .expert-card .avatar{width:40px;height:40px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;color:#667eea}
+.expert-page .expert-card .info .name{font-weight:700;color:#333}
+.expert-page .expert-card .tag{background:#eef7f2;color:#0aa06e;border-radius:12px;padding:2px 8px;font-size:12px;margin-right:6px}
+.expert-page .expert-extras{margin-top:10px;color:#666;font-size:12px}
+.expert-page .product-tags .tag{background:#fff3e6;color:#ff7a45}
+
+.history-page .chat-item{display:flex;flex-direction:column;gap:4px}
+.history-page .chat-title{font-weight:700;color:#333}
+.history-page .chat-sub{color:#999;font-size:12px}
+
+/* 让AI四菜单页面的底部导航固定在底部，与AI诊断一致 */
+.ai-newchat-page, .expert-page, .history-page {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.ai-newchat-page .mobile-header, .expert-page .mobile-header, .history-page .mobile-header {
+    flex-shrink: 0;
+}
+.ai-newchat-page .mobile-content, .expert-page .mobile-content, .history-page .mobile-content {
+    flex: 1;
+    padding: 15px;
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 16px)); /* 预留底部+安全区 */
+    overflow-y: auto;
+}
+.ai-newchat-page .mobile-footer.ai-diagnosis-footer,
+.expert-page .mobile-footer.ai-diagnosis-footer,
+.history-page .mobile-footer.ai-diagnosis-footer {
+    flex-shrink: 0;
 }
 
 /* 商城页面样式 */
