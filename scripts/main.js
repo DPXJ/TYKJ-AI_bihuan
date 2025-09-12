@@ -1,16 +1,12 @@
 // 页面数据
 const pageData = {
     home: {
-        title: '工作台',
-        subtitle: '首页',
+        title: '首页',
+        subtitle: '农业管理系统',
         content: `
             <div class="mobile-page workbench-page">
                 <div class="mobile-header">
-                    <button class="header-message-btn" onclick="showMessages()">
-                        <i class="fas fa-bell"></i>
-                        <span class="message-badge">3</span>
-                    </button>
-                    <h1>工作台</h1>
+                    <h1>首页</h1>
                 </div>
                 <div class="mobile-content">
                     <!-- 组织卡片 -->
@@ -18,8 +14,14 @@ const pageData = {
                         <div class="org-row">
                             <div class="org-name">
                                 龙腾虎跃有限公司（壹）
-                        </div>
-                            <a class="org-switch" href="javascript:void(0)">切换组织 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="org-actions">
+                                <a class="org-switch" href="javascript:void(0)">切换组织 <i class="fas fa-arrow-right"></i></a>
+                                <button class="header-message-btn" onclick="showMessages()" style="margin-left: 10px;">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="message-badge">3</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
@@ -33,7 +35,7 @@ const pageData = {
                             <div class="wb-stat-item">
                                 <div class="wb-stat-number">1个</div>
                                 <div class="wb-stat-label">管理项目</div>
-                        </div>
+                            </div>
                             <div class="wb-stat-item">
                                 <div class="wb-stat-number">1/1个</div>
                                 <div class="wb-stat-label">管理基地/地块</div>
@@ -49,19 +51,19 @@ const pageData = {
                             <div class="wb-stat-item">
                                 <div class="wb-stat-number">0个</div>
                                 <div class="wb-stat-label">物联网设备</div>
+                            </div>
                         </div>
-                            </div>
-                            </div>
+                    </div>
 
                     <!-- 当前生产主体 -->
                     <div class="card subject-card">
                         <div class="subject-row">
                             <div class="subject-title">当前生产主体</div>
                             <a class="subject-switch" href="javascript:void(0)">切换 <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        <div class="subject-desc">大厅水培植物 | 一号分区</div>
                         </div>
-
+                        <div class="subject-desc">大厅水培植物 | 一号分区</div>
+                    </div>
+                    
                     <!-- AI病虫害诊断卡片 -->
                     <div class="card ai-diagnosis-card">
                         <div class="ai-card-header">
@@ -125,9 +127,9 @@ const pageData = {
                             <div class="feature-item"><div class="fi-icon"><i class="fas fa-tractor"></i></div><div class="fi-text">农机管理</div></div>
                             <div class="feature-item clickable" onclick="loadPage('fieldWorkstation')"><div class="fi-icon"><i class="fas fa-microchip"></i></div><div class="fi-text">田间工作站</div></div>
                             <div class="feature-item disabled"><div class="fi-icon"><i class="fas fa-ellipsis-h"></i></div><div class="fi-text">更多</div></div>
-                            </div>
-                            </div>
-                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- 底部导航 -->
                 <div class="mobile-footer tabbar">
@@ -136,6 +138,245 @@ const pageData = {
                     <div class="tab-item" data-page="ai"><i class="fas fa-robot"></i><span>AI</span></div>
                     <div class="tab-item" data-page="workbench"><i class="fas fa-briefcase"></i><span>工作台</span></div>
                     <div class="tab-item" data-page="profile"><i class="fas fa-user"></i><span>我的</span></div>
+                </div>
+            </div>
+        `
+    },
+    workbench: {
+        title: '工作台',
+        subtitle: '工作台',
+        content: `
+            <div class="mobile-page workbench-page">
+                <div class="mobile-header">
+                    <h1>工作台</h1>
+                    <button class="header-message-btn" onclick="showMessages()">
+                        <i class="fas fa-bell"></i>
+                        <span class="message-badge">3</span>
+                    </button>
+                </div>
+                <div class="mobile-content">
+                    <!-- 组织卡片 -->
+                    <div class="card org-card">
+                        <div class="org-row">
+                            <div class="org-name">
+                                龙腾虎跃有限公司（壹）
+                            </div>
+                            <a class="org-switch" href="javascript:void(0)">切换组织 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- 功能网格 -->
+                    <div class="card features-card">
+                        <div class="features-grid">
+                            <div class="feature-item clickable" onclick="loadPage('plantingPlan')">
+                                <div class="fi-icon"><i class="fas fa-seedling"></i></div>
+                                <div class="fi-text">种植计划</div>
+                            </div>
+                            <div class="feature-item clickable" onclick="loadPage('farmCalendar')">
+                                <div class="fi-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="fi-text">农事日历</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-bug"></i></div>
+                                <div class="fi-text">病虫害识别</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-user-md"></i></div>
+                                <div class="fi-text">专家诊断</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-warehouse"></i></div>
+                                <div class="fi-text">投入品管理</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-file-signature"></i></div>
+                                <div class="fi-text">投入品申请</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-people-carry"></i></div>
+                                <div class="fi-text">临时工申请</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-stamp"></i></div>
+                                <div class="fi-text">农事审批</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-receipt"></i></div>
+                                <div class="fi-text">我的领用</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="fi-icon"><i class="fas fa-tractor"></i></div>
+                                <div class="fi-text">农机管理</div>
+                            </div>
+                            <div class="feature-item clickable" onclick="loadPage('fieldWorkstation')">
+                                <div class="fi-icon"><i class="fas fa-microchip"></i></div>
+                                <div class="fi-text">田间工作站</div>
+                            </div>
+                            <div class="feature-item disabled">
+                                <div class="fi-icon"><i class="fas fa-ellipsis-h"></i></div>
+                                <div class="fi-text">更多</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 底部导航 -->
+                <div class="mobile-footer tabbar">
+                    <div class="tab-item" data-page="home"><i class="fas fa-home"></i><span>首页</span></div>
+                    <div class="tab-item" data-page="mall"><i class="fas fa-store"></i><span>商城</span></div>
+                    <div class="tab-item" data-page="ai"><i class="fas fa-robot"></i><span>AI</span></div>
+                    <div class="tab-item active" data-page="workbench"><i class="fas fa-briefcase"></i><span>工作台</span></div>
+                    <div class="tab-item" data-page="profile"><i class="fas fa-user"></i><span>我的</span></div>
+                </div>
+            </div>
+        `
+    },
+    ai: {
+        title: 'AI',
+        subtitle: '多AI能力聚合',
+        content: `
+            <div class="mobile-page">
+                <div class="mobile-header">
+                    <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h1>AI能力</h1>
+                    <div class="subtitle">图片识别 · 文本问答 · 方案生成</div>
+                </div>
+                <div class="mobile-content">
+                    <div class="ai-capabilities-grid">
+                        <div class="ai-capability-card" onclick="loadPage('aiDiagnosis')">
+                            <div class="capability-icon"><i class="fas fa-search-plus"></i></div>
+                            <div class="capability-content">
+                                <h3>AI病虫害识别</h3>
+                                <p>上传作物图片，智能识别病虫害并给出防治建议</p>
+                                <div class="capability-features"><span class="feature-tag">图片识别</span><span class="feature-tag">专家建议</span></div>
+                            </div>
+                            <div class="capability-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        <div class="ai-capability-card" onclick="showComingSoon('AI农事问答')">
+                            <div class="capability-icon"><i class="fas fa-comments"></i></div>
+                            <div class="capability-content">
+                                <h3>AI农事问答</h3>
+                                <p>与AI对话，获取种植与管理建议</p>
+                                <div class="capability-features"><span class="feature-tag">对话</span><span class="feature-tag">知识库</span></div>
+                            </div>
+                            <div class="capability-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        <div class="ai-capability-card" onclick="showComingSoon('方案生成')">
+                            <div class="capability-icon"><i class="fas fa-magic"></i></div>
+                            <div class="capability-content">
+                                <h3>AI方案生成</h3>
+                                <p>按地块与作物，一键生成可执行的农事方案</p>
+                                <div class="capability-features"><span class="feature-tag">自动化</span><span class="feature-tag">个性化</span></div>
+                            </div>
+                            <div class="capability-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-footer tabbar">
+                    <div class="tab-item" data-page="home"><i class="fas fa-home"></i><span>首页</span></div>
+                    <div class="tab-item" data-page="mall"><i class="fas fa-store"></i><span>商城</span></div>
+                    <div class="tab-item active" data-page="ai"><i class="fas fa-robot"></i><span>AI</span></div>
+                    <div class="tab-item" data-page="workbench"><i class="fas fa-briefcase"></i><span>工作台</span></div>
+                    <div class="tab-item" data-page="profile"><i class="fas fa-user"></i><span>我的</span></div>
+                </div>
+            </div>
+        `
+    },
+    marketplace: {
+        title: '商城',
+        subtitle: '农资商城',
+        content: `
+            <div class="mobile-page market-page">
+                <div class="mobile-header">
+                    <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h1>农业商城</h1>
+                    <div class="subtitle">优质农资一站式采购</div>
+                </div>
+                <div class="mobile-content">
+                    <!-- 搜索框 -->
+                    <div class="market-search">
+                        <i class="fas fa-search"></i>
+                        <input class="market-search-input" placeholder="搜索农资产品…"/>
+                    </div>
+                    <!-- 分类标签 -->
+                    <div class="market-categories">
+                        <button class="cat active"><i class="fas fa-seedling"></i><span>种子</span></button>
+                        <button class="cat"><i class="fas fa-flask"></i><span>农药</span></button>
+                        <button class="cat"><i class="fas fa-box"></i><span>肥料</span></button>
+                        <button class="cat"><i class="fas fa-tractor"></i><span>农机</span></button>
+                    </div>
+                    <!-- 推荐商品 -->
+                    <div class="market-section-title">推荐商品</div>
+                    <div class="goods-grid">
+                        <div class="goods-card">
+                            <div class="goods-thumb"><i class="fas fa-leaf"></i></div>
+                            <div class="goods-info">
+                                <div class="goods-name">优质玉米种子</div>
+                                <div class="goods-desc">高产抗病，适合本地种植</div>
+                                <div class="goods-bottom">
+                                    <div class="goods-price">¥45.00</div>
+                                    <button class="goods-add"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="goods-card">
+                            <div class="goods-thumb"><i class="fas fa-vial"></i></div>
+                            <div class="goods-info">
+                                <div class="goods-name">生物农药</div>
+                                <div class="goods-desc">环保安全，高效防治</div>
+                                <div class="goods-bottom">
+                                    <div class="goods-price">¥28.50</div>
+                                    <button class="goods-add"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="goods-card">
+                            <div class="goods-thumb"><i class="fas fa-seedling"></i></div>
+                            <div class="goods-info">
+                                <div class="goods-name">有机肥料</div>
+                                <div class="goods-desc">天然有机，改善土壤</div>
+                                <div class="goods-bottom">
+                                    <div class="goods-price">¥35.00</div>
+                                    <button class="goods-add"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="goods-card">
+                            <div class="goods-thumb"><i class="fas fa-tools"></i></div>
+                            <div class="goods-info">
+                                <div class="goods-name">小型播种机</div>
+                                <div class="goods-desc">轻便高效，操作简单</div>
+                                <div class="goods-bottom">
+                                    <div class="goods-price">¥1,280.00</div>
+                                    <button class="goods-add"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-footer ai-diagnosis-footer">
+                    <div class="footer-nav">
+                        <div class="nav-item" data-page="home" onclick="loadPage('home')">
+                            <i class="fas fa-home"></i>
+                            <span>首页</span>
+                        </div>
+                        <div class="nav-item active" data-page="mall" onclick="loadPage('mall')">
+                            <i class="fas fa-store"></i>
+                            <span>商城</span>
+                        </div>
+                        <div class="nav-item" data-page="aiDiagnosis" onclick="loadPage('aiDiagnosis')">
+                            <i class="fas fa-robot"></i>
+                            <span>AI诊断</span>
+                        </div>
+                        <div class="nav-item" data-page="fieldWorkstation" onclick="loadPage('fieldWorkstation')">
+                            <i class="fas fa-briefcase"></i>
+                            <span>工作台</span>
+                        </div>
+                        <div class="nav-item" data-page="profile" onclick="loadPage('profile')">
+                            <i class="fas fa-user"></i>
+                            <span>我的</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         `
@@ -657,48 +898,145 @@ const pageData = {
     },
     
     profile: {
-        title: '个人资料',
-        subtitle: '管理您的个人信息',
+        title: '我的',
+        subtitle: '个人中心',
+        content: `
+            <div class="mobile-page profile-page">
+                <div class="mobile-header">
+                    <h1>我的</h1>
+                    <div class="header-actions">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                </div>
+                <div class="mobile-content">
+                    <!-- 用户信息卡片 -->
+                    <div class="user-profile-card">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">龙</div>
+                            <div class="user-org">龙腾虎跃有限公司（壹）</div>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    
+                    <!-- 电商服务 -->
+                    <div class="card">
+                        <div class="card-title">电商服务</div>
+                        <div class="ecommerce-grid">
+                            <div class="ecommerce-item">
+                                <div class="ecommerce-icon orange"><i class="fas fa-shopping-cart"></i></div>
+                                <div class="ecommerce-text">购物车</div>
+                            </div>
+                            <div class="ecommerce-item">
+                                <div class="ecommerce-icon blue"><i class="fas fa-file-alt"></i></div>
+                                <div class="ecommerce-text">我的订单</div>
+                            </div>
+                            <div class="ecommerce-item">
+                                <div class="ecommerce-icon orange"><i class="fas fa-star"></i></div>
+                                <div class="ecommerce-text">我的评价</div>
+                            </div>
+                            <div class="ecommerce-item">
+                                <div class="ecommerce-icon blue"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="ecommerce-text">地址管理</div>
+                            </div>
+                            <div class="ecommerce-item">
+                                <div class="ecommerce-icon orange"><i class="fas fa-heart"></i></div>
+                                <div class="ecommerce-text">我的关注</div>
+                            </div>
+                            <div class="ecommerce-item">
+                                <div class="ecommerce-icon blue"><i class="fas fa-headset"></i></div>
+                                <div class="ecommerce-text">售后服务</div>
+                            </div>
+                            <div class="ecommerce-item">
+                                <div class="ecommerce-icon green"><i class="fas fa-history"></i></div>
+                                <div class="ecommerce-text">浏览记录</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 其它功能 -->
+                    <div class="card">
+                        <div class="card-title">其它</div>
+                        <div class="other-functions">
+                            <div class="other-item">
+                                <div class="other-icon green"><i class="fas fa-sitemap"></i></div>
+                                <div class="other-text">组织架构管理</div>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="other-item">
+                                <div class="other-icon green"><i class="fas fa-lock"></i></div>
+                                <div class="other-text">账号与安全</div>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="other-item">
+                                <div class="other-icon green"><i class="fas fa-comment-dots"></i></div>
+                                <div class="other-text">意见反馈</div>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="other-item">
+                                <div class="other-icon green"><i class="fas fa-info-circle"></i></div>
+                                <div class="other-text">关于我们</div>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 操作按钮 -->
+                    <div class="action-buttons">
+                        <button class="btn-primary">开启个人农场</button>
+                        <button class="btn-secondary">退出登录</button>
+                    </div>
+                </div>
+                
+                <!-- 浮动按钮 -->
+                <div class="floating-buttons">
+                    <div class="fab ai-assistant">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="fab customer-service">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                </div>
+
+                <!-- 底部导航 -->
+                <div class="mobile-footer tabbar">
+                    <div class="tab-item" data-page="home"><i class="fas fa-home"></i><span>首页</span></div>
+                    <div class="tab-item" data-page="mall"><i class="fas fa-store"></i><span>商城</span></div>
+                    <div class="tab-item" data-page="ai"><i class="fas fa-robot"></i><span>AI</span></div>
+                    <div class="tab-item" data-page="workbench"><i class="fas fa-briefcase"></i><span>工作台</span></div>
+                    <div class="tab-item active" data-page="profile"><i class="fas fa-user"></i><span>我的</span></div>
+                </div>
+            </div>
+        `
+    },
+    
+    messages: {
+        title: '消息',
+        subtitle: '消息中心',
         content: `
             <div class="mobile-page">
                 <div class="mobile-header">
-                    <h1>个人资料</h1>
-                    <div class="subtitle">管理您的个人信息</div>
+                    <h1>消息</h1>
                 </div>
                 <div class="mobile-content">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">基本信息</div>
+                        <div class="empty-state">
+                            <i class="fas fa-comment-slash"></i>
+                            <h3>暂无消息</h3>
+                            <p>您还没有收到任何消息</p>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">头像</label>
-                            <div style="text-align: center; padding: 20px;">
-                                <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 32px;">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div style="margin-top: 10px;">
-                                    <button class="btn btn-secondary">更换头像</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">姓名</label>
-                            <input type="text" class="form-input" value="张三" placeholder="请输入姓名">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">手机号</label>
-                            <input type="tel" class="form-input" value="138****8888" placeholder="请输入手机号">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">邮箱</label>
-                            <input type="email" class="form-input" value="zhangsan@example.com" placeholder="请输入邮箱">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">职位</label>
-                            <input type="text" class="form-input" value="产品经理" placeholder="请输入职位">
-                        </div>
-                        <button class="btn" style="width: 100%;">保存修改</button>
                     </div>
+                </div>
+
+                <!-- 底部导航 -->
+                <div class="mobile-footer tabbar">
+                    <div class="tab-item" data-page="home"><i class="fas fa-home"></i><span>首页</span></div>
+                    <div class="tab-item" data-page="workbench"><i class="fas fa-briefcase"></i><span>工作台</span></div>
+                    <div class="tab-item active" data-page="messages"><i class="fas fa-comment"></i><span>消息</span></div>
+                    <div class="tab-item" data-page="profile"><i class="fas fa-user"></i><span>我的</span></div>
                 </div>
             </div>
         `
@@ -2696,7 +3034,7 @@ function bindNavigationEvents() {
                 subMenu.classList.toggle('expanded');
             } else {
                 // 没有子菜单，直接加载页面
-                loadPage(page);
+                if (page) loadPage(page);
             }
         });
     });
@@ -2723,7 +3061,15 @@ function bindNavigationEvents() {
                 tabItem.classList.add('active');
                 
                 // 加载页面
-                loadPage(page);
+                if (page === 'mall') {
+                    loadPage('mall');
+                } else if (page === 'ai') {
+                    loadPage('ai');
+                } else if (page === 'workbench') {
+                    loadPage('workbench');
+                } else {
+                    loadPage(page);
+                }
             }
         }
     });
@@ -3358,6 +3704,9 @@ function loadPage(pageName) {
         
         // 更新导航状态
         updateNavigationState(pageName);
+
+        // 确保底部导航存在并高亮当前页
+        ensureTabbar(pageName);
         
         // 滚动到顶部
         phoneContent.scrollTop = 0;
@@ -3378,11 +3727,56 @@ function loadPage(pageName) {
                     displayUserInputSummary(window.currentDiagnosisData);
                     startAIDiagnosis();
                 } else {
-                    console.log('No diagnosis data found, redirecting to home');
-                    loadPage('home');
+                    console.log('No diagnosis data found. Stay on AI page and wait for input.');
                 }
             }, 100);
         }
+    }
+}
+
+// 确保底部导航存在并设置选中态
+function ensureTabbar(pageName) {
+    try {
+        const pageEl = document.querySelector('.mobile-page');
+        if (!pageEl) return;
+
+        // 若页面内不存在通用 tabbar，则插入
+        if (!pageEl.querySelector('.mobile-footer.tabbar')) {
+            const footerHtml = `
+                <div class="mobile-footer tabbar">
+                    <div class="tab-item" data-page="home"><i class="fas fa-home"></i><span>首页</span></div>
+                    <div class="tab-item" data-page="mall"><i class="fas fa-store"></i><span>商城</span></div>
+                    <div class="tab-item" data-page="ai"><i class="fas fa-robot"></i><span>AI</span></div>
+                    <div class="tab-item" data-page="workbench"><i class="fas fa-briefcase"></i><span>工作台</span></div>
+                    <div class="tab-item" data-page="profile"><i class="fas fa-user"></i><span>我的</span></div>
+                </div>
+            `;
+            pageEl.insertAdjacentHTML('beforeend', footerHtml);
+        }
+
+        // 将业务页面名映射为 tabbar 的 data-page 值
+        const tabKey = (function(name) {
+            if (name === 'fieldWorkstation') return 'workbench';
+            if (name === 'workbench') return 'workbench';
+            return name;
+        })(pageName);
+
+        // 重置并设置选中态
+        document.querySelectorAll('.mobile-footer.tabbar .tab-item').forEach(item => {
+            item.classList.toggle('active', item.getAttribute('data-page') === tabKey);
+        });
+    } catch (e) {
+        console.error('ensureTabbar error:', e);
+    }
+}
+
+// 返回上一页
+function goBack() {
+    if (window.__pageStack && window.__pageStack.length > 0) {
+        const prev = window.__pageStack.pop();
+        if (prev) loadPage(prev);
+    } else {
+        loadPage('home');
     }
 }
 
