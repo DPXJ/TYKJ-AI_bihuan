@@ -1,3 +1,33 @@
+// 轻量“会话仓库”与状态机（原型演示，不接后端）
+const conversationStore = {
+    list: [], // {id, title, createdAt, status, inputText, images}
+    currentId: null
+};
+
+function createConversation(payload) {
+    const id = 'C' + Date.now();
+    const conv = {
+        id,
+        title: payload.title || 'AI诊断',
+        createdAt: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        status: 'queued', // queued -> running -> done/failed
+        inputText: payload.inputText || '',
+        images: payload.images || []
+    };
+    conversationStore.list.unshift(conv);
+    conversationStore.currentId = id;
+    return conv;
+}
+
+function getConversation(id) {
+    return conversationStore.list.find(c => c.id === id);
+}
+
+function setConversationStatus(id, status) {
+    const c = getConversation(id);
+    if (c) c.status = status;
+}
+
 // 页面数据
 const pageData = {
     home: {
@@ -243,7 +273,7 @@ const pageData = {
                 </div>
                 <div class="mobile-content">
                     <div class="ai-capabilities-grid">
-                        <div class="ai-capability-card" onclick="loadPage('aiDiagnosis')">
+                        <div class="ai-capability-card" onclick="loadPage('aiNewChat')">
                             <div class="capability-icon"><i class="fas fa-search-plus"></i></div>
                             <div class="capability-content">
                                 <h3>AI病虫害识别</h3>
@@ -364,7 +394,7 @@ const pageData = {
                             <i class="fas fa-store"></i>
                             <span>商城</span>
                         </div>
-                        <div class="nav-item" data-page="aiDiagnosis" onclick="loadPage('aiDiagnosis')">
+                        <div class="nav-item" data-page="aiNewChat" onclick="loadPage('aiNewChat')">
                             <i class="fas fa-robot"></i>
                             <span>AI诊断</span>
                         </div>
@@ -499,7 +529,7 @@ const pageData = {
                     <!-- AI能力卡片网格 -->
                     <div class="ai-capabilities-grid">
                         <!-- AI病虫害识别 -->
-                        <div class="ai-capability-card" onclick="loadPage('aiDiagnosis')">
+                        <div class="ai-capability-card" onclick="loadPage('aiNewChat')">
                             <div class="capability-icon">
                                 <i class="fas fa-search-plus"></i>
                             </div>
@@ -623,7 +653,7 @@ const pageData = {
         content: `
             <div class="mobile-page ai-diagnosis-page">
                 <div class="mobile-header">
-                    <button class="back-btn" onclick="loadPage('home')">
+                    <button class="back-btn" onclick="loadPage('aiNewChat')">
                         <i class="fas fa-arrow-left"></i>
                     </button>
                     <h1>AI病虫害诊断</h1>
@@ -872,16 +902,12 @@ const pageData = {
                     </div>
                 </div>
 
-                <!-- 底部四菜单（AI 相关） -->
+                <!-- 底部三菜单（AI 相关） -->
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
                         <div class="nav-item" onclick="loadPage('aiNewChat')">
                             <i class="fas fa-plus"></i>
                             <span>新对话</span>
-                        </div>
-                        <div class="nav-item active">
-                            <i class="fas fa-robot"></i>
-                            <span>AI诊断</span>
                         </div>
                         <div class="nav-item" onclick="loadPage('expertRecommend')">
                             <i class="fas fa-user-md"></i>
@@ -925,7 +951,7 @@ const pageData = {
                                 <a href="javascript:void(0)" onclick="loadPage('historyDialog')" style="color:#9aa0a6; font-size:12px;">查看历史记录</a>
                             </div>
                             <div class="ai-card-actions">
-                                <button class="btn-start-ai-diagnosis" onclick="startInlineDiagnosis()"><i class="fas fa-brain"></i><span>开始AI诊断</span></button>
+                                <button class="btn-start-ai-diagnosis" onclick="submitNewConversation()"><i class="fas fa-brain"></i><span>开始AI诊断</span></button>
                             </div>
                         </div>
                     </div>
@@ -933,7 +959,6 @@ const pageData = {
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
                         <div class="nav-item active" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
-                        <div class="nav-item" onclick="loadPage('aiDiagnosis')"><i class="fas fa-robot"></i><span>AI诊断</span></div>
                         <div class="nav-item" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
                         <div class="nav-item" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
                     </div>
@@ -987,7 +1012,6 @@ const pageData = {
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
                         <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
-                        <div class="nav-item" onclick="loadPage('aiDiagnosis')"><i class="fas fa-robot"></i><span>AI诊断</span></div>
                         <div class="nav-item active" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
                         <div class="nav-item" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
                     </div>
@@ -1007,22 +1031,14 @@ const pageData = {
                 </div>
                 <div class="mobile-content">
                     <div class="card">
-                        <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索历史问题/日期"></div>
+                        <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索历史问题/日期" oninput="filterHistory(this.value)"></div>
                     </div>
-                    <div class="card chat-item">
-                        <div class="chat-title">玉米叶片黄斑</div>
-                        <div class="chat-sub">2025-09-10 · 上传3张图片</div>
-                    </div>
-                    <div class="card chat-item">
-                        <div class="chat-title">水稻稻飞虱防治</div>
-                        <div class="chat-sub">2025-08-22 · 文字提问</div>
-                    </div>
+                    <div id="historyList"></div>
                 </div>
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
                         <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
-                        <div class="nav-item" onclick="loadPage('aiDiagnosis')"><i class="fas fa-robot"></i><span>AI诊断</span></div>
-                        <div class="nav-item" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
+                        <div class="nav-item" onclick="loadPage('expertRecommend')"><i class="fas fa-user-tie"></i><span>专家推荐</span></div>
                         <div class="nav-item active" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
                     </div>
                 </div>
@@ -3430,9 +3446,47 @@ function displayUserInputSummary(userInput) {
 
 // AI诊断相关函数
 function showAIDiagnosis() {
-    console.log('Loading AI diagnosis page...');
-    loadPage('aiDiagnosis');
+    console.log('Loading AI new chat page...');
+    loadPage('aiNewChat');
 }
+
+// 提交新对话（原型）
+window.submitNewConversation = function() {
+    const text = document.getElementById('inlineQuestionTextarea')?.value || '';
+    const conv = createConversation({ title: 'AI诊断', inputText: text, images: [] });
+    // 简单模拟：立即跳转诊断详情并开始进度
+    loadPage('aiDiagnosis');
+    setTimeout(() => {
+        // 绑定会话并开始模拟
+        setConversationStatus(conv.id, 'running');
+        simulateDiagnosisFor(conv.id);
+    }, 50);
+};
+
+function simulateDiagnosisFor(id){
+    // 让现有进度条动完后设置done
+    setTimeout(()=> setConversationStatus(id, 'done'), 5500);
+}
+
+// 历史对话渲染与筛选（原型）
+window.filterHistory = function(keyword='') {
+    const wrap = document.getElementById('historyList');
+    if (!wrap) return;
+    const items = conversationStore.list.filter(c =>
+        (c.title||'').includes(keyword) || (c.inputText||'').includes(keyword)
+    );
+    wrap.innerHTML = items.map(c => `
+        <div class="card chat-item" onclick="openConversation('${c.id}')">
+            <div class="chat-title">${c.inputText?.slice(0, 12) || 'AI诊断'}</div>
+            <div class="chat-sub">${c.createdAt} · ${c.status}</div>
+        </div>
+    `).join('') || '<div class="card" style="text-align:center;color:#999;">暂无历史会话</div>';
+};
+
+window.openConversation = function(id){
+    conversationStore.currentId = id;
+    loadPage('aiDiagnosis');
+};
 
 // 设置图片上传功能
 function setupImageUpload() {
@@ -3860,7 +3914,24 @@ function loadPage(pageName) {
                     displayUserInputSummary(window.currentDiagnosisData);
                     startAIDiagnosis();
                 } else {
-                    console.log('No diagnosis data found. Stay on AI page and wait for input.');
+                    console.log('No legacy data; bind conversation if any.');
+                    // 渲染历史会话（若从历史进入）
+                    const inputCard = document.getElementById('questionInputCard');
+                    // 若没有当前会话，显示新对话输入卡片
+                    if (!conversationStore.currentId && inputCard) {
+                        inputCard.style.display = 'block';
+                    }
+                    if (conversationStore.currentId) {
+                        const c = getConversation(conversationStore.currentId);
+                        if (c) {
+                            // 隐藏输入卡片，显示已提交内容
+                            if (inputCard) inputCard.style.display = 'none';
+                            displayUserInputSummary({ questionText: c.inputText, images: [] });
+                            if (c.status === 'queued' || c.status === 'running') {
+                                startAIDiagnosis();
+                            }
+                        }
+                    }
                 }
             }, 100);
         }
@@ -3873,8 +3944,8 @@ function ensureTabbar(pageName) {
         const pageEl = document.querySelector('.mobile-page');
         if (!pageEl) return;
 
-        // AI相关页面(新对话/AI诊断/专家推荐/历史对话)不插入全局5项tabbar
-        const isAIFourMenuPage = ['aiDiagnosis','aiNewChat','expertRecommend','historyDialog'].includes(pageName);
+        // AI相关页面(新对话/专家推荐/历史对话)不插入全局5项tabbar，AI诊断是子页面
+        const isAIFourMenuPage = ['aiNewChat','expertRecommend','historyDialog','aiDiagnosis'].includes(pageName);
         // 若页面内不存在通用 tabbar，则插入（非AI四菜单页）
         if (!isAIFourMenuPage && !pageEl.querySelector('.mobile-footer.tabbar')) {
             const footerHtml = `
