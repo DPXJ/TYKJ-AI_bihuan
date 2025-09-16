@@ -648,7 +648,7 @@ const pageData = {
     },
     
     aiDiagnosis: {
-        title: 'AI病虫害诊断',
+        title: '诊断结果',
         subtitle: '智能识别 · 专家建议',
         content: `
             <div class="mobile-page ai-diagnosis-page">
@@ -656,7 +656,7 @@ const pageData = {
                     <button class="back-btn" onclick="loadPage('aiNewChat')">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <h1>AI病虫害诊断</h1>
+                    <h1>诊断结果</h1>
                 </div>
                 <div class="mobile-content">
                     <!-- 用户提交内容回显 -->
@@ -907,7 +907,7 @@ const pageData = {
                     <div class="footer-nav">
                         <div class="nav-item" onclick="loadPage('aiNewChat')">
                             <i class="fas fa-plus"></i>
-                            <span>新对话</span>
+                            <span>AI诊断</span>
                         </div>
                         <div class="nav-item" onclick="loadPage('expertRecommend')">
                             <i class="fas fa-user-md"></i>
@@ -924,13 +924,13 @@ const pageData = {
     },
 
     aiNewChat: {
-        title: '新对话',
+        title: 'AI诊断',
         subtitle: '发起新的AI诊断会话',
         content: `
             <div class="mobile-page ai-newchat-page">
                 <div class="mobile-header">
                     <button class="back-btn" onclick="loadPage('home')"><i class="fas fa-arrow-left"></i></button>
-                    <h1>新对话</h1>
+                    <h1>AI诊断</h1>
                 </div>
                 <div class="mobile-content">
                     <div class="card ai-diagnosis-card">
@@ -958,7 +958,7 @@ const pageData = {
                 </div>
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
-                        <div class="nav-item active" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
+                        <div class="nav-item active" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>AI诊断</span></div>
                         <div class="nav-item" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
                         <div class="nav-item" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
                     </div>
@@ -980,7 +980,7 @@ const pageData = {
                     <div class="card">
                         <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索专家/标签/知识库"></div>
                     </div>
-                    <div class="card expert-card">
+                    <div class="card expert-card" onclick="loadPage('expertDetail', 'wangjianguo')">
                         <div class="expert-header">
                             <div class="avatar"><i class="fas fa-user-tie"></i></div>
                             <div class="info">
@@ -994,7 +994,7 @@ const pageData = {
                             <div class="product-tags"><span class="tag">杀菌剂A</span><span class="tag">防治套餐</span></div>
                         </div>
                     </div>
-                    <div class="card expert-card">
+                    <div class="card expert-card" onclick="loadPage('expertDetail', 'limin')">
                         <div class="expert-header">
                             <div class="avatar"><i class="fas fa-user-tie"></i></div>
                             <div class="info">
@@ -1008,10 +1008,52 @@ const pageData = {
                             <div class="product-tags"><span class="tag">虫害套装</span></div>
                         </div>
                     </div>
+                    <div class="card expert-card" onclick="loadPage('expertDetail', 'zhangsan')">
+                        <div class="expert-header">
+                            <div class="avatar"><i class="fas fa-user-tie"></i></div>
+                            <div class="info">
+                                <div class="name">张三</div>
+                                <div class="tags"><span class="tag">果树病害</span><span class="tag">土壤改良</span></div>
+                            </div>
+                            <button class="btn" style="padding:8px 12px;">查看</button>
+                        </div>
+                        <div class="expert-extras">
+                            <div>专家知识库（可购买）</div>
+                            <div class="product-tags"><span class="tag">有机肥料</span><span class="tag">土壤调理剂</span></div>
+                        </div>
+                    </div>
+                    <div class="card expert-card" onclick="loadPage('expertDetail', 'lisi')">
+                        <div class="expert-header">
+                            <div class="avatar"><i class="fas fa-user-tie"></i></div>
+                            <div class="info">
+                                <div class="name">李四</div>
+                                <div class="tags"><span class="tag">蔬菜种植</span><span class="tag">温室管理</span></div>
+                            </div>
+                            <button class="btn" style="padding:8px 12px;">查看</button>
+                        </div>
+                        <div class="expert-extras">
+                            <div>专家知识库（可购买）</div>
+                            <div class="product-tags"><span class="tag">温室设备</span><span class="tag">种植技术</span></div>
+                        </div>
+                    </div>
+                    <div class="card expert-card" onclick="loadPage('expertDetail', 'wangwu')">
+                        <div class="expert-header">
+                            <div class="avatar"><i class="fas fa-user-tie"></i></div>
+                            <div class="info">
+                                <div class="name">王五</div>
+                                <div class="tags"><span class="tag">植保技术</span><span class="tag">农药使用</span></div>
+                            </div>
+                            <button class="btn" style="padding:8px 12px;">查看</button>
+                        </div>
+                        <div class="expert-extras">
+                            <div>专家知识库（可购买）</div>
+                            <div class="product-tags"><span class="tag">安全用药</span><span class="tag">植保方案</span></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
-                        <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
+                        <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>AI诊断</span></div>
                         <div class="nav-item active" onclick="loadPage('expertRecommend')"><i class="fas fa-user-md"></i><span>专家推荐</span></div>
                         <div class="nav-item" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
                     </div>
@@ -1033,13 +1075,166 @@ const pageData = {
                     <div class="card">
                         <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索历史问题/日期" oninput="filterHistory(this.value)"></div>
                     </div>
-                    <div id="historyList"></div>
+                    <div class="card history-item" onclick="loadPage('aiDiagnosis', 'conv1')">
+                        <div class="history-header">
+                            <div class="history-title">玉米叶片出现黄褐色斑点</div>
+                            <div class="history-date">2024-01-15 14:30</div>
+                        </div>
+                        <div class="history-content">
+                            <div class="history-preview">疑似玉米锈病，建议使用多菌灵可湿性粉剂进行防治...</div>
+                            <div class="history-status completed">已完成</div>
+                        </div>
+                    </div>
+                    <div class="card history-item" onclick="loadPage('aiDiagnosis', 'conv2')">
+                        <div class="history-header">
+                            <div class="history-title">小麦叶片有白色粉末状物质</div>
+                            <div class="history-date">2024-01-14 09:15</div>
+                        </div>
+                        <div class="history-content">
+                            <div class="history-preview">诊断为小麦白粉病，推荐使用三唑酮进行防治...</div>
+                            <div class="history-status completed">已完成</div>
+                        </div>
+                    </div>
+                    <div class="card history-item" onclick="loadPage('aiDiagnosis', 'conv3')">
+                        <div class="history-header">
+                            <div class="history-title">水稻叶片边缘发黄枯萎</div>
+                            <div class="history-date">2024-01-13 16:45</div>
+                        </div>
+                        <div class="history-content">
+                            <div class="history-preview">可能是水稻纹枯病，建议改善田间通风条件...</div>
+                            <div class="history-status completed">已完成</div>
+                        </div>
+                    </div>
+                    <div class="card history-item" onclick="loadPage('aiDiagnosis', 'conv4')">
+                        <div class="history-header">
+                            <div class="history-title">番茄果实表面有黑色斑点</div>
+                            <div class="history-date">2024-01-12 11:20</div>
+                        </div>
+                        <div class="history-content">
+                            <div class="history-preview">疑似番茄早疫病，推荐使用代森锰锌进行防治...</div>
+                            <div class="history-status completed">已完成</div>
+                        </div>
+                    </div>
+                    <div class="card history-item" onclick="loadPage('aiDiagnosis', 'conv5')">
+                        <div class="history-header">
+                            <div class="history-title">黄瓜叶片出现水渍状病斑</div>
+                            <div class="history-date">2024-01-11 08:30</div>
+                        </div>
+                        <div class="history-content">
+                            <div class="history-preview">诊断为黄瓜霜霉病，建议使用甲霜灵进行防治...</div>
+                            <div class="history-status completed">已完成</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="mobile-footer ai-diagnosis-footer">
                     <div class="footer-nav">
-                        <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>新对话</span></div>
+                        <div class="nav-item" onclick="loadPage('aiNewChat')"><i class="fas fa-plus"></i><span>AI诊断</span></div>
                         <div class="nav-item" onclick="loadPage('expertRecommend')"><i class="fas fa-user-tie"></i><span>专家推荐</span></div>
                         <div class="nav-item active" onclick="loadPage('historyDialog')"><i class="fas fa-history"></i><span>历史对话</span></div>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+
+    expertDetail: {
+        title: '专家详情',
+        subtitle: '专家信息与服务',
+        content: `
+            <div class="mobile-page expert-detail-page">
+                <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('expertRecommend')"><i class="fas fa-arrow-left"></i></button>
+                    <h1>专家详情</h1>
+                </div>
+                <div class="mobile-content">
+                    <div class="card expert-profile-card">
+                        <div class="expert-avatar-large">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="expert-info">
+                            <h2 id="expertName">王建国</h2>
+                            <div class="expert-title">认证专家 · 评分 4.9</div>
+                            <div class="expert-specialties" id="expertSpecialties">
+                                <span class="tag">玉米病害</span>
+                                <span class="tag">小麦锈病</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            专业背景
+                        </div>
+                        <div class="expert-background" id="expertBackground">
+                            从事农业植保工作15年，专注于玉米和小麦病害研究，发表相关论文20余篇，具有丰富的田间实践经验。
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-book"></i>
+                            知识库服务
+                        </div>
+                        <div class="knowledge-items" id="knowledgeItems">
+                            <div class="knowledge-item">
+                                <div class="knowledge-title">玉米病害诊断手册</div>
+                                <div class="knowledge-desc">包含50+种玉米常见病害的识别与防治方法</div>
+                                <div class="knowledge-price">¥29.9</div>
+                            </div>
+                            <div class="knowledge-item">
+                                <div class="knowledge-title">小麦锈病防治方案</div>
+                                <div class="knowledge-desc">专业的小麦锈病预防与治疗指导</div>
+                                <div class="knowledge-price">¥19.9</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-shopping-cart"></i>
+                            推荐产品
+                        </div>
+                        <div class="product-items" id="productItems">
+                            <div class="product-item">
+                                <div class="product-name">杀菌剂A</div>
+                                <div class="product-desc">广谱杀菌剂，对叶斑病效果显著</div>
+                                <div class="product-tags">
+                                    <span class="tag">专家推荐</span>
+                                    <span class="tag">AI匹配</span>
+                                </div>
+                                <div class="product-price">¥28.00</div>
+                                <button class="btn-buy">立即购买</button>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">防治套餐</div>
+                                <div class="product-desc">综合防治方案，包含多种药剂</div>
+                                <div class="product-tags">
+                                    <span class="tag">专家推荐</span>
+                                </div>
+                                <div class="product-price">¥128.00</div>
+                                <button class="btn-buy">立即购买</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-phone"></i>
+                            咨询服务
+                        </div>
+                        <div class="consultation-options">
+                            <button class="consultation-btn voice-consult">
+                                <i class="fas fa-phone"></i>
+                                <span>语音咨询</span>
+                                <span class="price">¥50/次</span>
+                            </button>
+                            <button class="consultation-btn video-consult">
+                                <i class="fas fa-video"></i>
+                                <span>视频指导</span>
+                                <span class="price">¥80/次</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3450,7 +3645,7 @@ function showAIDiagnosis() {
     loadPage('aiNewChat');
 }
 
-// 提交新对话（原型）
+// 提交AI诊断（原型）
 window.submitNewConversation = function() {
     const text = document.getElementById('inlineQuestionTextarea')?.value || '';
     const conv = createConversation({ title: 'AI诊断', inputText: text, images: [] });
@@ -3487,6 +3682,52 @@ window.openConversation = function(id){
     conversationStore.currentId = id;
     loadPage('aiDiagnosis');
 };
+
+// 加载专家详情数据
+function loadExpertDetail(expertId) {
+    const expert = expertData[expertId];
+    if (!expert) return;
+    
+    // 更新专家基本信息
+    const nameEl = document.getElementById('expertName');
+    if (nameEl) nameEl.textContent = expert.name;
+    
+    const specialtiesEl = document.getElementById('expertSpecialties');
+    if (specialtiesEl) {
+        specialtiesEl.innerHTML = expert.specialties.map(s => `<span class="tag">${s}</span>`).join('');
+    }
+    
+    const backgroundEl = document.getElementById('expertBackground');
+    if (backgroundEl) backgroundEl.textContent = expert.background;
+    
+    // 更新知识库服务
+    const knowledgeEl = document.getElementById('knowledgeItems');
+    if (knowledgeEl) {
+        knowledgeEl.innerHTML = expert.knowledge.map(item => `
+            <div class="knowledge-item">
+                <div class="knowledge-title">${item.title}</div>
+                <div class="knowledge-desc">${item.desc}</div>
+                <div class="knowledge-price">${item.price}</div>
+            </div>
+        `).join('');
+    }
+    
+    // 更新推荐产品
+    const productsEl = document.getElementById('productItems');
+    if (productsEl) {
+        productsEl.innerHTML = expert.products.map(item => `
+            <div class="product-item">
+                <div class="product-name">${item.name}</div>
+                <div class="product-desc">${item.desc}</div>
+                <div class="product-tags">
+                    ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="product-price">${item.price}</div>
+                <button class="btn-buy">立即购买</button>
+            </div>
+        `).join('');
+    }
+}
 
 // 设置图片上传功能
 function setupImageUpload() {
@@ -3873,8 +4114,76 @@ function showOrderManagement() {
     alert('跳转到闭环跟进页面');
 }
 
+// 专家数据
+const expertData = {
+    wangjianguo: {
+        name: '王建国',
+        specialties: ['玉米病害', '小麦锈病'],
+        background: '从事农业植保工作15年，专注于玉米和小麦病害研究，发表相关论文20余篇，具有丰富的田间实践经验。',
+        knowledge: [
+            { title: '玉米病害诊断手册', desc: '包含50+种玉米常见病害的识别与防治方法', price: '¥29.9' },
+            { title: '小麦锈病防治方案', desc: '专业的小麦锈病预防与治疗指导', price: '¥19.9' }
+        ],
+        products: [
+            { name: '杀菌剂A', desc: '广谱杀菌剂，对叶斑病效果显著', tags: ['专家推荐', 'AI匹配'], price: '¥28.00' },
+            { name: '防治套餐', desc: '综合防治方案，包含多种药剂', tags: ['专家推荐'], price: '¥128.00' }
+        ]
+    },
+    limin: {
+        name: '李敏',
+        specialties: ['水稻虫害', '植保方案'],
+        background: '水稻病虫害防治专家，拥有12年水稻种植和病虫害防治经验，擅长制定综合植保方案。',
+        knowledge: [
+            { title: '水稻虫害识别指南', desc: '详细的水稻常见虫害识别与防治方法', price: '¥24.9' },
+            { title: '植保方案制定手册', desc: '科学制定植保方案的专业指导', price: '¥34.9' }
+        ],
+        products: [
+            { name: '虫害套装', desc: '针对水稻虫害的综合防治套装', tags: ['专家推荐'], price: '¥88.00' }
+        ]
+    },
+    zhangsan: {
+        name: '张三',
+        specialties: ['果树病害', '土壤改良'],
+        background: '果树栽培与土壤改良专家，专注于果树病害防治和土壤健康管理，拥有18年实践经验。',
+        knowledge: [
+            { title: '果树病害防治大全', desc: '涵盖各类果树常见病害的防治方法', price: '¥39.9' },
+            { title: '土壤改良技术指南', desc: '科学改良土壤的专业技术指导', price: '¥29.9' }
+        ],
+        products: [
+            { name: '有机肥料', desc: '高品质有机肥料，改善土壤结构', tags: ['专家推荐'], price: '¥45.00' },
+            { name: '土壤调理剂', desc: '专业土壤调理剂，平衡土壤酸碱度', tags: ['专家推荐'], price: '¥35.00' }
+        ]
+    },
+    lisi: {
+        name: '李四',
+        specialties: ['蔬菜种植', '温室管理'],
+        background: '蔬菜种植与温室管理专家，精通各类蔬菜的种植技术和温室环境控制，拥有14年实践经验。',
+        knowledge: [
+            { title: '蔬菜种植技术手册', desc: '各类蔬菜的科学种植技术指导', price: '¥32.9' },
+            { title: '温室管理实用指南', desc: '温室环境控制与管理的最佳实践', price: '¥27.9' }
+        ],
+        products: [
+            { name: '温室设备', desc: '专业温室设备，提升种植效率', tags: ['专家推荐'], price: '¥299.00' },
+            { name: '种植技术', desc: '科学种植技术指导服务', tags: ['专家推荐'], price: '¥199.00' }
+        ]
+    },
+    wangwu: {
+        name: '王五',
+        specialties: ['植保技术', '农药使用'],
+        background: '植保技术与农药使用专家，专注于安全用药和植保技术推广，拥有16年植保工作经验。',
+        knowledge: [
+            { title: '安全用药指南', desc: '农药安全使用的专业指导', price: '¥22.9' },
+            { title: '植保技术大全', desc: '现代植保技术的综合应用指南', price: '¥36.9' }
+        ],
+        products: [
+            { name: '安全用药', desc: '安全用药指导服务', tags: ['专家推荐'], price: '¥158.00' },
+            { name: '植保方案', desc: '定制化植保方案制定', tags: ['专家推荐'], price: '¥268.00' }
+        ]
+    }
+};
+
 // 加载页面
-function loadPage(pageName) {
+function loadPage(pageName, param) {
     const phoneContent = document.getElementById('phoneContent');
     const pageInfo = pageData[pageName];
     
@@ -3906,6 +4215,13 @@ function loadPage(pageName) {
             }, 100);
         }
         
+        // 如果是专家详情页面，加载专家数据
+        if (pageName === 'expertDetail' && param && expertData[param]) {
+            setTimeout(() => {
+                loadExpertDetail(param);
+            }, 100);
+        }
+        
         // 如果是AI诊断页面，显示用户输入并直接开始诊断
         if (pageName === 'aiDiagnosis') {
             setTimeout(() => {
@@ -3917,7 +4233,7 @@ function loadPage(pageName) {
                     console.log('No legacy data; bind conversation if any.');
                     // 渲染历史会话（若从历史进入）
                     const inputCard = document.getElementById('questionInputCard');
-                    // 若没有当前会话，显示新对话输入卡片
+                    // 若没有当前会话，显示AI诊断输入卡片
                     if (!conversationStore.currentId && inputCard) {
                         inputCard.style.display = 'block';
                     }
@@ -3944,7 +4260,7 @@ function ensureTabbar(pageName) {
         const pageEl = document.querySelector('.mobile-page');
         if (!pageEl) return;
 
-        // AI相关页面(新对话/专家推荐/历史对话)不插入全局5项tabbar，AI诊断是子页面
+        // AI相关页面(AI诊断/专家推荐/历史对话)不插入全局5项tabbar
         const isAIFourMenuPage = ['aiNewChat','expertRecommend','historyDialog','aiDiagnosis'].includes(pageName);
         // 若页面内不存在通用 tabbar，则插入（非AI四菜单页）
         if (!isAIFourMenuPage && !pageEl.querySelector('.mobile-footer.tabbar')) {
