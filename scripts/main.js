@@ -172,6 +172,171 @@ const pageData = {
             </div>
         `
     },
+    
+    // AI中心 - 中：AI对话（默认页）
+    aiChatCenter: {
+        title: 'AI对话',
+        subtitle: '统一AI交互中心',
+        content: `
+            <div class="mobile-page ai-center-page">
+                <div class="mobile-header">
+                    <h1>AI对话</h1>
+                </div>
+                <div class="mobile-content">
+                    <div class="card" style="text-align:center; padding:20px 16px;">
+                        <div style="font-size:14px; color:#666; margin-bottom:12px;">我是您的专属农业助手，有什么可以帮您？</div>
+                        <div class="combined-input-container" style="margin: 0 auto; max-width: 480px;">
+                            <textarea id="aiCenterInput" class="combined-textarea" placeholder="输入您的问题，例如：这张叶片是什么病？" rows="3"></textarea>
+                            <div class="embedded-upload-area">
+                                <div class="embedded-upload-trigger" onclick="document.getElementById('aiCenterImage').click()">
+                                    <i class="fas fa-image"></i>
+                                    <span>添加图片</span>
+                                </div>
+                                <div class="embedded-image-preview" id="aiCenterImagePreview"></div>
+                            </div>
+                            <input type="file" id="aiCenterImage" accept="image/*" multiple style="display:none" onchange="previewAICenterImages(this)">
+                        </div>
+                        <div class="ai-card-actions" style="margin-top:12px; display:flex; gap:8px; justify-content:center;">
+                            <button class="btn-start-ai-diagnosis" onclick="startAICenterChat()"><i class="fas fa-paper-plane"></i><span>开始对话</span></button>
+                            <button class="btn-secondary" onclick="showComingSoon('语音输入')"><i class="fas fa-microphone"></i><span>语音</span></button>
+                            <button class="btn-secondary" onclick="showComingSoon('拍照识别')"><i class="fas fa-camera"></i><span>拍照</span></button>
+                        </div>
+                    </div>
+
+                    <div class="section-title" style="margin-top:12px;">推荐智能体</div>
+                    <div class="horizontal-cards">
+                        <div class="h-card clickable" onclick="loadPage('agentMarket')">
+                            <div class="h-card-icon"><i class="fas fa-bug"></i></div>
+                            <div class="h-card-title">病虫害识别</div>
+                            <div class="h-card-sub">拍照识别并给出处置建议</div>
+                        </div>
+                        <div class="h-card clickable" onclick="loadPage('agentMarket')">
+                            <div class="h-card-icon"><i class="fas fa-seedling"></i></div>
+                            <div class="h-card-title">生产管理助手</div>
+                            <div class="h-card-sub">时序计划与农事建议</div>
+                        </div>
+                        <div class="h-card clickable" onclick="loadPage('agentMarket')">
+                            <div class="h-card-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="h-card-title">产量预测</div>
+                            <div class="h-card-sub">依据气象与长势估产</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- AI中心内嵌三段式导航 -->
+                <div class="mobile-footer ai-center-tabbar">
+                    <div class="tab-item" data-ai-tab="agentMarket" onclick="loadPage('agentMarket')"><i class="fas fa-th-large"></i><span>智能体广场</span></div>
+                    <div class="tab-item active" data-ai-tab="aiChatCenter" onclick="loadPage('aiChatCenter')"><i class="fas fa-comments"></i><span>AI对话</span></div>
+                    <div class="tab-item" data-ai-tab="mySubscriptions" onclick="loadPage('mySubscriptions')"><i class="fas fa-star"></i><span>我的订阅</span></div>
+                </div>
+            </div>
+        `
+    },
+
+    // AI中心 - 左：智能体广场
+    agentMarket: {
+        title: '智能体广场',
+        subtitle: '发现与订阅',
+        content: `
+            <div class="mobile-page agent-market-page">
+                <div class="mobile-header">
+                    <h1>智能体广场</h1>
+                </div>
+                <div class="mobile-content">
+                    <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索智能体，如 病虫害、产量" oninput="showComingSoon('搜索')"></div>
+                    <div class="filter-tabs">
+                        <div class="filter-tab active">全部</div>
+                        <div class="filter-tab">生产管理</div>
+                        <div class="filter-tab">病虫害防治</div>
+                        <div class="filter-tab">数据分析</div>
+                    </div>
+
+                    <div class="card clickable" onclick="openAgentDetail('pest-detect')">
+                        <div class="list-row">
+                            <div class="list-icon"><i class="fas fa-bug"></i></div>
+                            <div class="list-main">
+                                <div class="list-title">病虫害识别</div>
+                                <div class="list-sub">拍照识别病虫害并给用药建议</div>
+                                <div class="list-tags"><span class="feature-tag">免费</span><span class="feature-tag">官方</span></div>
+                            </div>
+                            <div class="list-extra">进入</div>
+                        </div>
+                    </div>
+
+                    <div class="card clickable" onclick="openAgentDetail('yield-forecast')">
+                        <div class="list-row">
+                            <div class="list-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="list-main">
+                                <div class="list-title">产量预测</div>
+                                <div class="list-sub">融合气象与时序长势数据估产</div>
+                                <div class="list-tags"><span class="feature-tag">¥5/次</span><span class="feature-tag">官方</span></div>
+                            </div>
+                            <div class="list-extra">详情</div>
+                        </div>
+                    </div>
+
+                    <div class="card clickable" onclick="openAgentDetail('expert-weekly')">
+                        <div class="list-row">
+                            <div class="list-icon"><i class="fas fa-user-tie"></i></div>
+                            <div class="list-main">
+                                <div class="list-title">王教授·辣椒病害周报</div>
+                                <div class="list-sub">专家持续更新的病害防治建议</div>
+                                <div class="list-tags"><span class="feature-tag">¥30/年</span><span class="feature-tag">专家</span></div>
+                            </div>
+                            <div class="list-extra">订阅</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-footer ai-center-tabbar">
+                    <div class="tab-item active" data-ai-tab="agentMarket" onclick="loadPage('agentMarket')"><i class="fas fa-th-large"></i><span>智能体广场</span></div>
+                    <div class="tab-item" data-ai-tab="aiChatCenter" onclick="loadPage('aiChatCenter')"><i class="fas fa-comments"></i><span>AI对话</span></div>
+                    <div class="tab-item" data-ai-tab="mySubscriptions" onclick="loadPage('mySubscriptions')"><i class="fas fa-star"></i><span>我的订阅</span></div>
+                </div>
+            </div>
+        `
+    },
+
+    // AI中心 - 右：我的订阅
+    mySubscriptions: {
+        title: '我的订阅',
+        subtitle: '已购智能体管理',
+        content: `
+            <div class="mobile-page my-subs-page">
+                <div class="mobile-header">
+                    <h1>我的订阅</h1>
+                </div>
+                <div class="mobile-content">
+                    <div class="empty-state" id="subsEmpty">
+                        <div class="empty-icon"><i class="fas fa-box-open"></i></div>
+                        <div class="empty-title">还没有订阅</div>
+                        <div class="empty-sub">去智能体广场发现更多能力</div>
+                        <div style="text-align:center; margin-top:8px;">
+                            <button class="btn-secondary" onclick="loadPage('agentMarket')">去逛逛</button>
+                        </div>
+                    </div>
+
+                    <div class="card clickable" id="subsExample" style="display:none" onclick="loadPage('aiChatCenter')">
+                        <div class="list-row">
+                            <div class="list-icon"><i class="fas fa-bug"></i></div>
+                            <div class="list-main">
+                                <div class="list-title">病虫害识别（已购）</div>
+                                <div class="list-sub">永久有效</div>
+                            </div>
+                            <div class="list-extra"><span class="feature-tag">去对话</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-footer ai-center-tabbar">
+                    <div class="tab-item" data-ai-tab="agentMarket" onclick="loadPage('agentMarket')"><i class="fas fa-th-large"></i><span>智能体广场</span></div>
+                    <div class="tab-item" data-ai-tab="aiChatCenter" onclick="loadPage('aiChatCenter')"><i class="fas fa-comments"></i><span>AI对话</span></div>
+                    <div class="tab-item active" data-ai-tab="mySubscriptions" onclick="loadPage('mySubscriptions')"><i class="fas fa-star"></i><span>我的订阅</span></div>
+                </div>
+            </div>
+        `
+    },
     workbench: {
         title: '工作台',
         subtitle: '工作台',
@@ -3408,7 +3573,7 @@ function bindNavigationEvents() {
                 if (page === 'mall') {
                     loadPage('mall');
                 } else if (page === 'ai') {
-                    loadPage('ai');
+                    loadPage('aiChatCenter');
                 } else if (page === 'workbench') {
                     loadPage('workbench');
                 } else {
@@ -4260,8 +4425,8 @@ function ensureTabbar(pageName) {
         const pageEl = document.querySelector('.mobile-page');
         if (!pageEl) return;
 
-        // AI相关页面(AI诊断/专家推荐/历史对话)不插入全局5项tabbar
-        const isAIFourMenuPage = ['aiNewChat','expertRecommend','historyDialog','aiDiagnosis'].includes(pageName);
+        // AI相关页面(新三段式：智能体广场/AI对话/我的订阅 以及 旧AI页)不插入全局5项tabbar
+        const isAIFourMenuPage = ['agentMarket','aiChatCenter','mySubscriptions','aiNewChat','expertRecommend','historyDialog','aiDiagnosis'].includes(pageName);
         // 若页面内不存在通用 tabbar，则插入（非AI四菜单页）
         if (!isAIFourMenuPage && !pageEl.querySelector('.mobile-footer.tabbar')) {
             const footerHtml = `
@@ -4280,6 +4445,8 @@ function ensureTabbar(pageName) {
         const tabKey = (function(name) {
             if (name === 'fieldWorkstation') return 'workbench';
             if (name === 'workbench') return 'workbench';
+            // 新AI三段式页面在全局tabbar上归为 AI
+            if (['agentMarket','aiChatCenter','mySubscriptions','aiNewChat','expertRecommend','historyDialog','aiDiagnosis'].includes(name)) return 'ai';
             return name;
         })(pageName);
 
@@ -4336,6 +4503,50 @@ function showMessages() {
 // 显示即将推出功能
 function showComingSoon(featureName) {
     showNotification(`${featureName}功能即将推出，敬请期待！`, 'info');
+}
+
+// ===== AI中心（新三段式）交互函数 =====
+function previewAICenterImages(inputEl) {
+    const preview = document.getElementById('aiCenterImagePreview');
+    if (!preview) return;
+    preview.innerHTML = '';
+    const files = Array.from(inputEl.files || []);
+    files.slice(0, 3).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.width = '48px';
+            img.style.height = '48px';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '8px';
+            img.style.marginRight = '6px';
+            preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function startAICenterChat() {
+    const text = (document.getElementById('aiCenterInput') || {}).value || '';
+    const conv = createConversation({ title: 'AI对话', inputText: text, images: [] });
+    console.log('Start AI center chat:', conv);
+    // 进入旧的诊断详情页复用富媒体与进度演示
+    loadPage('aiDiagnosis');
+}
+
+function openAgentDetail(agentId) {
+    // 原型：弹提示并自动将示例加入“我的订阅”以便演示
+    showNotification(`打开智能体详情：${agentId}（原型）`, 'success');
+    // 标记示例订阅已购
+    setTimeout(() => {
+        const empty = document.getElementById('subsEmpty');
+        const item = document.getElementById('subsExample');
+        if (empty && item) {
+            empty.style.display = 'none';
+            item.style.display = 'block';
+        }
+    }, 300);
 }
 
 // 显示通知

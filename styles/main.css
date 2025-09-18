@@ -1125,6 +1125,22 @@ body {
 .tabbar .tab-item.active { color: #0aa06e; font-weight: 700; }
 
 /* 田间工作站页面样式 */
+/* AI中心三段式与卡片样式 */
+.ai-center-tabbar { position: sticky; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #eee; display: flex; justify-content: space-around; padding: 8px 0; z-index: 5; }
+.ai-center-tabbar .tab-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: #666; }
+.ai-center-tabbar .tab-item i { font-size: 18px; margin-bottom: 4px; }
+.ai-center-tabbar .tab-item.active { color: #2c7be5; }
+.horizontal-cards { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+.h-card { min-width: 160px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 12px; }
+.h-card .h-card-icon { width: 36px; height: 36px; border-radius: 8px; background: #f5f7fb; display:flex; align-items:center; justify-content:center; color:#2c7be5; margin-bottom: 8px; }
+.h-card .h-card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.h-card .h-card-sub { font-size: 12px; color: #888; }
+.list-row { display: flex; align-items: center; }
+.list-icon { width: 40px; height: 40px; border-radius: 8px; background:#f5f7fb; display:flex; align-items:center; justify-content:center; color:#2c7be5; margin-right:10px; }
+.list-main { flex: 1; }
+.list-title { font-size: 14px; font-weight: 600; }
+.list-sub { font-size: 12px; color:#888; margin-top: 2px; }
+.list-tags { margin-top: 6px; }
 .fieldWorkstation-page {
     height: 100%;
     position: relative;
