@@ -3582,7 +3582,14 @@ function bindNavigationEvents() {
                 subMenu.classList.toggle('expanded');
             } else {
                 // 没有子菜单，直接加载页面
-                if (page) loadPage(page);
+                if (page) {
+                    // 左侧主菜单点击 AI 时跳转到新AI中心默认页
+                    if (page === 'ai') {
+                        loadPage('aiChatCenter');
+                    } else {
+                        loadPage(page);
+                    }
+                }
             }
         });
     });
