@@ -183,42 +183,38 @@ const pageData = {
                     <h1>AI对话</h1>
                 </div>
                 <div class="mobile-content">
-                    <div class="card" style="text-align:center; padding:20px 16px;">
-                        <div style="font-size:14px; color:#666; margin-bottom:12px;">我是您的专属农业助手，有什么可以帮您？</div>
-                        <div class="combined-input-container" style="margin: 0 auto; max-width: 480px;">
-                            <textarea id="aiCenterInput" class="combined-textarea" placeholder="输入您的问题，例如：这张叶片是什么病？" rows="3"></textarea>
-                            <div class="embedded-upload-area">
-                                <div class="embedded-upload-trigger" onclick="document.getElementById('aiCenterImage').click()">
-                                    <i class="fas fa-image"></i>
-                                    <span>添加图片</span>
-                                </div>
-                                <div class="embedded-image-preview" id="aiCenterImagePreview"></div>
-                            </div>
+                    <div class="ai-search">
+                        <div class="row">
+                            <i class="fas fa-sparkles" style="color:#ff7a45"></i>
+                            <input id="aiCenterInput" placeholder="问一个问题… 例如：这张叶片是什么病？" />
+                            <div class="icon-btn" onclick="document.getElementById('aiCenterImage').click()"><i class="fas fa-camera"></i></div>
                             <input type="file" id="aiCenterImage" accept="image/*" multiple style="display:none" onchange="previewAICenterImages(this)">
                         </div>
-                        <div class="ai-card-actions" style="margin-top:12px; display:flex; gap:8px; justify-content:center;">
-                            <button class="btn-start-ai-diagnosis" onclick="startAICenterChat()"><i class="fas fa-paper-plane"></i><span>开始对话</span></button>
-                            <button class="btn-secondary" onclick="showComingSoon('语音输入')"><i class="fas fa-microphone"></i><span>语音</span></button>
-                            <button class="btn-secondary" onclick="showComingSoon('拍照识别')"><i class="fas fa-camera"></i><span>拍照</span></button>
-                        </div>
+                        <button class="ai-primary" onclick="startAICenterChat()">开始对话</button>
+                        <div id="aiCenterImagePreview" style="margin-top:8px;"></div>
                     </div>
 
-                    <div class="section-title" style="margin-top:12px;">推荐智能体</div>
-                    <div class="horizontal-cards">
-                        <div class="h-card clickable" onclick="loadPage('agentMarket')">
-                            <div class="h-card-icon"><i class="fas fa-bug"></i></div>
-                            <div class="h-card-title">病虫害识别</div>
-                            <div class="h-card-sub">拍照识别并给出处置建议</div>
+                    <div class="section-title" style="margin-top:14px;">推荐智能体</div>
+                    <div class="agent-grid">
+                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
+                            <i class="fas fa-bug"></i>
+                            <div class="title">病虫害识别</div>
+                            <div class="sub">拍照识别并给出处置建议</div>
                         </div>
-                        <div class="h-card clickable" onclick="loadPage('agentMarket')">
-                            <div class="h-card-icon"><i class="fas fa-seedling"></i></div>
-                            <div class="h-card-title">生产管理助手</div>
-                            <div class="h-card-sub">时序计划与农事建议</div>
+                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
+                            <i class="fas fa-seedling"></i>
+                            <div class="title">生产管理助手</div>
+                            <div class="sub">时序计划与农事建议</div>
                         </div>
-                        <div class="h-card clickable" onclick="loadPage('agentMarket')">
-                            <div class="h-card-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="h-card-title">产量预测</div>
-                            <div class="h-card-sub">依据气象与长势估产</div>
+                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="title">产量预测</div>
+                            <div class="sub">依据气象与长势估产</div>
+                        </div>
+                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
+                            <i class="fas fa-user-md"></i>
+                            <div class="title">专家建议</div>
+                            <div class="sub">获取定制化指导</div>
                         </div>
                     </div>
 

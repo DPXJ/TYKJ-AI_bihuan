@@ -1132,7 +1132,12 @@ body {
 .ai-center-tabbar .tab-item.active { color: #2c7be5; }
 .ai-center-page, .agent-market-page, .my-subs-page { display: flex; flex-direction: column; height: 100%; }
 .ai-center-page .mobile-content, .agent-market-page .mobile-content, .my-subs-page .mobile-content { flex: 1; overflow-y: auto; padding-bottom: 64px; }
+/* 隐藏 AI 子页的垂直滚动条（保留滚动能力） */
+.ai-center-page .mobile-content, .agent-market-page .mobile-content, .my-subs-page .mobile-content { -ms-overflow-style: none; scrollbar-width: none; }
+.ai-center-page .mobile-content::-webkit-scrollbar, .agent-market-page .mobile-content::-webkit-scrollbar, .my-subs-page .mobile-content::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .horizontal-cards { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+.horizontal-cards { -ms-overflow-style: none; scrollbar-width: none; }
+.horizontal-cards::-webkit-scrollbar { display: none; height: 0; }
 .h-card { min-width: 160px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 12px; }
 .h-card .h-card-icon { width: 36px; height: 36px; border-radius: 8px; background: #f5f7fb; display:flex; align-items:center; justify-content:center; color:#2c7be5; margin-bottom: 8px; }
 .h-card .h-card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
@@ -1151,6 +1156,17 @@ body {
 .agent-pills { display:flex; flex-wrap:wrap; gap:8px; }
 .agent-pill { padding:8px 10px; border:1px solid #e6e8ef; border-radius:10px; font-size:12px; color:#333; background:#f9fafb; cursor:pointer; }
 .agent-pill .price { color:#2c7be5; margin-left:6px; }
+
+/* 简洁风 AI 对话输入与推荐栅格 */
+.ai-search { background:#fff; border:1px solid #eaeaea; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,.03); }
+.ai-search .row { display:flex; align-items:center; gap:8px; }
+.ai-search input { flex:1; border:none; outline:none; background:transparent; font-size:14px; padding:8px 10px; color:#333; }
+.ai-search .icon-btn { width:40px; height:40px; border:1px solid #eaeaea; border-radius:10px; background:#f7f8fb; display:flex; align-items:center; justify-content:center; color:#666; }
+.ai-primary { margin-top:10px; width:100%; height:44px; border:none; border-radius:12px; background:#ff7a45; color:#fff; font-weight:600; box-shadow:0 8px 16px rgba(255,122,69,.2); }
+.agent-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+.agent-mini { background:#fff; border:1px solid #eee; border-radius:12px; padding:12px; }
+.agent-mini .title { font-size:14px; font-weight:700; margin-top:6px; }
+.agent-mini .sub { font-size:12px; color:#888; margin-top:2px; }
 .fieldWorkstation-page {
     height: 100%;
     position: relative;
