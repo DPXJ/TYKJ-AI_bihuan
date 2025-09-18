@@ -245,46 +245,85 @@ const pageData = {
                 </div>
                 <div class="mobile-content">
                     <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索智能体，如 病虫害、产量" oninput="showComingSoon('搜索')"></div>
-                    <div class="filter-tabs">
-                        <div class="filter-tab active">全部</div>
-                        <div class="filter-tab">生产管理</div>
-                        <div class="filter-tab">病虫害防治</div>
-                        <div class="filter-tab">数据分析</div>
-                    </div>
 
-                    <div class="card clickable" onclick="openAgentDetail('pest-detect')">
-                        <div class="list-row">
-                            <div class="list-icon"><i class="fas fa-bug"></i></div>
-                            <div class="list-main">
-                                <div class="list-title">病虫害识别</div>
-                                <div class="list-sub">拍照识别病虫害并给用药建议</div>
-                                <div class="list-tags"><span class="feature-tag">免费</span><span class="feature-tag">官方</span></div>
-                            </div>
-                            <div class="list-extra">进入</div>
+                    <!-- 分类卡片：农事管理类 -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-title">农事管理类</div>
+                        </div>
+                        <div class="agent-pills">
+                            <div class="agent-pill" onclick="openAgentDetail('plan-assistant')">生产计划助手<span class="price">免费</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('task-dispatch')">任务派发助手<span class="price">¥5/次</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('cost-optimizer')">投入成本优化<span class="price">¥19/年</span></div>
                         </div>
                     </div>
 
-                    <div class="card clickable" onclick="openAgentDetail('yield-forecast')">
-                        <div class="list-row">
-                            <div class="list-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="list-main">
-                                <div class="list-title">产量预测</div>
-                                <div class="list-sub">融合气象与时序长势数据估产</div>
-                                <div class="list-tags"><span class="feature-tag">¥5/次</span><span class="feature-tag">官方</span></div>
-                            </div>
-                            <div class="list-extra">详情</div>
+                    <!-- 分类卡片：病虫害防治类 -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-title">病虫害防治类</div>
+                        </div>
+                        <div class="agent-pills">
+                            <div class="agent-pill" onclick="openAgentDetail('pest-detect')">病虫害识别<span class="price">免费</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('pesticide-advisor')">用药建议<span class="price">¥2/次</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('expert-weekly')">专家周报<span class="price">¥30/年</span></div>
                         </div>
                     </div>
 
-                    <div class="card clickable" onclick="openAgentDetail('expert-weekly')">
-                        <div class="list-row">
-                            <div class="list-icon"><i class="fas fa-user-tie"></i></div>
-                            <div class="list-main">
-                                <div class="list-title">王教授·辣椒病害周报</div>
-                                <div class="list-sub">专家持续更新的病害防治建议</div>
-                                <div class="list-tags"><span class="feature-tag">¥30/年</span><span class="feature-tag">专家</span></div>
-                            </div>
-                            <div class="list-extra">订阅</div>
+                    <!-- 分类卡片：作物生长管理 -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-title">作物生长管理</div>
+                        </div>
+                        <div class="agent-pills">
+                            <div class="agent-pill" onclick="openAgentDetail('growth-stage')">生育期识别<span class="price">免费</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('nutrition-advisor')">营养诊断<span class="price">¥5/次</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('yield-forecast')">产量预测<span class="price">¥5/次</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 分类卡片：销售服务类 -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-title">销售服务类</div>
+                        </div>
+                        <div class="agent-pills">
+                            <div class="agent-pill" onclick="openAgentDetail('price-insight')">价格洞察<span class="price">免费</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('channel-match')">渠道匹配<span class="price">¥9/次</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 分类卡片：种子服务类 -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-title">种子服务类</div>
+                        </div>
+                        <div class="agent-pills">
+                            <div class="agent-pill" onclick="openAgentDetail('variety-select')">品种选择<span class="price">免费</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('seed-plan')">播种计划<span class="price">¥3/次</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 分类卡片：四情监测类 -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-title">四情监测类</div>
+                        </div>
+                        <div class="agent-pills">
+                            <div class="agent-pill" onclick="openAgentDetail('meteorology')">气象监测<span class="price">免费</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('soil-sensor')">土壤传感<span class="price">¥19/年</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('pest-trap')">虫情诱捕<span class="price">¥19/年</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 分类卡片：风险防范类 -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-title">风险防范类</div>
+                        </div>
+                        <div class="agent-pills">
+                            <div class="agent-pill" onclick="openAgentDetail('disaster-alert')">灾害预警<span class="price">¥9/年</span></div>
+                            <div class="agent-pill" onclick="openAgentDetail('policy-advisor')">政策咨询<span class="price">免费</span></div>
                         </div>
                     </div>
                 </div>
