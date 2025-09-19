@@ -183,41 +183,62 @@ const pageData = {
                     <h1>AI对话</h1>
                 </div>
                 <div class="mobile-content">
-                    <div class="ai-search">
-                        <div class="row">
-                            <i class="fas fa-sparkles" style="color:#ff7a45"></i>
-                            <input id="aiCenterInput" placeholder="问一个问题… 例如：这张叶片是什么病？" />
-                            <div class="icon-btn" onclick="document.getElementById('aiCenterImage').click()"><i class="fas fa-camera"></i></div>
+                    <!-- AI Logo 和欢迎文字 -->
+                    <div class="ai-welcome-section">
+                        <div class="ai-logo">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <p class="ai-greeting">您好，我是小跃，是您身边基于云农谷自研大模型的AI农业专家，您可以问我任何有关农业领域的问题......</p>
+                        <button class="examples-btn" onclick="showExamplesModal()">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>例子</span>
+                        </button>
+                    </div>
+
+                    <!-- 输入区域 -->
+                    <div class="ai-input-section">
+                        <textarea id="aiCenterInput" class="ai-textarea" placeholder="输入您的问题，例如：这张叶片是什么病？" rows="4"></textarea>
+                        <div class="ai-input-actions">
+                            <button class="camera-btn" onclick="document.getElementById('aiCenterImage').click()">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <button class="send-btn" onclick="startAICenterChat()">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
                             <input type="file" id="aiCenterImage" accept="image/*" multiple style="display:none" onchange="previewAICenterImages(this)">
                         </div>
-                        <button class="ai-primary" onclick="startAICenterChat()">开始对话</button>
-                        <div id="aiCenterImagePreview" style="margin-top:8px;"></div>
+                        <div id="aiCenterImagePreview" class="image-preview"></div>
                     </div>
 
-                    <div class="section-title" style="margin-top:14px;">推荐智能体</div>
-                    <div class="agent-grid">
-                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
-                            <i class="fas fa-bug"></i>
-                            <div class="title">病虫害识别</div>
-                            <div class="sub">拍照识别并给出处置建议</div>
-                        </div>
-                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
-                            <i class="fas fa-seedling"></i>
-                            <div class="title">生产管理助手</div>
-                            <div class="sub">时序计划与农事建议</div>
-                        </div>
-                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
-                            <i class="fas fa-chart-line"></i>
-                            <div class="title">产量预测</div>
-                            <div class="sub">依据气象与长势估产</div>
-                        </div>
-                        <div class="agent-mini clickable" onclick="loadPage('agentMarket')">
-                            <i class="fas fa-user-md"></i>
-                            <div class="title">专家建议</div>
-                            <div class="sub">获取定制化指导</div>
+                    <!-- 推荐智能体 -->
+                    <div class="recommended-agents">
+                        <div class="agents-scroll">
+                            <div class="agent-card" onclick="loadPage('agentMarket')">
+                                <i class="fas fa-bug"></i>
+                                <span>病虫害识别</span>
+                            </div>
+                            <div class="agent-card" onclick="loadPage('agentMarket')">
+                                <i class="fas fa-seedling"></i>
+                                <span>生产管理</span>
+                            </div>
+                            <div class="agent-card" onclick="loadPage('agentMarket')">
+                                <i class="fas fa-chart-line"></i>
+                                <span>产量预测</span>
+                            </div>
+                            <div class="agent-card" onclick="loadPage('agentMarket')">
+                                <i class="fas fa-user-md"></i>
+                                <span>专家建议</span>
+                            </div>
+                            <div class="agent-card" onclick="loadPage('agentMarket')">
+                                <i class="fas fa-tractor"></i>
+                                <span>农事管理</span>
+                            </div>
+                            <div class="agent-card" onclick="loadPage('agentMarket')">
+                                <i class="fas fa-leaf"></i>
+                                <span>作物生长</span>
+                            </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- AI中心内嵌三段式导航 -->
@@ -225,6 +246,53 @@ const pageData = {
                     <div class="tab-item" data-ai-tab="agentMarket" onclick="loadPage('agentMarket')"><i class="fas fa-th-large"></i><span>智能体广场</span></div>
                     <div class="tab-item active" data-ai-tab="aiChatCenter" onclick="loadPage('aiChatCenter')"><i class="fas fa-comments"></i><span>AI对话</span></div>
                     <div class="tab-item" data-ai-tab="mySubscriptions" onclick="loadPage('mySubscriptions')"><i class="fas fa-star"></i><span>我的订阅</span></div>
+                </div>
+
+                <!-- 例子弹窗 -->
+                <div id="examplesModal" class="examples-modal">
+                    <div class="modal-overlay" onclick="hideExamplesModal()"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>常见问题示例</h3>
+                            <button class="close-btn" onclick="hideExamplesModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="example-item" onclick="selectExample('如何防治小麦赤霉病？')">
+                                <div class="example-title">病虫害防治</div>
+                                <div class="example-desc">如何防治小麦赤霉病？</div>
+                            </div>
+                            <div class="example-item" onclick="selectExample('玉米施肥的最佳时间是什么时候？')">
+                                <div class="example-title">施肥管理</div>
+                                <div class="example-desc">玉米施肥的最佳时间是什么时候？</div>
+                            </div>
+                            <div class="example-item" onclick="selectExample('如何提高水稻产量？')">
+                                <div class="example-title">产量提升</div>
+                                <div class="example-desc">如何提高水稻产量？</div>
+                            </div>
+                            <div class="example-item" onclick="selectExample('最近的天气对作物有什么影响？')">
+                                <div class="example-title">气象影响</div>
+                                <div class="example-desc">最近的天气对作物有什么影响？</div>
+                            </div>
+                            <div class="example-item" onclick="selectExample('什么是数字大田？')">
+                                <div class="example-title">数字农业</div>
+                                <div class="example-desc">什么是数字大田？</div>
+                            </div>
+                            <div class="example-item" onclick="selectExample('如何进行土壤检测？')">
+                                <div class="example-title">土壤管理</div>
+                                <div class="example-desc">如何进行土壤检测？</div>
+                            </div>
+                            <div class="example-item" onclick="selectExample('如何选择适合的种子？')">
+                                <div class="example-title">种子选择</div>
+                                <div class="example-desc">如何选择适合的种子？</div>
+                            </div>
+                            <div class="example-item" onclick="selectExample('温室大棚如何管理？')">
+                                <div class="example-title">设施农业</div>
+                                <div class="example-desc">温室大棚如何管理？</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         `
@@ -873,25 +941,36 @@ const pageData = {
 
                     <!-- 诊断状态卡片 -->
                     <div class="card diagnosis-status-card" id="diagnosisStatusCard">
-                        <div class="step-progress-bar">
-                            <div class="step-item active" id="step-1">
-                                <div class="step-icon">📷</div>
+                        <div class="progress-steps">
+                            <div class="progress-step" id="step-1">
+                                <div class="step-box">
+                                    <div class="step-icon">📷</div>
+                                    <div class="step-check">✅</div>
+                                </div>
                                 <div class="step-text">图像识别</div>
                             </div>
-                            <div class="step-item" id="step-2">
-                                <div class="step-icon">🧠</div>
+                            <div class="progress-step" id="step-2">
+                                <div class="step-box">
+                                    <div class="step-icon">🧠</div>
+                                    <div class="step-check">✅</div>
+                                </div>
                                 <div class="step-text">AI分析</div>
                             </div>
-                            <div class="step-item" id="step-3">
-                                <div class="step-icon">🔍</div>
+                            <div class="progress-step" id="step-3">
+                                <div class="step-box">
+                                    <div class="step-icon">🔍</div>
+                                    <div class="step-check">✅</div>
+                                </div>
                                 <div class="step-text">特征匹配</div>
                             </div>
-                            <div class="step-item" id="step-4">
-                                <div class="step-icon">✅</div>
+                            <div class="progress-step" id="step-4">
+                                <div class="step-box">
+                                    <div class="step-icon">📝</div>
+                                    <div class="step-check">✅</div>
+                                </div>
                                 <div class="step-text">结果生成</div>
                             </div>
                         </div>
-                        <div class="progress-text" id="progressText">分析中 0%</div>
                     </div>
 
                     <!-- AI诊断结果 -->
@@ -4207,25 +4286,62 @@ function updateTimeline(progress) {
     const step3 = document.getElementById('step-3');
     const step4 = document.getElementById('step-4');
     
-    // 清除所有活动状态
+    // 重置所有步骤
     [step1, step2, step3, step4].forEach(step => {
-        if (step) step.classList.remove('active');
+        if (step) {
+            step.classList.remove('active', 'completed');
+            const stepBox = step.querySelector('.step-box');
+            const stepIcon = step.querySelector('.step-icon');
+            const stepCheck = step.querySelector('.step-check');
+            if (stepBox && stepIcon && stepCheck) {
+                stepIcon.style.display = 'block';
+                stepCheck.style.display = 'none';
+            }
+        }
     });
     
     if (progress >= 25 && step1) {
-        step1.classList.add('active');
+        step1.classList.add('completed');
+        const stepBox = step1.querySelector('.step-box');
+        const stepIcon = step1.querySelector('.step-icon');
+        const stepCheck = step1.querySelector('.step-check');
+        if (stepBox && stepIcon && stepCheck) {
+            stepIcon.style.display = 'none';
+            stepCheck.style.display = 'block';
+        }
     }
     
     if (progress >= 50 && step2) {
-        step2.classList.add('active');
+        step2.classList.add('completed');
+        const stepBox = step2.querySelector('.step-box');
+        const stepIcon = step2.querySelector('.step-icon');
+        const stepCheck = step2.querySelector('.step-check');
+        if (stepBox && stepIcon && stepCheck) {
+            stepIcon.style.display = 'none';
+            stepCheck.style.display = 'block';
+        }
     }
     
     if (progress >= 75 && step3) {
-        step3.classList.add('active');
+        step3.classList.add('completed');
+        const stepBox = step3.querySelector('.step-box');
+        const stepIcon = step3.querySelector('.step-icon');
+        const stepCheck = step3.querySelector('.step-check');
+        if (stepBox && stepIcon && stepCheck) {
+            stepIcon.style.display = 'none';
+            stepCheck.style.display = 'block';
+        }
     }
     
     if (progress >= 100 && step4) {
-        step4.classList.add('active');
+        step4.classList.add('completed');
+        const stepBox = step4.querySelector('.step-box');
+        const stepIcon = step4.querySelector('.step-icon');
+        const stepCheck = step4.querySelector('.step-check');
+        if (stepBox && stepIcon && stepCheck) {
+            stepIcon.style.display = 'none';
+            stepCheck.style.display = 'block';
+        }
     }
 }
 
@@ -4548,6 +4664,28 @@ function showComingSoon(featureName) {
 }
 
 // ===== AI中心（新三段式）交互函数 =====
+function showExamplesModal() {
+    const modal = document.getElementById('examplesModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function hideExamplesModal() {
+    const modal = document.getElementById('examplesModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+function selectExample(question) {
+    const inputEl = document.getElementById('aiCenterInput');
+    if (inputEl) {
+        inputEl.value = question;
+        hideExamplesModal();
+    }
+}
+
 function previewAICenterImages(inputEl) {
     const preview = document.getElementById('aiCenterImagePreview');
     if (!preview) return;

@@ -1157,16 +1157,50 @@ body {
 .agent-pill { padding:8px 10px; border:1px solid #e6e8ef; border-radius:10px; font-size:12px; color:#333; background:#f9fafb; cursor:pointer; }
 .agent-pill .price { color:#2c7be5; margin-left:6px; }
 
-/* 简洁风 AI 对话输入与推荐栅格 */
-.ai-search { background:#fff; border:1px solid #eaeaea; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,.03); }
-.ai-search .row { display:flex; align-items:center; gap:8px; }
-.ai-search input { flex:1; border:none; outline:none; background:transparent; font-size:14px; padding:8px 10px; color:#333; }
-.ai-search .icon-btn { width:40px; height:40px; border:1px solid #eaeaea; border-radius:10px; background:#f7f8fb; display:flex; align-items:center; justify-content:center; color:#666; }
-.ai-primary { margin-top:10px; width:100%; height:44px; border:none; border-radius:12px; background:#ff7a45; color:#fff; font-weight:600; box-shadow:0 8px 16px rgba(255,122,69,.2); }
-.agent-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
-.agent-mini { background:#fff; border:1px solid #eee; border-radius:12px; padding:12px; }
-.agent-mini .title { font-size:14px; font-weight:700; margin-top:6px; }
-.agent-mini .sub { font-size:12px; color:#888; margin-top:2px; }
+/* AI对话页面新样式 */
+.ai-welcome-section { text-align: center; padding: 20px 16px; }
+.ai-logo { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #21c08b, #0aa06e); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: white; font-size: 24px; }
+.ai-greeting { font-size: 15px; color: #333; line-height: 1.5; margin-bottom: 16px; }
+.examples-btn { border: 1px solid #ddd; border-radius: 8px; background: transparent; padding: 8px 16px; color: #666; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.examples-btn:hover { border-color: #21c08b; color: #21c08b; }
+
+.ai-input-section { padding: 0 16px 20px; }
+.ai-textarea { width: 100%; border: 1px solid #eaeaea; border-radius: 12px; padding: 12px; font-size: 14px; resize: none; outline: none; }
+.ai-input-actions { display: flex; gap: 8px; margin-top: 8px; }
+.camera-btn, .send-btn { width: 40px; height: 40px; border: 1px solid #eaeaea; border-radius: 10px; background: #f7f8fb; display: flex; align-items: center; justify-content: center; color: #666; cursor: pointer; }
+.send-btn { background: #21c08b; color: white; border-color: #21c08b; }
+.send-btn:hover { background: #0aa06e; }
+.image-preview { margin-top: 8px; display: flex; gap: 8px; }
+
+.recommended-agents { padding: 0 16px 20px; }
+.agents-scroll { display: flex; gap: 10px; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+.agents-scroll::-webkit-scrollbar { display: none; }
+.agent-card { min-width: 80px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer; }
+.agent-card i { font-size: 20px; color: #21c08b; margin-bottom: 4px; }
+.agent-card span { font-size: 12px; color: #333; }
+
+/* 例子弹窗样式 */
+.examples-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1000; display: none; }
+.examples-modal.active { display: block; }
+.modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); }
+.modal-content { position: absolute; bottom: 0; left: 0; right: 0; background: white; border-radius: 20px 20px 0 0; max-height: 70vh; overflow-y: auto; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eee; }
+.modal-header h3 { margin: 0; font-size: 18px; color: #333; }
+.close-btn { background: none; border: none; font-size: 18px; color: #666; cursor: pointer; }
+.modal-body { padding: 20px; }
+.example-item { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; }
+.example-item:hover { background: #e9ecef; }
+.example-title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 4px; }
+.example-desc { font-size: 14px; color: #666; }
+
+/* 新进度条样式 */
+.progress-steps { display: flex; justify-content: space-between; padding: 20px; }
+.progress-step { text-align: center; flex: 1; }
+.step-box { width: 50px; height: 50px; border: 2px solid #eaeaea; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; background: #f8f9fa; position: relative; }
+.step-icon { font-size: 20px; }
+.step-check { font-size: 20px; display: none; }
+.progress-step.completed .step-box { border-color: #21c08b; background: #21c08b; color: white; }
+.step-text { font-size: 12px; color: #666; }
 .fieldWorkstation-page {
     height: 100%;
     position: relative;
