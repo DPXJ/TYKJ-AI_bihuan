@@ -1150,12 +1150,29 @@ body {
 .list-tags { margin-top: 6px; }
 
 /* 智能体广场分类卡片 */
+.category-section { margin-bottom: 20px; }
+.category-title { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 12px; padding: 0 16px; }
+.agent-cards-grid { display: flex; flex-direction: column; gap: 8px; padding: 0 16px; }
+.agent-card-detailed { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.agent-card-detailed:hover { border-color: #21c08b; box-shadow: 0 4px 12px rgba(33, 192, 139, 0.15); transform: translateY(-1px); }
+.agent-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #21c08b, #0aa06e); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0; }
+.agent-info { flex: 1; }
+.agent-name { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 4px; }
+.agent-desc { font-size: 12px; color: #666; line-height: 1.3; }
+.agent-price { font-size: 13px; font-weight: 600; padding: 4px 8px; border-radius: 6px; flex-shrink: 0; }
+.agent-price.free { background: #e8f5e8; color: #21c08b; }
+.agent-price.paid { background: #e3f2fd; color: #1976d2; }
+
+/* 保留原有样式作为备用 */
 .category-card { background:#fff; border:1px solid #eee; border-radius:12px; padding:14px; margin-bottom:12px; }
 .category-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
-.category-title { font-size:15px; font-weight:700; color:#333; }
 .agent-pills { display:flex; flex-wrap:wrap; gap:8px; }
 .agent-pill { padding:8px 10px; border:1px solid #e6e8ef; border-radius:10px; font-size:12px; color:#333; background:#f9fafb; cursor:pointer; }
 .agent-pill .price { color:#2c7be5; margin-left:6px; }
+
+/* 返回按钮样式 */
+.back-btn { background: none; border: none; color: white; font-size: 18px; padding: 8px; cursor: pointer; border-radius: 6px; transition: background-color 0.2s ease; }
+.back-btn:hover { background: rgba(255, 255, 255, 0.1); }
 
 /* AI对话页面新样式 */
 .ai-welcome-section { text-align: center; padding: 20px 16px; }
@@ -1165,33 +1182,75 @@ body {
 .examples-btn:hover { border-color: #21c08b; color: #21c08b; }
 
 .ai-input-section { padding: 0 16px 20px; }
-.ai-textarea { width: 100%; border: 1px solid #eaeaea; border-radius: 12px; padding: 12px; font-size: 14px; resize: none; outline: none; }
-.ai-input-actions { display: flex; gap: 8px; margin-top: 8px; }
-.camera-btn, .send-btn { width: 40px; height: 40px; border: 1px solid #eaeaea; border-radius: 10px; background: #f7f8fb; display: flex; align-items: center; justify-content: center; color: #666; cursor: pointer; }
+.ai-input-container { position: relative; }
+.ai-textarea { width: 100%; border: 1px solid #eaeaea; border-radius: 12px; padding: 12px 60px 12px 12px; font-size: 14px; resize: none; outline: none; min-height: 140px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.ai-textarea:hover { border-color: #21c08b; }
+.ai-textarea:focus { border-color: #21c08b; box-shadow: 0 0 0 2px rgba(33, 192, 139, 0.1); }
+.ai-input-actions { position: absolute; bottom: 16px; right: 12px; display: flex; gap: 6px; }
+.camera-btn, .send-btn { width: 36px; height: 36px; border: 1px solid #eaeaea; border-radius: 8px; background: #f7f8fb; display: flex; align-items: center; justify-content: center; color: #666; cursor: pointer; transition: all 0.2s ease; }
+.camera-btn:hover { background: #e9ecef; border-color: #21c08b; color: #21c08b; }
 .send-btn { background: #21c08b; color: white; border-color: #21c08b; }
-.send-btn:hover { background: #0aa06e; }
+.send-btn:hover { background: #0aa06e; transform: scale(1.05); }
 .image-preview { margin-top: 8px; display: flex; gap: 8px; }
 
-.recommended-agents { padding: 0 16px 20px; }
+.recommended-agents { padding: 0 16px 20px; margin-top: -10px; }
+.agents-hint { font-size: 12px; color: #999; text-align: left; margin-bottom: 8px; }
 .agents-scroll { display: flex; gap: 10px; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
 .agents-scroll::-webkit-scrollbar { display: none; }
-.agent-card { min-width: 80px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer; }
-.agent-card i { font-size: 20px; color: #21c08b; margin-bottom: 4px; }
-.agent-card span { font-size: 12px; color: #333; }
+.agent-card { min-width: 100px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+.agent-card i { font-size: 20px; color: #21c08b; margin-bottom: 8px; }
+.agent-card span { font-size: 12px; color: #333; line-height: 1.2; white-space: nowrap; }
 
 /* 例子弹窗样式 */
-.examples-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1000; display: none; }
+.examples-modal { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1000; display: none; }
 .examples-modal.active { display: block; }
-.modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); }
-.modal-content { position: absolute; bottom: 0; left: 0; right: 0; background: white; border-radius: 20px 20px 0 0; max-height: 70vh; overflow-y: auto; }
-.modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eee; }
-.modal-header h3 { margin: 0; font-size: 18px; color: #333; }
-.close-btn { background: none; border: none; font-size: 18px; color: #666; cursor: pointer; }
-.modal-body { padding: 20px; }
-.example-item { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; }
-.example-item:hover { background: #e9ecef; }
-.example-title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 4px; }
-.example-desc { font-size: 14px; color: #666; }
+.examples-modal .modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 300ms ease; }
+.examples-modal.active .modal-overlay { opacity: 1; }
+.examples-modal .modal-content { position: absolute; bottom: 0; left: 0; right: 0; width: 100%; background: white; border-radius: 32px 32px 0 0; height: auto; max-height: 75vh; overflow: hidden; transform: translateY(100%); transition: transform 300ms ease; box-sizing: border-box; -ms-overflow-style: none; scrollbar-width: none; margin: 0; padding: 0; }
+.examples-modal .modal-content::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+/* 确保弹窗完全匹配手机屏幕边界 */
+.examples-modal .modal-content {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: hidden !important;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+/* 强制隐藏所有滚动条 */
+.examples-modal .modal-content::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+}
+
+.examples-modal .modal-content::-webkit-scrollbar-track {
+    display: none !important;
+}
+
+.examples-modal .modal-content::-webkit-scrollbar-thumb {
+    display: none !important;
+}
+
+.examples-modal .modal-content::-webkit-scrollbar-corner {
+    display: none !important;
+}
+.examples-modal.active .modal-content { transform: translateY(0); }
+.examples-modal .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #eee; }
+.examples-modal .modal-header h3 { margin: 0; font-size: 18px; color: #333; }
+.examples-modal .close-btn { background: none; border: none; font-size: 18px; color: #666; cursor: pointer; }
+.examples-modal .modal-body { padding: 16px 20px 20px; }
+.examples-modal .example-item { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 14px; margin-bottom: 10px; cursor: pointer; }
+.examples-modal .example-item:hover { background: #e9ecef; }
+.examples-modal .example-title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 4px; }
+.examples-modal .example-desc { font-size: 13px; color: #666; }
 
 /* 新进度条样式 */
 .progress-steps { display: flex; justify-content: space-between; padding: 20px; }

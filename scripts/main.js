@@ -180,6 +180,9 @@ const pageData = {
         content: `
             <div class="mobile-page ai-center-page">
                 <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('home')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
                     <h1>AI对话</h1>
                 </div>
                 <div class="mobile-content">
@@ -197,14 +200,16 @@ const pageData = {
 
                     <!-- 输入区域 -->
                     <div class="ai-input-section">
-                        <textarea id="aiCenterInput" class="ai-textarea" placeholder="输入您的问题，例如：这张叶片是什么病？" rows="4"></textarea>
-                        <div class="ai-input-actions">
-                            <button class="camera-btn" onclick="document.getElementById('aiCenterImage').click()">
-                                <i class="fas fa-camera"></i>
-                            </button>
-                            <button class="send-btn" onclick="startAICenterChat()">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
+                        <div class="ai-input-container">
+                            <textarea id="aiCenterInput" class="ai-textarea" placeholder="输入您的问题，例如：这张叶片是什么病？" rows="5"></textarea>
+                            <div class="ai-input-actions">
+                                <button class="camera-btn" onclick="document.getElementById('aiCenterImage').click()">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                                <button class="send-btn" onclick="startAICenterChat()">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
                             <input type="file" id="aiCenterImage" accept="image/*" multiple style="display:none" onchange="previewAICenterImages(this)">
                         </div>
                         <div id="aiCenterImagePreview" class="image-preview"></div>
@@ -212,6 +217,7 @@ const pageData = {
 
                     <!-- 推荐智能体 -->
                     <div class="recommended-agents">
+                        <div class="agents-hint">滑动查看更多</div>
                         <div class="agents-scroll">
                             <div class="agent-card" onclick="loadPage('agentMarket')">
                                 <i class="fas fa-bug"></i>
@@ -287,12 +293,88 @@ const pageData = {
                                 <div class="example-title">种子选择</div>
                                 <div class="example-desc">如何选择适合的种子？</div>
                             </div>
-                            <div class="example-item" onclick="selectExample('温室大棚如何管理？')">
-                                <div class="example-title">设施农业</div>
-                                <div class="example-desc">温室大棚如何管理？</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+
+    // 新增：病虫害识别页面
+    pestDetect: {
+        title: '病虫害识别',
+        subtitle: '拍照或描述，AI识别病虫害',
+        content: `
+            <div class="mobile-page ai-center-page">
+                <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('aiChatCenter')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h1>病虫害识别</h1>
+                </div>
+                <div class="mobile-content">
+                    <!-- 顶部说明 -->
+                    <div class="ai-welcome-section">
+                        <div class="ai-logo">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <p class="ai-greeting">上传或拍摄病叶/虫体照片，或用文字描述症状，我来帮您识别并给出治理建议。</p>
+                        <button class="examples-btn" onclick="showExamplesModal()">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>例子</span>
+                        </button>
+                    </div>
+
+                    <!-- 输入区域（复用AI中心的ID，避免新增JS） -->
+                    <div class="ai-input-section">
+                        <div class="ai-input-container">
+                            <textarea id="aiCenterInput" class="ai-textarea" placeholder="例如：这张叶片有黄褐色斑点，请问是什么病？" rows="5"></textarea>
+                            <div class="ai-input-actions">
+                                <button class="camera-btn" onclick="document.getElementById('aiCenterImage').click()">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                                <button class="send-btn" onclick="startAICenterChat()">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                            <input type="file" id="aiCenterImage" accept="image/*" multiple style="display:none" onchange="previewAICenterImages(this)">
+                        </div>
+                        <div id="aiCenterImagePreview" class="image-preview"></div>
+                    </div>
+
+                    <!-- 例子弹窗（复用通用结构与JS） -->
+                    <div id="examplesModal" class="examples-modal">
+                        <div class="modal-overlay" onclick="hideExamplesModal()"></div>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>常见识别示例</h3>
+                                <button class="close-btn" onclick="hideExamplesModal()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="example-item" onclick="selectExample('这张叶片是否为玉米大斑病？')">
+                                    <div class="example-title">图片识别</div>
+                                    <div class="example-desc">这张叶片是否为玉米大斑病？</div>
+                                </div>
+                                <div class="example-item" onclick="selectExample('小麦叶片出现条状黄化是什么原因？')">
+                                    <div class="example-title">症状描述</div>
+                                    <div class="example-desc">小麦叶片出现条状黄化是什么原因？</div>
+                                </div>
+                                <div class="example-item" onclick="selectExample('番茄叶背有白色小虫如何治理？')">
+                                    <div class="example-title">虫害识别</div>
+                                    <div class="example-desc">番茄叶背有白色小虫如何治理？</div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- 保持AI三段式（仅显示三项，无底部五项导航） -->
+                <div class="mobile-footer ai-center-tabbar">
+                    <div class="tab-item" data-ai-tab="agentMarket" onclick="loadPage('agentMarket')"><i class="fas fa-th-large"></i><span>智能体广场</span></div>
+                    <div class="tab-item active" data-ai-tab="aiChatCenter" onclick="loadPage('pestDetect')"><i class="fas fa-bug"></i><span>病虫害识别</span></div>
+                    <div class="tab-item" data-ai-tab="mySubscriptions" onclick="loadPage('mySubscriptions')"><i class="fas fa-star"></i><span>我的订阅</span></div>
                 </div>
             </div>
         `
@@ -305,89 +387,204 @@ const pageData = {
         content: `
             <div class="mobile-page agent-market-page">
                 <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('aiChatCenter')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
                     <h1>智能体广场</h1>
                 </div>
                 <div class="mobile-content">
                     <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索智能体，如 病虫害、产量" oninput="showComingSoon('搜索')"></div>
 
                     <!-- 分类卡片：农事管理类 -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-title">农事管理类</div>
-                        </div>
-                        <div class="agent-pills">
-                            <div class="agent-pill" onclick="openAgentDetail('plan-assistant')">生产计划助手<span class="price">免费</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('task-dispatch')">任务派发助手<span class="price">¥5/次</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('cost-optimizer')">投入成本优化<span class="price">¥19/年</span></div>
+                    <div class="category-section">
+                        <div class="category-title">农事管理类</div>
+                        <div class="agent-cards-grid">
+                            <div class="agent-card-detailed" onclick="openAgentDetail('plan-assistant')">
+                                <div class="agent-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">生产计划助手</div>
+                                    <div class="agent-desc">智能制定农事计划</div>
+                                </div>
+                                <div class="agent-price free">免费</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('task-dispatch')">
+                                <div class="agent-icon"><i class="fas fa-tasks"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">任务派发助手</div>
+                                    <div class="agent-desc">高效分配农事任务</div>
+                                </div>
+                                <div class="agent-price paid">¥5/次</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('cost-optimizer')">
+                                <div class="agent-icon"><i class="fas fa-chart-pie"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">投入成本优化</div>
+                                    <div class="agent-desc">降低生产成本</div>
+                                </div>
+                                <div class="agent-price paid">¥19/年</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- 分类卡片：病虫害防治类 -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-title">病虫害防治类</div>
-                        </div>
-                        <div class="agent-pills">
-                            <div class="agent-pill" onclick="openAgentDetail('pest-detect')">病虫害识别<span class="price">免费</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('pesticide-advisor')">用药建议<span class="price">¥2/次</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('expert-weekly')">专家周报<span class="price">¥30/年</span></div>
+                    <div class="category-section">
+                        <div class="category-title">病虫害防治类</div>
+                        <div class="agent-cards-grid">
+                            <div class="agent-card-detailed" onclick="loadPage('pestDetect')">
+                                <div class="agent-icon"><i class="fas fa-bug"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">病虫害识别</div>
+                                    <div class="agent-desc">AI智能识别病虫害</div>
+                                </div>
+                                <div class="agent-price free">免费</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('pesticide-advisor')">
+                                <div class="agent-icon"><i class="fas fa-pills"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">用药建议</div>
+                                    <div class="agent-desc">精准用药指导</div>
+                                </div>
+                                <div class="agent-price paid">¥2/次</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('expert-weekly')">
+                                <div class="agent-icon"><i class="fas fa-newspaper"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">专家周报</div>
+                                    <div class="agent-desc">专业防治报告</div>
+                                </div>
+                                <div class="agent-price paid">¥30/年</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- 分类卡片：作物生长管理 -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-title">作物生长管理</div>
-                        </div>
-                        <div class="agent-pills">
-                            <div class="agent-pill" onclick="openAgentDetail('growth-stage')">生育期识别<span class="price">免费</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('nutrition-advisor')">营养诊断<span class="price">¥5/次</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('yield-forecast')">产量预测<span class="price">¥5/次</span></div>
+                    <div class="category-section">
+                        <div class="category-title">作物生长管理</div>
+                        <div class="agent-cards-grid">
+                            <div class="agent-card-detailed" onclick="openAgentDetail('growth-stage')">
+                                <div class="agent-icon"><i class="fas fa-seedling"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">生育期识别</div>
+                                    <div class="agent-desc">智能识别作物生长阶段</div>
+                                </div>
+                                <div class="agent-price free">免费</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('nutrition-advisor')">
+                                <div class="agent-icon"><i class="fas fa-flask"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">营养诊断</div>
+                                    <div class="agent-desc">精准营养分析</div>
+                                </div>
+                                <div class="agent-price paid">¥5/次</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('yield-forecast')">
+                                <div class="agent-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">产量预测</div>
+                                    <div class="agent-desc">AI预测作物产量</div>
+                                </div>
+                                <div class="agent-price paid">¥5/次</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- 分类卡片：销售服务类 -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-title">销售服务类</div>
-                        </div>
-                        <div class="agent-pills">
-                            <div class="agent-pill" onclick="openAgentDetail('price-insight')">价格洞察<span class="price">免费</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('channel-match')">渠道匹配<span class="price">¥9/次</span></div>
+                    <div class="category-section">
+                        <div class="category-title">销售服务类</div>
+                        <div class="agent-cards-grid">
+                            <div class="agent-card-detailed" onclick="openAgentDetail('price-insight')">
+                                <div class="agent-icon"><i class="fas fa-chart-bar"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">价格洞察</div>
+                                    <div class="agent-desc">市场行情分析</div>
+                                </div>
+                                <div class="agent-price free">免费</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('channel-match')">
+                                <div class="agent-icon"><i class="fas fa-handshake"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">渠道匹配</div>
+                                    <div class="agent-desc">智能匹配销售渠道</div>
+                                </div>
+                                <div class="agent-price paid">¥9/次</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- 分类卡片：种子服务类 -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-title">种子服务类</div>
-                        </div>
-                        <div class="agent-pills">
-                            <div class="agent-pill" onclick="openAgentDetail('variety-select')">品种选择<span class="price">免费</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('seed-plan')">播种计划<span class="price">¥3/次</span></div>
+                    <div class="category-section">
+                        <div class="category-title">种子服务类</div>
+                        <div class="agent-cards-grid">
+                            <div class="agent-card-detailed" onclick="openAgentDetail('variety-select')">
+                                <div class="agent-icon"><i class="fas fa-seedling"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">品种选择</div>
+                                    <div class="agent-desc">智能推荐优质品种</div>
+                                </div>
+                                <div class="agent-price free">免费</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('seed-plan')">
+                                <div class="agent-icon"><i class="fas fa-calendar-check"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">播种计划</div>
+                                    <div class="agent-desc">科学制定播种方案</div>
+                                </div>
+                                <div class="agent-price paid">¥3/次</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- 分类卡片：四情监测类 -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-title">四情监测类</div>
-                        </div>
-                        <div class="agent-pills">
-                            <div class="agent-pill" onclick="openAgentDetail('meteorology')">气象监测<span class="price">免费</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('soil-sensor')">土壤传感<span class="price">¥19/年</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('pest-trap')">虫情诱捕<span class="price">¥19/年</span></div>
+                    <div class="category-section">
+                        <div class="category-title">四情监测类</div>
+                        <div class="agent-cards-grid">
+                            <div class="agent-card-detailed" onclick="openAgentDetail('meteorology')">
+                                <div class="agent-icon"><i class="fas fa-cloud-sun"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">气象监测</div>
+                                    <div class="agent-desc">实时天气数据监测</div>
+                                </div>
+                                <div class="agent-price free">免费</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('soil-sensor')">
+                                <div class="agent-icon"><i class="fas fa-thermometer-half"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">土壤传感</div>
+                                    <div class="agent-desc">智能土壤环境监测</div>
+                                </div>
+                                <div class="agent-price paid">¥19/年</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('pest-trap')">
+                                <div class="agent-icon"><i class="fas fa-bug"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">虫情诱捕</div>
+                                    <div class="agent-desc">智能虫害监测预警</div>
+                                </div>
+                                <div class="agent-price paid">¥19/年</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- 分类卡片：风险防范类 -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-title">风险防范类</div>
-                        </div>
-                        <div class="agent-pills">
-                            <div class="agent-pill" onclick="openAgentDetail('disaster-alert')">灾害预警<span class="price">¥9/年</span></div>
-                            <div class="agent-pill" onclick="openAgentDetail('policy-advisor')">政策咨询<span class="price">免费</span></div>
+                    <div class="category-section">
+                        <div class="category-title">风险防范类</div>
+                        <div class="agent-cards-grid">
+                            <div class="agent-card-detailed" onclick="openAgentDetail('disaster-alert')">
+                                <div class="agent-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">灾害预警</div>
+                                    <div class="agent-desc">自然灾害预警系统</div>
+                                </div>
+                                <div class="agent-price paid">¥9/年</div>
+                            </div>
+                            <div class="agent-card-detailed" onclick="openAgentDetail('policy-advisor')">
+                                <div class="agent-icon"><i class="fas fa-gavel"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">政策咨询</div>
+                                    <div class="agent-desc">农业政策解读指导</div>
+                                </div>
+                                <div class="agent-price free">免费</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -408,6 +605,9 @@ const pageData = {
         content: `
             <div class="mobile-page my-subs-page">
                 <div class="mobile-header">
+                    <button class="back-btn" onclick="loadPage('aiChatCenter')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
                     <h1>我的订阅</h1>
                 </div>
                 <div class="mobile-content">
@@ -4584,7 +4784,7 @@ function ensureTabbar(pageName) {
         if (!pageEl) return;
 
         // AI相关页面(新三段式：智能体广场/AI对话/我的订阅 以及 旧AI页)不插入全局5项tabbar
-        const isAIFourMenuPage = ['agentMarket','aiChatCenter','mySubscriptions','aiNewChat','expertRecommend','historyDialog','aiDiagnosis'].includes(pageName);
+        const isAIFourMenuPage = ['agentMarket','aiChatCenter','mySubscriptions','aiNewChat','expertRecommend','historyDialog','aiDiagnosis','pestDetect'].includes(pageName);
         // 若页面内不存在通用 tabbar，则插入（非AI四菜单页）
         if (!isAIFourMenuPage && !pageEl.querySelector('.mobile-footer.tabbar')) {
             const footerHtml = `
