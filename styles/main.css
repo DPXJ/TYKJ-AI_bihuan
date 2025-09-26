@@ -253,6 +253,11 @@ body {
     overflow-y: auto;
 }
 
+/* 我的订阅整体使用主题色背景（卡片仍为白色） */
+.my-subs-page .mobile-content {
+    background: linear-gradient(180deg, rgba(33,192,139,0.08), rgba(10,160,110,0.06) 30%, #f8f9fa 60%);
+}
+
 .mobile-header {
     background: linear-gradient(135deg, #21c08b, #0aa06e);
     color: white;
@@ -1101,12 +1106,29 @@ body {
 }
 
 /* 我的订阅页面样式 */
+/* 使用全局主题色（绿色）头部，并保持与全局标题栏一致的高度与间距 */
 .my-subs-page .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
+    background: linear-gradient(135deg, #21c08b, #0aa06e);
+    padding: 15px 20px;
+    padding-top: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
+
+/* 切换按钮使用主题色，固定在标题栏右上角 */
+.my-subs-page .demo-toggle-btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    color: #21c08b;
+    border: 1px solid rgba(33, 192, 139, 0.25);
+    padding: 6px 10px;
+    border-radius: 16px;
+}
+.my-subs-page .demo-toggle-btn i { color: #21c08b; }
 
 .demo-toggle-btn {
     background: none;
@@ -1147,9 +1169,10 @@ body {
 }
 
 /* 订阅统计样式 */
+/* 我的订阅：统计卡片使用主题色（绿色） */
 .subscription-stats {
     display: flex;
-    background: linear-gradient(135deg, #2c7be5, #1e5bb8);
+    background: linear-gradient(135deg, #21c08b, #0aa06e);
     margin: -14px 16px 16px 16px;
     border-radius: 12px;
     padding: 20px;
@@ -1260,7 +1283,7 @@ body {
 }
 
 .action-btn {
-    background: #2c7be5;
+    background: #21c08b;
     color: white;
     padding: 6px 16px;
     border-radius: 16px;
@@ -1275,7 +1298,7 @@ body {
 }
 
 .subscription-actions .btn-primary {
-    background: #2c7be5;
+    background: #21c08b;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -1290,7 +1313,7 @@ body {
 }
 
 .subscription-actions .btn-primary:hover {
-    background: #1e5bb8;
+    background: #0aa06e;
 }
 
 /* 订阅项目操作按钮样式 */
@@ -1301,7 +1324,7 @@ body {
 }
 
 .action-btn.primary {
-    background: #2c7be5;
+    background: #21c08b;
     color: white;
     padding: 6px 16px;
     border-radius: 16px;
@@ -1313,13 +1336,13 @@ body {
 
 .action-btn.secondary {
     background: #f5f7fb;
-    color: #2c7be5;
+    color: #21c08b;
     padding: 6px 16px;
     border-radius: 16px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    border: 1px solid #e0e6ed;
+    border: 1px solid rgba(33,192,139,0.35);
 }
 
 .action-btn.secondary:hover {
@@ -1411,7 +1434,7 @@ body {
 }
 
 .modal-footer .btn-primary {
-    background: #2c7be5;
+    background: #21c08b;
     color: white;
 }
 
@@ -1631,7 +1654,7 @@ body {
 .send-btn:hover { background: #0aa06e; transform: scale(1.05); }
 .image-preview { margin-top: 8px; display: flex; gap: 8px; }
 
-.recommended-agents { padding: 0 16px 20px; margin-top: -40px; }
+.recommended-agents { padding: 0 16px 20px; margin-top: -50px; }
 .agents-hint { font-size: 12px; color: #999; text-align: left; margin-bottom: 8px; }
 .agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .agent-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: all 0.2s ease; }
@@ -1642,9 +1665,34 @@ body {
 /* 例子弹窗样式 */
 .examples-modal { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1000; display: none; }
 .examples-modal.active { display: block; }
-.examples-modal .modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 300ms ease; }
+.examples-modal .modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); opacity: 0; transition: opacity 300ms ease; }
 .examples-modal.active .modal-overlay { opacity: 1; }
-.examples-modal .modal-content { position: absolute; bottom: 0; left: 0; right: 0; width: 100%; background: white; border-radius: 32px 32px 0 0; height: auto; max-height: 75vh; overflow: hidden; transform: translateY(100%); transition: transform 300ms ease; box-sizing: border-box; -ms-overflow-style: none; scrollbar-width: none; margin: 0; padding: 0; }
+
+/* 强制设置弹窗背景为白色 */
+.examples-modal .modal-content,
+.examples-modal .modal-content * {
+    background: #ffffff !important;
+}
+.examples-modal .modal-content { 
+    position: absolute !important; 
+    bottom: 0 !important; 
+    left: 0 !important; 
+    right: 0 !important; 
+    width: 100% !important; 
+    background: #ffffff !important; 
+    border-radius: 32px 32px 0 0 !important; 
+    height: auto !important; 
+    max-height: 75vh !important; 
+    overflow-y: auto !important; 
+    transform: translateY(100%) !important; 
+    transition: transform 300ms ease !important; 
+    box-sizing: border-box !important; 
+    -ms-overflow-style: none !important; 
+    scrollbar-width: none !important; 
+    margin: 0 !important; 
+    padding: 0 !important; 
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15) !important; 
+}
 .examples-modal .modal-content::-webkit-scrollbar { display: none; width: 0; height: 0; }
 
 /* 确保弹窗完全匹配手机屏幕边界 */
@@ -1656,9 +1704,11 @@ body {
     margin-right: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    overflow: hidden !important;
+    overflow-y: auto !important;
     -ms-overflow-style: none !important;
     scrollbar-width: none !important;
+    background: #ffffff !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* 强制隐藏所有滚动条 */
@@ -1680,13 +1730,42 @@ body {
 .examples-modal .modal-content::-webkit-scrollbar-corner {
     display: none !important;
 }
-.examples-modal.active .modal-content { transform: translateY(0); }
-.examples-modal .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #eee; }
-.examples-modal .modal-header h3 { margin: 0; font-size: 18px; color: #333; }
-.examples-modal .close-btn { background: none; border: none; font-size: 18px; color: #666; cursor: pointer; }
-.examples-modal .modal-body { padding: 16px 20px 20px; }
-.examples-modal .example-item { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 14px; margin-bottom: 10px; cursor: pointer; }
-.examples-modal .example-item:hover { background: #e9ecef; }
+.examples-modal.active .modal-content { transform: translateY(0) !important; }
+.examples-modal .modal-header { 
+    display: flex !important; 
+    justify-content: space-between !important; 
+    align-items: center !important; 
+    padding: 16px 20px !important; 
+    border-bottom: 1px solid #eee !important; 
+    background: #ffffff !important; 
+}
+.examples-modal .modal-header h3 { margin: 0 !important; font-size: 18px !important; color: #333 !important; }
+.examples-modal .close-btn { background: none !important; border: none !important; font-size: 18px !important; color: #666 !important; cursor: pointer !important; }
+.examples-modal .modal-body { 
+    padding: 16px 20px 20px !important; 
+    background: #ffffff !important; 
+}
+.examples-modal .example-item { 
+    background: #ffffff !important; 
+    border: 1px solid #e0e0e0 !important; 
+    border-radius: 12px !important; 
+    padding: 14px !important; 
+    margin-bottom: 10px !important; 
+    cursor: pointer !important; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important; 
+}
+
+/* 强制确保问题卡片背景为白色 */
+.examples-modal .example-item,
+.examples-modal .example-item * {
+    background: #ffffff !important;
+}
+
+.examples-modal .example-item:hover { 
+    background: #f8f9fa !important; 
+    border-color: #21c08b !important; 
+    box-shadow: 0 4px 8px rgba(33, 192, 139, 0.1) !important; 
+}
 .examples-modal .example-title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 4px; }
 .examples-modal .example-desc { font-size: 13px; color: #666; }
 
@@ -6538,11 +6617,167 @@ body {
     margin: 15px 0;
     padding: 10px;
     background: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
-    min-height: 60px;
-    max-height: 120px;
-    overflow-y: auto;
+}
+
+/* 重新定义例子弹窗样式 - 确保纯白背景 */
+#examplesModal {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 1000 !important;
+    display: none !important;
+    background: transparent !important;
+}
+
+#examplesModal.active {
+    display: block !important;
+}
+
+#examplesModal .modal-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: transparent !important;
+    opacity: 0 !important;
+    transition: opacity 300ms ease !important;
+    pointer-events: none !important;
+}
+
+#examplesModal.active .modal-overlay {
+    opacity: 1 !important;
+}
+
+#examplesModal .modal-content {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    border-radius: 32px 32px 0 0 !important;
+    height: auto !important;
+    max-height: 75vh !important;
+    overflow-y: auto !important;
+    transform: translateY(100%) !important;
+    transition: transform 300ms ease !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15) !important;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    pointer-events: auto !important;
+}
+
+#examplesModal.active .modal-content {
+    transform: translateY(0) !important;
+}
+
+#examplesModal .modal-content::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+#examplesModal .modal-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 16px 20px !important;
+    border-bottom: 1px solid #eee !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+#examplesModal .modal-header h3 {
+    margin: 0 !important;
+    font-size: 18px !important;
+    color: #333 !important;
+}
+
+#examplesModal .close-btn {
+    background: none !important;
+    border: none !important;
+    font-size: 18px !important;
+    color: #666 !important;
+    cursor: pointer !important;
+}
+
+#examplesModal .modal-body {
+    padding: 16px 20px 20px !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+#examplesModal .example-item {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 12px !important;
+    padding: 14px !important;
+    margin-bottom: 10px !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+}
+
+#examplesModal .example-item:hover {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    border-color: #2c7be5 !important;
+    box-shadow: 0 8px 20px rgba(44, 123, 229, 0.15) !important;
+    transform: translateY(-2px) !important;
+}
+
+#examplesModal .example-item:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 4px 12px rgba(44, 123, 229, 0.2) !important;
+}
+
+#examplesModal .example-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    margin-bottom: 4px !important;
+}
+
+#examplesModal .example-desc {
+    font-size: 13px !important;
+    color: #666 !important;
+}
+
+/* 强制确保所有弹窗元素为纯白色 */
+#examplesModal,
+#examplesModal *,
+#examplesModal .modal-content,
+#examplesModal .modal-content *,
+#examplesModal .modal-header,
+#examplesModal .modal-header *,
+#examplesModal .modal-body,
+#examplesModal .modal-body *,
+#examplesModal .example-item,
+#examplesModal .example-item * {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+/* 特别强化弹窗内容区域 */
+#examplesModal .modal-content {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+/* 确保弹窗内容完全覆盖 */
+#examplesModal .modal-content::before,
+#examplesModal .modal-content::after {
+    display: none !important;
 }
 
 .realtime-text {
@@ -6989,8 +7224,8 @@ body {
 }
 
 .feature-tag {
-    background: #f0f4ff;
-    color: #667eea;
+    background: #e8f7f1;
+    color: #0aa06e;
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 11px;
