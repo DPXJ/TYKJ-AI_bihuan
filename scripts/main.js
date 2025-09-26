@@ -217,8 +217,8 @@ const pageData = {
 
                     <!-- 推荐智能体 -->
                     <div class="recommended-agents">
-                        <div class="agents-hint">滑动查看更多</div>
-                        <div class="agents-scroll">
+                        <div class="agents-hint">快速访问</div>
+                        <div class="agents-grid">
                             <div class="agent-card" onclick="loadPage('agentMarket')">
                                 <i class="fas fa-bug"></i>
                                 <span>病虫害识别</span>
@@ -230,18 +230,6 @@ const pageData = {
                             <div class="agent-card" onclick="loadPage('agentMarket')">
                                 <i class="fas fa-chart-line"></i>
                                 <span>产量预测</span>
-                            </div>
-                            <div class="agent-card" onclick="loadPage('agentMarket')">
-                                <i class="fas fa-user-md"></i>
-                                <span>专家建议</span>
-                            </div>
-                            <div class="agent-card" onclick="loadPage('agentMarket')">
-                                <i class="fas fa-tractor"></i>
-                                <span>农事管理</span>
-                            </div>
-                            <div class="agent-card" onclick="loadPage('agentMarket')">
-                                <i class="fas fa-leaf"></i>
-                                <span>作物生长</span>
                             </div>
                         </div>
                     </div>
@@ -609,8 +597,12 @@ const pageData = {
                         <i class="fas fa-arrow-left"></i>
                     </button>
                     <h1>我的订阅</h1>
+                    <button class="demo-toggle-btn" onclick="toggleSubscriptionDemo()" title="切换演示状态">
+                        <i class="fas fa-toggle-on"></i>
+                    </button>
                 </div>
                 <div class="mobile-content">
+                    <!-- 未订阅状态 -->
                     <div class="empty-state" id="subsEmpty">
                         <div class="empty-icon"><i class="fas fa-box-open"></i></div>
                         <div class="empty-title">还没有订阅</div>
@@ -620,14 +612,161 @@ const pageData = {
                         </div>
                     </div>
 
-                    <div class="card clickable" id="subsExample" style="display:none" onclick="loadPage('aiChatCenter')">
-                        <div class="list-row">
-                            <div class="list-icon"><i class="fas fa-bug"></i></div>
-                            <div class="list-main">
-                                <div class="list-title">病虫害识别（已购）</div>
-                                <div class="list-sub">永久有效</div>
+                    <!-- 已订阅状态 -->
+                    <div class="subscription-content" id="subsContent" style="display:none">
+                        <!-- 订阅统计 -->
+                        <div class="subscription-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">已订阅</div>
                             </div>
-                            <div class="list-extra"><span class="feature-tag">去对话</span></div>
+                            <div class="stat-item">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">免费</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2</div>
+                                <div class="stat-label">付费</div>
+                            </div>
+                        </div>
+
+                        <!-- 订阅列表 -->
+                        <div class="subscription-list">
+                            <div class="list-section-title">我的智能体</div>
+                            
+                            <!-- 免费订阅 -->
+                            <div class="subscription-item" onclick="loadPage('pestDetect')">
+                                <div class="sub-icon"><i class="fas fa-bug"></i></div>
+                                <div class="sub-info">
+                                    <div class="sub-name">病虫害识别</div>
+                                    <div class="sub-desc">AI智能识别病虫害</div>
+                                    <div class="sub-status free">永久免费</div>
+                                </div>
+                                <div class="sub-action">
+                                    <span class="action-btn">使用</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-item" onclick="openAgentDetail('plan-assistant')">
+                                <div class="sub-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="sub-info">
+                                    <div class="sub-name">生产计划助手</div>
+                                    <div class="sub-desc">智能制定农事计划</div>
+                                    <div class="sub-status free">永久免费</div>
+                                </div>
+                                <div class="sub-action">
+                                    <span class="action-btn">使用</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-item" onclick="openAgentDetail('growth-stage')">
+                                <div class="sub-icon"><i class="fas fa-seedling"></i></div>
+                                <div class="sub-info">
+                                    <div class="sub-name">生育期识别</div>
+                                    <div class="sub-desc">智能识别作物生长阶段</div>
+                                    <div class="sub-status free">永久免费</div>
+                                </div>
+                                <div class="sub-action">
+                                    <span class="action-btn">使用</span>
+                                </div>
+                            </div>
+
+                            <!-- 付费订阅 -->
+                            <div class="subscription-item">
+                                <div class="sub-icon"><i class="fas fa-pills"></i></div>
+                                <div class="sub-info">
+                                    <div class="sub-name">用药建议</div>
+                                    <div class="sub-desc">精准用药指导</div>
+                                    <div class="sub-status paid">¥2/次 · 剩余15次</div>
+                                </div>
+                                <div class="sub-actions">
+                                    <span class="action-btn primary" onclick="openAgentDetail('pesticide-advisor')">使用</span>
+                                    <span class="action-btn secondary" onclick="showRenewalModal('pesticide-advisor')">续费</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-item">
+                                <div class="sub-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="sub-info">
+                                    <div class="sub-name">产量预测</div>
+                                    <div class="sub-desc">AI预测作物产量</div>
+                                    <div class="sub-status paid">¥5/次 · 剩余8次</div>
+                                </div>
+                                <div class="sub-actions">
+                                    <span class="action-btn primary" onclick="openAgentDetail('yield-forecast')">使用</span>
+                                    <span class="action-btn secondary" onclick="showRenewalModal('yield-forecast')">续费</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 管理操作 -->
+                        <div class="subscription-actions">
+                            <button class="btn-primary" onclick="loadPage('agentMarket')">
+                                <i class="fas fa-plus"></i> 发现更多智能体
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 续费弹窗 -->
+                    <div id="renewalModal" class="modal-overlay" style="display:none" onclick="hideRenewalModal()">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <div class="modal-header">
+                                <h3>续费智能体</h3>
+                                <button class="modal-close" onclick="hideRenewalModal()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="renewal-info">
+                                    <div class="agent-info">
+                                        <div class="agent-icon" id="renewalAgentIcon"><i class="fas fa-robot"></i></div>
+                                        <div class="agent-details">
+                                            <div class="agent-name" id="renewalAgentName">智能体名称</div>
+                                            <div class="agent-desc" id="renewalAgentDesc">智能体描述</div>
+                                        </div>
+                                    </div>
+                                    <div class="current-status">
+                                        <span class="status-label">当前状态：</span>
+                                        <span class="status-value" id="renewalCurrentStatus">剩余15次</span>
+                                    </div>
+                                </div>
+                                <div class="renewal-options">
+                                    <div class="option-title">选择续费方案</div>
+                                    <div class="option-item" data-count="10" data-price="20">
+                                        <div class="option-info">
+                                            <div class="option-count">10次</div>
+                                            <div class="option-price">¥20</div>
+                                        </div>
+                                        <div class="option-select">
+                                            <input type="radio" name="renewalOption" value="10" checked>
+                                        </div>
+                                    </div>
+                                    <div class="option-item" data-count="30" data-price="50">
+                                        <div class="option-info">
+                                            <div class="option-count">30次</div>
+                                            <div class="option-price">¥50</div>
+                                            <div class="option-discount">省¥10</div>
+                                        </div>
+                                        <div class="option-select">
+                                            <input type="radio" name="renewalOption" value="30">
+                                        </div>
+                                    </div>
+                                    <div class="option-item" data-count="100" data-price="150">
+                                        <div class="option-info">
+                                            <div class="option-count">100次</div>
+                                            <div class="option-price">¥150</div>
+                                            <div class="option-discount">省¥50</div>
+                                        </div>
+                                        <div class="option-select">
+                                            <input type="radio" name="renewalOption" value="100">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn-secondary" onclick="hideRenewalModal()">取消</button>
+                                <button class="btn-primary" onclick="confirmRenewal()">确认续费</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -4916,7 +5055,7 @@ function startAICenterChat() {
 }
 
 function openAgentDetail(agentId) {
-    // 原型：弹提示并自动将示例加入“我的订阅”以便演示
+    // 原型：弹提示并自动将示例加入"我的订阅"以便演示
     showNotification(`打开智能体详情：${agentId}（原型）`, 'success');
     // 标记示例订阅已购
     setTimeout(() => {
@@ -4927,6 +5066,99 @@ function openAgentDetail(agentId) {
             item.style.display = 'block';
         }
     }, 300);
+}
+
+// 切换订阅演示状态
+function toggleSubscriptionDemo() {
+    const empty = document.getElementById('subsEmpty');
+    const content = document.getElementById('subsContent');
+    const toggleBtn = document.querySelector('.demo-toggle-btn i');
+    
+    if (empty && content) {
+        if (empty.style.display === 'none') {
+            // 切换到未订阅状态
+            empty.style.display = 'block';
+            content.style.display = 'none';
+            toggleBtn.className = 'fas fa-toggle-off';
+            showNotification('已切换到未订阅状态', 'info');
+        } else {
+            // 切换到已订阅状态
+            empty.style.display = 'none';
+            content.style.display = 'block';
+            toggleBtn.className = 'fas fa-toggle-on';
+            showNotification('已切换到已订阅状态', 'success');
+        }
+    }
+}
+
+// 显示续费弹窗
+function showRenewalModal(agentId) {
+    const modal = document.getElementById('renewalModal');
+    const agentData = getAgentData(agentId);
+    
+    if (modal && agentData) {
+        // 更新弹窗内容
+        document.getElementById('renewalAgentIcon').innerHTML = `<i class="${agentData.icon}"></i>`;
+        document.getElementById('renewalAgentName').textContent = agentData.name;
+        document.getElementById('renewalAgentDesc').textContent = agentData.desc;
+        document.getElementById('renewalCurrentStatus').textContent = agentData.status;
+        
+        modal.style.display = 'flex';
+    }
+}
+
+// 隐藏续费弹窗
+function hideRenewalModal() {
+    const modal = document.getElementById('renewalModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// 确认续费
+function confirmRenewal() {
+    const selectedOption = document.querySelector('input[name="renewalOption"]:checked');
+    if (selectedOption) {
+        const count = selectedOption.value;
+        const price = selectedOption.closest('.option-item').dataset.price;
+        
+        showNotification(`续费成功！已购买${count}次使用机会，花费¥${price}`, 'success');
+        hideRenewalModal();
+        
+        // 这里可以更新页面上的剩余次数显示
+        updateRemainingCount(count);
+    }
+}
+
+// 获取智能体数据
+function getAgentData(agentId) {
+    const agentData = {
+        'pesticide-advisor': {
+            icon: 'fas fa-pills',
+            name: '用药建议',
+            desc: '精准用药指导',
+            status: '剩余15次'
+        },
+        'yield-forecast': {
+            icon: 'fas fa-chart-line',
+            name: '产量预测',
+            desc: 'AI预测作物产量',
+            status: '剩余8次'
+        }
+    };
+    
+    return agentData[agentId] || {
+        icon: 'fas fa-robot',
+        name: '智能体',
+        desc: '智能体描述',
+        status: '剩余0次'
+    };
+}
+
+// 更新剩余次数（演示用）
+function updateRemainingCount(addedCount) {
+    // 这里可以更新页面上的剩余次数显示
+    showNotification(`剩余次数已更新（演示）`, 'info');
 }
 
 // 显示通知
