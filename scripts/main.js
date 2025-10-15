@@ -186,6 +186,12 @@ const pageData = {
                     <h1>AI对话</h1>
                 </div>
                 <div class="mobile-content">
+                    <!-- 历史记录按钮 -->
+                    <div class="history-btn-container">
+                        <button class="history-btn" onclick="showComingSoon('与现有功能保持一致')">
+                            <i class="fas fa-history"></i>
+                        </button>
+                    </div>
                     <!-- AI Logo 和欢迎文字 -->
                     <div class="ai-welcome-section">
                         <div class="ai-logo">
@@ -203,6 +209,9 @@ const pageData = {
                         <div class="ai-input-container">
                             <textarea id="aiCenterInput" class="ai-textarea" placeholder="输入您的问题，例如：这张叶片是什么病？" rows="5"></textarea>
                             <div class="ai-input-actions">
+                                <button class="voice-btn" onclick="showComingSoon('语音录入')">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
                                 <button class="camera-btn" onclick="document.getElementById('aiCenterImage').click()">
                                     <i class="fas fa-camera"></i>
                                 </button>
@@ -318,6 +327,9 @@ const pageData = {
                         <div class="ai-input-container">
                             <textarea id="aiCenterInput" class="ai-textarea" placeholder="例如：这张叶片有黄褐色斑点，请问是什么病？" rows="5"></textarea>
                             <div class="ai-input-actions">
+                                <button class="voice-btn" onclick="showComingSoon('语音录入')">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
                                 <button class="camera-btn" onclick="document.getElementById('aiCenterImage').click()">
                                     <i class="fas fa-camera"></i>
                                 </button>
@@ -4999,7 +5011,11 @@ function showMessages() {
 
 // 显示即将推出功能
 function showComingSoon(featureName) {
-    showNotification(`${featureName}功能即将推出，敬请期待！`, 'info');
+    if (featureName === '与现有功能保持一致') {
+        showNotification('与现有功能保持一致', 'info');
+    } else {
+        showNotification(`${featureName}功能即将推出，敬请期待！`, 'info');
+    }
 }
 
 // ===== AI中心（新三段式）交互函数 =====

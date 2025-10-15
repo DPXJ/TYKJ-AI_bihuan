@@ -297,6 +297,36 @@ body {
     cursor: pointer;
 }
 
+/* 历史记录按钮容器 */
+.history-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px 0;
+}
+
+/* 历史记录按钮样式 */
+.history-btn {
+    background: #f7f8fb;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    color: #666;
+    font-size: 16px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.history-btn:hover {
+    background: #e9ecef;
+    border-color: #21c08b;
+    color: #21c08b;
+}
+
 /* 农事活动详情-顶部摘要块 */
 .activity-summary {
     background: white;
@@ -1648,7 +1678,8 @@ body {
 .ai-textarea:hover { border-color: #21c08b; }
 .ai-textarea:focus { border-color: #21c08b; box-shadow: 0 0 0 2px rgba(33, 192, 139, 0.1); }
 .ai-input-actions { position: absolute; bottom: 16px; right: 12px; display: flex; gap: 6px; }
-.camera-btn, .send-btn { width: 36px; height: 36px; border: 1px solid #eaeaea; border-radius: 8px; background: #f7f8fb; display: flex; align-items: center; justify-content: center; color: #666; cursor: pointer; transition: all 0.2s ease; }
+.voice-btn, .camera-btn, .send-btn { width: 36px; height: 36px; border: 1px solid #eaeaea; border-radius: 8px; background: #f7f8fb; display: flex; align-items: center; justify-content: center; color: #666; cursor: pointer; transition: all 0.2s ease; }
+.voice-btn:hover { background: #e9ecef; border-color: #21c08b; color: #21c08b; }
 .camera-btn:hover { background: #e9ecef; border-color: #21c08b; color: #21c08b; }
 .send-btn { background: #21c08b; color: white; border-color: #21c08b; }
 .send-btn:hover { background: #0aa06e; transform: scale(1.05); }
