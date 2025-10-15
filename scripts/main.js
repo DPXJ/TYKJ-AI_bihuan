@@ -228,17 +228,17 @@ const pageData = {
                     <div class="recommended-agents">
                         <div class="agents-hint">快速访问</div>
                         <div class="agents-grid">
-                            <div class="agent-card" onclick="loadPage('agentMarket')">
+                            <div class="agent-card" onclick="loadAgentChatPage('pest-diagnosis', '病虫害诊断')">
                                 <i class="fas fa-bug"></i>
-                                <span>病虫害识别</span>
+                                <span>病虫害诊断</span>
                             </div>
-                            <div class="agent-card" onclick="loadPage('agentMarket')">
-                                <i class="fas fa-seedling"></i>
-                                <span>生产管理</span>
+                            <div class="agent-card" onclick="loadAgentChatPage('weed-control-analysis', '除草成效分析')">
+                                <i class="fas fa-spray-can"></i>
+                                <span>除草成效分析</span>
                             </div>
-                            <div class="agent-card" onclick="loadPage('agentMarket')">
-                                <i class="fas fa-chart-line"></i>
-                                <span>产量预测</span>
+                            <div class="agent-card" onclick="loadAgentChatPage('crop-model-brain', '农作物模型大脑')">
+                                <i class="fas fa-brain"></i>
+                                <span>农作物模型大脑</span>
                             </div>
                         </div>
                     </div>
@@ -395,64 +395,114 @@ const pageData = {
                 <div class="mobile-content">
                     <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="搜索智能体，如 病虫害、产量" oninput="showComingSoon('搜索')"></div>
 
-                    <!-- 分类卡片：农事管理类 -->
+                    <!-- 分类卡片：农事管理 -->
                     <div class="category-section">
-                        <div class="category-title">农事管理类</div>
+                        <div class="category-title">农事管理</div>
                         <div class="agent-cards-grid">
-                            <div class="agent-card-detailed" onclick="openAgentDetail('plan-assistant')">
+                            <div class="agent-card-detailed" data-agent-id="digital-farmland" data-category="农事管理" data-type="platform" data-price="free" onclick="handleAgentCardClick(event, 'digital-farmland', 'free')">
+                                <div class="agent-icon"><i class="fas fa-seedling"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">数字大田</div>
+                                    <div class="agent-desc">智能农田管理，精准农事指导</div>
+                                    <div class="agent-tags">
+                                        <span class="tag platform-tag">平台官方</span>
+                                    </div>
+                                </div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('digital-farmland', 'free');">订阅</button>
+                                </div>
+                            </div>
+                            <div class="agent-card-detailed" data-agent-id="statistical-analysis" data-category="农事管理" data-type="platform" data-price="free" onclick="handleAgentCardClick(event, 'statistical-analysis', 'free')">
+                                <div class="agent-icon"><i class="fas fa-chart-pie"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">统计分析</div>
+                                    <div class="agent-desc">农事数据统计分析，决策支持</div>
+                                    <div class="agent-tags">
+                                        <span class="tag platform-tag">平台官方</span>
+                                    </div>
+                                </div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('statistical-analysis', 'free')">订阅</button>
+                                </div>
+                            </div>
+                            <div class="agent-card-detailed" data-agent-id="weed-control-analysis" data-category="农事管理" data-type="platform" data-price="free" onclick="handleAgentCardClick(event, 'weed-control-analysis', 'free')">
+                                <div class="agent-icon"><i class="fas fa-spray-can"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">除草成效分析</div>
+                                    <div class="agent-desc">智能分析除草效果，优化方案</div>
+                                    <div class="agent-tags">
+                                        <span class="tag platform-tag">平台官方</span>
+                                    </div>
+                                </div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('weed-control-analysis', 'free')">订阅</button>
+                                </div>
+                            </div>
+                            <div class="agent-card-detailed" data-agent-id="plan-assistant" data-category="农事管理" data-type="expert" data-expert="张惠农" data-price="paid" onclick="handleAgentCardClick(event, 'plan-assistant', 'paid')">
                                 <div class="agent-icon"><i class="fas fa-calendar-alt"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">生产计划助手</div>
                                     <div class="agent-desc">智能制定农事计划</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">张惠农</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price free">免费</div>
-                            </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('task-dispatch')">
-                                <div class="agent-icon"><i class="fas fa-tasks"></i></div>
-                                <div class="agent-info">
-                                    <div class="agent-name">任务派发助手</div>
-                                    <div class="agent-desc">高效分配农事任务</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price paid">¥29/月</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('plan-assistant', 'paid')">订阅</button>
                                 </div>
-                                <div class="agent-price paid">¥5/次</div>
-                            </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('cost-optimizer')">
-                                <div class="agent-icon"><i class="fas fa-chart-pie"></i></div>
-                                <div class="agent-info">
-                                    <div class="agent-name">投入成本优化</div>
-                                    <div class="agent-desc">降低生产成本</div>
-                                </div>
-                                <div class="agent-price paid">¥19/年</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 分类卡片：病虫害防治类 -->
+                    <!-- 分类卡片：病虫害防治 -->
                     <div class="category-section">
-                        <div class="category-title">病虫害防治类</div>
+                        <div class="category-title">病虫害防治</div>
                         <div class="agent-cards-grid">
-                            <div class="agent-card-detailed" onclick="loadPage('pestDetect')">
+                            <div class="agent-card-detailed" data-agent-id="pest-diagnosis" data-category="病虫害防治" data-type="platform" data-price="free">
                                 <div class="agent-icon"><i class="fas fa-bug"></i></div>
                                 <div class="agent-info">
-                                    <div class="agent-name">病虫害识别</div>
-                                    <div class="agent-desc">AI智能识别病虫害</div>
+                                    <div class="agent-name">病虫害诊断</div>
+                                    <div class="agent-desc">AI智能识别病虫害，精准诊断</div>
+                                    <div class="agent-tags">
+                                        <span class="tag platform-tag">平台官方</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price free">免费</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('pest-diagnosis', 'free')">订阅</button>
+                                </div>
                             </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('pesticide-advisor')">
+                            <div class="agent-card-detailed" data-agent-id="pesticide-advisor" data-category="病虫害防治" data-type="expert" data-expert="李植保" data-price="paid">
                                 <div class="agent-icon"><i class="fas fa-pills"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">用药建议</div>
-                                    <div class="agent-desc">精准用药指导</div>
+                                    <div class="agent-desc">精准用药指导，科学防治</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">李植保</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price paid">¥2/次</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price paid">¥39/月</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('pesticide-advisor', 'paid')">订阅</button>
+                                </div>
                             </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('expert-weekly')">
+                            <div class="agent-card-detailed" data-agent-id="expert-weekly" data-category="病虫害防治" data-type="expert" data-expert="王农技" data-price="paid">
                                 <div class="agent-icon"><i class="fas fa-newspaper"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">专家周报</div>
-                                    <div class="agent-desc">专业防治报告</div>
+                                    <div class="agent-desc">每周病虫害预警，及时防治</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">王农技</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price paid">¥30/年</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price paid">¥19/月</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('expert-weekly', 'paid')">订阅</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -461,129 +511,173 @@ const pageData = {
                     <div class="category-section">
                         <div class="category-title">作物生长管理</div>
                         <div class="agent-cards-grid">
-                            <div class="agent-card-detailed" onclick="openAgentDetail('growth-stage')">
+                            <div class="agent-card-detailed" data-agent-id="crop-model-brain" data-category="作物生长管理" data-type="platform" data-price="free">
+                                <div class="agent-icon"><i class="fas fa-brain"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">农作物模型大脑</div>
+                                    <div class="agent-desc">智能作物生长模型，精准管理</div>
+                                    <div class="agent-tags">
+                                        <span class="tag platform-tag">平台官方</span>
+                                    </div>
+                                </div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('crop-model-brain', 'free')">订阅</button>
+                                </div>
+                            </div>
+                            <div class="agent-card-detailed" data-agent-id="growth-stage" data-category="作物生长管理" data-type="expert" data-expert="陈农学" data-price="free">
                                 <div class="agent-icon"><i class="fas fa-seedling"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">生育期识别</div>
                                     <div class="agent-desc">智能识别作物生长阶段</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">陈农学</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price free">免费</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('growth-stage', 'free')">订阅</button>
+                                </div>
                             </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('nutrition-advisor')">
+                            <div class="agent-card-detailed" data-agent-id="nutrition-advisor" data-category="作物生长管理" data-type="expert" data-expert="刘营养" data-price="paid">
                                 <div class="agent-icon"><i class="fas fa-flask"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">营养诊断</div>
-                                    <div class="agent-desc">精准营养分析</div>
+                                    <div class="agent-desc">精准营养分析，科学施肥</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">刘营养</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price paid">¥5/次</div>
-                            </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('yield-forecast')">
-                                <div class="agent-icon"><i class="fas fa-chart-line"></i></div>
-                                <div class="agent-info">
-                                    <div class="agent-name">产量预测</div>
-                                    <div class="agent-desc">AI预测作物产量</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price paid">¥49/月</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('nutrition-advisor', 'paid')">订阅</button>
                                 </div>
-                                <div class="agent-price paid">¥5/次</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 分类卡片：销售服务类 -->
+                    <!-- 分类卡片：销售服务 -->
                     <div class="category-section">
-                        <div class="category-title">销售服务类</div>
+                        <div class="category-title">销售服务</div>
                         <div class="agent-cards-grid">
-                            <div class="agent-card-detailed" onclick="openAgentDetail('price-insight')">
+                            <div class="agent-card-detailed" data-agent-id="price-insight" data-category="销售服务" data-type="expert" data-expert="赵市场" data-price="free">
                                 <div class="agent-icon"><i class="fas fa-chart-bar"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">价格洞察</div>
-                                    <div class="agent-desc">市场行情分析</div>
+                                    <div class="agent-desc">市场行情分析，价格预测</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">赵市场</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price free">免费</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('price-insight', 'free')">订阅</button>
+                                </div>
                             </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('channel-match')">
+                            <div class="agent-card-detailed" data-agent-id="channel-match" data-category="销售服务" data-type="expert" data-expert="孙销售" data-price="paid">
                                 <div class="agent-icon"><i class="fas fa-handshake"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">渠道匹配</div>
                                     <div class="agent-desc">智能匹配销售渠道</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">孙销售</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price paid">¥9/次</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price paid">¥59/月</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('channel-match', 'paid')">订阅</button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 分类卡片：种子服务类 -->
+                    <!-- 分类卡片：选种服务 -->
                     <div class="category-section">
-                        <div class="category-title">种子服务类</div>
+                        <div class="category-title">选种服务</div>
                         <div class="agent-cards-grid">
-                            <div class="agent-card-detailed" onclick="openAgentDetail('variety-select')">
+                            <div class="agent-card-detailed" data-agent-id="variety-select" data-category="选种服务" data-type="expert" data-expert="周育种" data-price="free">
                                 <div class="agent-icon"><i class="fas fa-seedling"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">品种选择</div>
                                     <div class="agent-desc">智能推荐优质品种</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">周育种</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price free">免费</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('variety-select', 'free')">订阅</button>
+                                </div>
                             </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('seed-plan')">
+                            <div class="agent-card-detailed" data-agent-id="seed-plan" data-category="选种服务" data-type="expert" data-expert="吴种植" data-price="paid">
                                 <div class="agent-icon"><i class="fas fa-calendar-check"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">播种计划</div>
                                     <div class="agent-desc">科学制定播种方案</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">吴种植</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price paid">¥3/次</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price paid">¥29/月</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('seed-plan', 'paid')">订阅</button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 分类卡片：四情监测类 -->
+                    <!-- 分类卡片：灾情预警 -->
                     <div class="category-section">
-                        <div class="category-title">四情监测类</div>
+                        <div class="category-title">灾情预警</div>
                         <div class="agent-cards-grid">
-                            <div class="agent-card-detailed" onclick="openAgentDetail('meteorology')">
+                            <div class="agent-card-detailed" data-agent-id="risk-analysis" data-category="灾情预警" data-type="platform" data-price="free">
+                                <div class="agent-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="agent-info">
+                                    <div class="agent-name">风险分析</div>
+                                    <div class="agent-desc">智能分析农业风险，提前预警</div>
+                                    <div class="agent-tags">
+                                        <span class="tag platform-tag">平台官方</span>
+                                    </div>
+                                </div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('risk-analysis', 'free')">订阅</button>
+                                </div>
+                            </div>
+                            <div class="agent-card-detailed" data-agent-id="meteorology" data-category="灾情预警" data-type="expert" data-expert="郑气象" data-price="free">
                                 <div class="agent-icon"><i class="fas fa-cloud-sun"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">气象监测</div>
                                     <div class="agent-desc">实时天气数据监测</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">郑气象</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price free">免费</div>
-                            </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('soil-sensor')">
-                                <div class="agent-icon"><i class="fas fa-thermometer-half"></i></div>
-                                <div class="agent-info">
-                                    <div class="agent-name">土壤传感</div>
-                                    <div class="agent-desc">智能土壤环境监测</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('meteorology', 'free')">订阅</button>
                                 </div>
-                                <div class="agent-price paid">¥19/年</div>
-                            </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('pest-trap')">
-                                <div class="agent-icon"><i class="fas fa-bug"></i></div>
-                                <div class="agent-info">
-                                    <div class="agent-name">虫情诱捕</div>
-                                    <div class="agent-desc">智能虫害监测预警</div>
-                                </div>
-                                <div class="agent-price paid">¥19/年</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 分类卡片：风险防范类 -->
+                    <!-- 分类卡片：其他 -->
                     <div class="category-section">
-                        <div class="category-title">风险防范类</div>
+                        <div class="category-title">其他</div>
                         <div class="agent-cards-grid">
-                            <div class="agent-card-detailed" onclick="openAgentDetail('disaster-alert')">
-                                <div class="agent-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                                <div class="agent-info">
-                                    <div class="agent-name">灾害预警</div>
-                                    <div class="agent-desc">自然灾害预警系统</div>
-                                </div>
-                                <div class="agent-price paid">¥9/年</div>
-                            </div>
-                            <div class="agent-card-detailed" onclick="openAgentDetail('policy-advisor')">
-                                <div class="agent-icon"><i class="fas fa-gavel"></i></div>
+                            <div class="agent-card-detailed" data-agent-id="policy-advisor" data-category="其他" data-type="expert" data-expert="钱政策" data-price="free">
+                                <div class="agent-icon"><i class="fas fa-book"></i></div>
                                 <div class="agent-info">
                                     <div class="agent-name">政策咨询</div>
                                     <div class="agent-desc">农业政策解读指导</div>
+                                    <div class="agent-tags">
+                                        <span class="tag expert-tag">钱政策</span>
+                                    </div>
                                 </div>
-                                <div class="agent-price free">免费</div>
+                                <div class="agent-actions">
+                                    <div class="agent-price free">免费</div>
+                                    <button class="subscribe-btn" onclick="event.stopPropagation(); subscribeAgent('policy-advisor', 'free')">订阅</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -4889,6 +4983,13 @@ function loadPage(pageName, param) {
             }, 100);
         }
         
+        // 如果是智能体广场页面，自动绑定卡片点击事件
+        if (pageName === 'agentMarket') {
+            setTimeout(() => {
+                initAgentCardClicks();
+            }, 100);
+        }
+        
         // 如果是专家详情页面，加载专家数据
         if (pageName === 'expertDetail' && param && expertData[param]) {
             setTimeout(() => {
@@ -5015,6 +5116,387 @@ function showComingSoon(featureName) {
         showNotification('与现有功能保持一致', 'info');
     } else {
         showNotification(`${featureName}功能即将推出，敬请期待！`, 'info');
+    }
+}
+
+// ===== 智能体卡片点击处理 =====
+function initAgentCardClicks() {
+    // 为所有智能体卡片绑定点击事件
+    const cards = document.querySelectorAll('.agent-card-detailed');
+    cards.forEach(card => {
+        const agentId = card.getAttribute('data-agent-id');
+        const priceType = card.getAttribute('data-price');
+        
+        if (agentId && priceType) {
+            card.onclick = function(event) {
+                handleAgentCardClick(event, agentId, priceType);
+            };
+        }
+    });
+}
+
+function handleAgentCardClick(event, agentId, priceType) {
+    // 如果点击的是订阅按钮，阻止卡片点击事件
+    if (event.target.closest('.subscribe-btn')) {
+        event.stopPropagation();
+        return;
+    }
+    
+    const card = document.querySelector(`[data-agent-id="${agentId}"]`);
+    const agentName = card.querySelector('.agent-name').textContent;
+    
+    if (priceType === 'free') {
+        // 免费智能体，直接跳转到AI对话页面
+        loadAgentChatPage(agentId, agentName);
+    } else {
+        // 付费智能体，检查是否已订阅
+        const subscribeBtn = card.querySelector('.subscribe-btn');
+        if (subscribeBtn && subscribeBtn.classList.contains('subscribed')) {
+            // 已订阅，跳转到AI对话页面
+            loadAgentChatPage(agentId, agentName);
+        } else {
+            // 未订阅，提示需要付费订阅
+            const agentPrice = card.querySelector('.agent-price').textContent;
+            showPaymentRequired(agentId, agentName, agentPrice);
+        }
+    }
+}
+
+function showPaymentRequired(agentId, agentName, agentPrice) {
+    // 显示付费提示对话框
+    const confirmDialog = document.createElement('div');
+    confirmDialog.className = 'payment-modal';
+    confirmDialog.innerHTML = `
+        <div class="modal-overlay" onclick="closePaymentModal()"></div>
+        <div class="modal-content payment-modal-content">
+            <div class="modal-header">
+                <h3>需要订阅</h3>
+                <button class="close-btn" onclick="closePaymentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-info">
+                    <div class="agent-info-preview">
+                        <div class="agent-name-large">${agentName}</div>
+                        <div class="subscription-type">需要月度会员</div>
+                    </div>
+                    <div class="price-info">
+                        <div class="price-label">订阅后即可使用</div>
+                        <div class="price-amount">${agentPrice}</div>
+                        <div class="price-note">按月自动续费，可随时取消</div>
+                    </div>
+                    <div class="payment-benefits">
+                        <div class="benefit-title">会员权益：</div>
+                        <div class="benefit-item"><i class="fas fa-check-circle"></i> 无限次使用智能体服务</div>
+                        <div class="benefit-item"><i class="fas fa-check-circle"></i> 优先获得功能更新</div>
+                        <div class="benefit-item"><i class="fas fa-check-circle"></i> 专属客服支持</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closePaymentModal()">取消</button>
+                <button class="btn-primary" onclick="confirmPayment('${agentId}', '${agentName}', '${agentPrice}')">
+                    <i class="fas fa-lock"></i> 立即订阅
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(confirmDialog);
+}
+
+function loadAgentChatPage(agentId, agentName) {
+    // 创建AI对话页面
+    if (!pageData.agentChat) {
+        pageData.agentChat = {
+            title: 'AI对话',
+            subtitle: '智能体对话',
+            content: ''
+        };
+    }
+    
+    // 生成对话页面内容
+    pageData.agentChat.title = agentName;
+    pageData.agentChat.content = `
+        <div class="mobile-page agent-chat-page">
+            <div class="mobile-header chat-header">
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="chat-title">
+                    <h1>${agentName}</h1>
+                    <div class="chat-subtitle">AI智能助手</div>
+                </div>
+                <button class="header-menu-btn" onclick="showChatMenu()">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </div>
+            <div class="chat-messages-container" id="chatMessagesContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-welcome">
+                        <div class="welcome-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="welcome-text">您好！我是${agentName}，有什么可以帮您的吗？</div>
+                        <div class="quick-questions">
+                            <div class="quick-question" onclick="sendQuickQuestion('如何使用这个智能体？')">
+                                如何使用这个智能体？
+                            </div>
+                            <div class="quick-question" onclick="sendQuickQuestion('你能帮我做什么？')">
+                                你能帮我做什么？
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <div class="chat-input-container">
+                    <button class="voice-btn" onclick="startVoiceInput()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <input type="text" 
+                           class="chat-input" 
+                           id="chatInput" 
+                           placeholder="有什么需要问我的吗~" 
+                           onkeypress="if(event.key==='Enter') sendChatMessage()">
+                    <button class="add-btn" onclick="showAddMenu()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="send-btn" onclick="sendChatMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    loadPage('agentChat');
+    
+    // 存储当前智能体信息
+    window.currentAgentId = agentId;
+    window.currentAgentName = agentName;
+}
+
+// ===== AI对话相关功能 =====
+function sendQuickQuestion(question) {
+    document.getElementById('chatInput').value = question;
+    sendChatMessage();
+}
+
+function sendChatMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (!message) {
+        return;
+    }
+    
+    // 添加用户消息
+    addChatMessage('user', message);
+    input.value = '';
+    
+    // 模拟AI回复
+    setTimeout(() => {
+        const aiResponse = generateAIResponse(message);
+        addChatMessage('ai', aiResponse);
+    }, 800);
+}
+
+function addChatMessage(type, content) {
+    const messagesContainer = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${type}-message`;
+    
+    if (type === 'user') {
+        messageDiv.innerHTML = `
+            <div class="message-content user-content">
+                <div class="message-bubble">${content}</div>
+            </div>
+            <div class="message-avatar user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+        `;
+    } else {
+        messageDiv.innerHTML = `
+            <div class="message-avatar ai-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content ai-content">
+                <div class="message-bubble">${content}</div>
+                <div class="message-actions">
+                    <button class="action-btn" onclick="copyMessage(this)" title="复制">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button class="action-btn" onclick="likeMessage(this)" title="赞">
+                        <i class="far fa-thumbs-up"></i>
+                    </button>
+                    <button class="action-btn" onclick="dislikeMessage(this)" title="踩">
+                        <i class="far fa-thumbs-down"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    
+    messagesContainer.appendChild(messageDiv);
+    
+    // 滚动到底部
+    const container = document.getElementById('chatMessagesContainer');
+    setTimeout(() => {
+        container.scrollTop = container.scrollHeight;
+    }, 100);
+}
+
+function generateAIResponse(userMessage) {
+    // 简单的AI回复生成逻辑
+    const responses = [
+        `关于"${userMessage}"这个问题，我可以为您提供专业的建议。`,
+        `我理解您的需求，让我为您分析一下。`,
+        `这是一个很好的问题！根据我的知识库，`,
+        `针对您提到的情况，我建议您可以考虑以下几点：`
+    ];
+    
+    return responses[Math.floor(Math.random() * responses.length)] + 
+           `\n\n具体来说，${window.currentAgentName || '我'}可以帮助您分析和解决这个问题。如果您需要更详细的解答，请继续提问。`;
+}
+
+function copyMessage(btn) {
+    const bubble = btn.closest('.message-content').querySelector('.message-bubble');
+    navigator.clipboard.writeText(bubble.textContent);
+    showNotification('已复制到剪贴板', 'success');
+}
+
+function likeMessage(btn) {
+    btn.innerHTML = '<i class="fas fa-thumbs-up"></i>';
+    btn.style.color = '#21c08b';
+    showNotification('感谢您的反馈', 'success');
+}
+
+function dislikeMessage(btn) {
+    btn.innerHTML = '<i class="fas fa-thumbs-down"></i>';
+    btn.style.color = '#ff6b6b';
+    showNotification('我们会继续改进', 'info');
+}
+
+function showChatMenu() {
+    showNotification('聊天菜单功能开发中...', 'info');
+}
+
+function showAddMenu() {
+    showNotification('附件功能开发中...', 'info');
+}
+
+// ===== 智能体订阅功能 =====
+function subscribeAgent(agentId, priceType) {
+    const card = document.querySelector(`[data-agent-id="${agentId}"]`);
+    const subscribeBtn = card.querySelector('.subscribe-btn');
+    const agentName = card.querySelector('.agent-name').textContent;
+    
+    // 检查是否已经订阅
+    if (subscribeBtn.classList.contains('subscribed')) {
+        showNotification('您已订阅该智能体', 'info');
+        return;
+    }
+    
+    if (priceType === 'free') {
+        // 免费智能体直接订阅
+        subscribeBtn.textContent = '已订阅';
+        subscribeBtn.classList.add('subscribed');
+        showNotification(`订阅成功！您已成功订阅 ${agentName}`, 'success');
+        
+        // 更新我的订阅页面（这里可以添加实际的数据持久化逻辑）
+        updateMySubscriptions(agentId, agentName, priceType);
+    } else {
+        // 付费智能体，显示月度会员付费提示
+        const agentPrice = card.querySelector('.agent-price').textContent;
+        
+        // 创建付费确认对话框
+        const confirmDialog = document.createElement('div');
+        confirmDialog.className = 'payment-modal';
+        confirmDialog.innerHTML = `
+            <div class="modal-overlay" onclick="closePaymentModal()"></div>
+            <div class="modal-content payment-modal-content">
+                <div class="modal-header">
+                    <h3>订阅确认</h3>
+                    <button class="close-btn" onclick="closePaymentModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="payment-info">
+                        <div class="agent-info-preview">
+                            <div class="agent-name-large">${agentName}</div>
+                            <div class="subscription-type">月度会员</div>
+                        </div>
+                        <div class="price-info">
+                            <div class="price-label">订阅费用</div>
+                            <div class="price-amount">${agentPrice}</div>
+                            <div class="price-note">按月自动续费，可随时取消</div>
+                        </div>
+                        <div class="payment-benefits">
+                            <div class="benefit-title">会员权益：</div>
+                            <div class="benefit-item"><i class="fas fa-check-circle"></i> 无限次使用智能体服务</div>
+                            <div class="benefit-item"><i class="fas fa-check-circle"></i> 优先获得功能更新</div>
+                            <div class="benefit-item"><i class="fas fa-check-circle"></i> 专属客服支持</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="closePaymentModal()">取消</button>
+                    <button class="btn-primary" onclick="confirmPayment('${agentId}', '${agentName}', '${agentPrice}')">
+                        <i class="fas fa-lock"></i> 确认付费订阅
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(confirmDialog);
+    }
+}
+
+function closePaymentModal() {
+    const modal = document.querySelector('.payment-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function confirmPayment(agentId, agentName, agentPrice) {
+    // 模拟支付流程
+    showNotification('正在处理支付...', 'info');
+    
+    setTimeout(() => {
+        const card = document.querySelector(`[data-agent-id="${agentId}"]`);
+        const subscribeBtn = card.querySelector('.subscribe-btn');
+        
+        subscribeBtn.textContent = '已订阅';
+        subscribeBtn.classList.add('subscribed');
+        
+        closePaymentModal();
+        showNotification(`订阅成功！您已成功订阅 ${agentName} 月度会员`, 'success');
+        
+        // 更新我的订阅页面
+        updateMySubscriptions(agentId, agentName, 'paid', agentPrice);
+    }, 1500);
+}
+
+function updateMySubscriptions(agentId, agentName, priceType, agentPrice = '免费') {
+    // 这里可以添加实际的数据持久化逻辑
+    // 例如：将订阅信息保存到 localStorage 或发送到后端服务器
+    
+    // 简单的localStorage实现
+    let subscriptions = JSON.parse(localStorage.getItem('agentSubscriptions') || '[]');
+    
+    // 检查是否已存在
+    if (!subscriptions.find(sub => sub.id === agentId)) {
+        subscriptions.push({
+            id: agentId,
+            name: agentName,
+            type: priceType,
+            price: agentPrice,
+            subscribeDate: new Date().toISOString()
+        });
+        
+        localStorage.setItem('agentSubscriptions', JSON.stringify(subscriptions));
     }
 }
 
